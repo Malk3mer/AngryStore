@@ -173,7 +173,7 @@ body.mobile-menu-open {
 }
 .hero-secondary {
   background-color: #333;
-  clip-path: none; /* إزالة القص من صفحة الخدمات */
+  clip-path: none;
 }
 .hero-inner {
   display: flex;
@@ -296,12 +296,9 @@ body.mobile-menu-open {
   text-align: center;
 }
 
-
 /* ======================================
    GAMES GRID (HOMEPAGE - VERTICAL CARDS)
 ====================================== */
-/* ✅ التعديل هنا: تم تغيير طريقة العرض إلى grid */
-/* شبكة الألعاب */
 .trending-games {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -309,7 +306,7 @@ body.mobile-menu-open {
 }
 
 .game-card {
-  width: min(100%, 280px); /* 👈 عرض ثابت (بحد أقصى 280px) */
+  width: min(100%, 280px);
   min-height: 520px;
   background: #fff;
   border-radius: 26px;
@@ -380,7 +377,7 @@ body.mobile-menu-open {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: auto; /* لدفع السعر والزر للأسفل */
+  margin-top: auto;
 }
 .game-price {
   font-size: 1.3rem;
@@ -427,6 +424,102 @@ body.mobile-menu-open {
   background: linear-gradient(135deg, #ff0000 0%, #c41f09 100%);
 }
 
+/* ======================================
+   🔥 UNIFIED TAGS STYLING (DaysGone Style)
+====================================== */
+.hardware-features,
+.game-tags,
+.tags-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+/* ✅ التاج الموحد - نفس تصميم DaysGone */
+.hardware-feature,
+.tag-badge,
+.product-tag,
+.game-tags .tag,
+.unified-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #fff !important;
+  background: linear-gradient(135deg, #c41f09 0%, #ff0000 100%) !important;
+  box-shadow: 0 4px 12px rgba(196, 31, 9, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+/* الأيقونة داخل التاج */
+.hardware-feature i,
+.tag-badge i,
+.product-tag i,
+.game-tags .tag i,
+.unified-tag i {
+  color: #fff !important;
+  font-size: 0.95rem;
+  opacity: 0.95;
+  display: inline-block;
+}
+
+/* تأثير الـ Hover */
+.hardware-feature:hover,
+.tag-badge:hover,
+.product-tag:hover,
+.game-tags .tag:hover,
+.unified-tag:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(196, 31, 9, 0.4);
+  background: linear-gradient(135deg, #ff0000 0%, #c41f09 100%) !important;
+}
+
+/* تأثير اللمعة الداخلية عند الـ Hover */
+.hardware-feature::before,
+.tag-badge::before,
+.product-tag::before,
+.unified-tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transition: left 0.5s ease;
+}
+
+.hardware-feature:hover::before,
+.tag-badge:hover::before,
+.product-tag:hover::before,
+.unified-tag:hover::before {
+  left: 100%;
+}
+
+/* لو النص طويل */
+.unified-tag {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* التاج المُعطّل (اختياري) */
+.unified-tag.disabled,
+.hardware-feature.disabled {
+  background: linear-gradient(135deg, #555 0%, #444 100%) !important;
+  color: #ddd !important;
+  box-shadow: none;
+  border: 1px solid rgba(0,0,0,0.4);
+  cursor: not-allowed;
+}
 
 /* ======================================
    FEATURES GRID (SERVICES PAGE)
@@ -492,7 +585,7 @@ body.mobile-menu-open {
   transition: max-height 0.4s ease-out;
 }
 .faq-item.active .faq-answer {
-  max-height: 300px; /* يجب أن يكون كافياً */
+  max-height: 300px;
   padding-bottom: 1rem;
 }
 
@@ -515,26 +608,21 @@ body.mobile-menu-open {
   background: linear-gradient(90deg, #c41f09, #ff0000, #c41f09);
 }
 
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+.features-section .features-grid {
   margin-top: 3rem;
 }
 
-.feature-card {
+.features-section .feature-card {
   background: rgba(255, 255, 255, 0.05);
   padding: 2.5rem 2rem;
   border-radius: 15px;
-  text-align: center;
-  transition: all 0.3s ease;
   border: 2px solid rgba(196, 31, 9, 0.2);
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
 }
 
-.feature-card::before {
+.features-section .feature-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -545,18 +633,18 @@ body.mobile-menu-open {
   transition: left 0.5s ease;
 }
 
-.feature-card:hover::before {
+.features-section .feature-card:hover::before {
   left: 100%;
 }
 
-.feature-card:hover {
+.features-section .feature-card:hover {
   transform: translateY(-10px);
   border-color: rgba(196, 31, 9, 0.5);
   box-shadow: 0 15px 40px rgba(196, 31, 9, 0.3);
   background: rgba(255, 255, 255, 0.08);
 }
 
-.feature-icon {
+.features-section .feature-icon {
   font-size: 3.5rem;
   color: #c41f09;
   margin-bottom: 1.5rem;
@@ -565,19 +653,19 @@ body.mobile-menu-open {
   filter: drop-shadow(0 4px 8px rgba(196, 31, 9, 0.4));
 }
 
-.feature-card:hover .feature-icon {
+.features-section .feature-card:hover .feature-icon {
   transform: scale(1.15) rotate(5deg);
   color: #ff0000;
 }
 
-.feature-card h3 {
+.features-section .feature-card h3 {
   font-size: 1.4rem;
   margin-bottom: 1rem;
   color: #fff;
   font-weight: 700;
 }
 
-.feature-card p {
+.features-section .feature-card p {
   color: #ccc;
   line-height: 1.8;
   font-size: 1rem;
@@ -778,7 +866,6 @@ body.mobile-menu-open {
 /* —————————— RESPONSIVENESS —————————— */
 @media (max-width: 992px) {
     .hero-title { font-size: 1.8rem; }
-    /* لم نعد بحاجة لتعديل عرض الكرت هنا لأن الـ grid يعتني بذلك */
 }
 @media (max-width: 600px) {
   .nav-links { display: none; }
