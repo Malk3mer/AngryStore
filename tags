@@ -1,0 +1,364 @@
+<!-- 
+================================================================================
+||                                                                            ||
+||     الموسوعة النهائية لأيقونات Font Awesome (للكمبيوتر والألعاب والبرامج)     ||
+||                                                                            ||
+================================================================================
+
+    - كل الأيقونات في مكان واحد.
+    - مقسمة إلى فئات دقيقة جداً لسهولة الاستخدام.
+    - أيقونات عامة تبدأ بـ "fa-solid".
+    - أيقونات الماركات التجارية تبدأ بـ "fa-brands".
+
+================================================================================
+-->
+
+<!-- ========================================================================== -->
+<!-- ======================= الجزء الأول: هاردوير الكمبيوتر ======================= -->
+<!-- ========================================================================== -->
+
+    <!-- ============================================= -->
+    <!-- ====== 1.1: المكونات الأساسية (Core Components) ====== -->
+    <!-- ============================================= -->
+
+        <!-- --- المعالج (CPU) --- -->
+        <i class="fa-solid fa-microchip"></i>        <!-- (CPU General) -->
+        <i class="fa-solid fa-gears"></i>           <!-- (Cores/Threads) -->
+        <i class="fa-solid fa-gauge-high"></i>      <!-- (Clock Speed) -->
+        <i class="fa-solid fa-puzzle-piece"></i>    <!-- (Socket Type) -->
+        <i class="fa-solid fa-brain"></i>           <!-- (Processing Power) -->
+
+        <!-- --- كارت الشاشة (GPU) --- -->
+        <i class="fa-solid fa-gamepad-modern"></i>    <!-- (GPU - Modern Look) -->
+        <i class="fa-solid fa-image"></i>           <!-- (Graphics) -->
+        <i class="fa-solid fa-images"></i>          <!-- (Multi-Display) -->
+        <i class="fa-solid fa-cubes"></i>           <!-- (3D Rendering) -->
+        <i class="fa-solid fa-film"></i>            <!-- (Video Processing) -->
+
+        <!-- --- الذاكرة (RAM) --- -->
+        <i class="fa-solid fa-memory"></i>          <!-- (RAM Module) -->
+        <i class="fa-solid fa-layer-group"></i>     <!-- (Capacity/Modules) -->
+        <i class="fa-solid fa-stopwatch-20"></i>    <!-- (Latency/Timings) -->
+        <i class="fa-solid fa-bolt-lightning"></i>  <!-- (Frequency/Speed) -->
+        <i class="fa-solid fa-arrows-left-right-to-line"></i> <!-- (Bandwidth) -->
+
+        <!-- --- اللوحة الأم (Motherboard) --- -->
+        <i class="fa-solid fa-server"></i>          <!-- (Motherboard) -->
+        <i class="fa-solid fa-sitemap"></i>         <!-- (Circuitry/Chipset) -->
+        <i class="fa-solid fa-plug"></i>            <!-- (Ports/Connectivity) -->
+        
+        <!-- --- التخزين (Storage) --- -->
+        <i class="fa-solid fa-hard-drive"></i>      <!-- (HDD) -->
+        <i class="fa-solid fa-compact-disc"></i>    <!-- (SSD) -->
+        <i class="fa-solid fa-sd-card"></i>         <!-- (SD Card/Flash) -->
+        <i class="fa-solid fa-database"></i>        <!-- (Data Storage) -->
+        <i class="fa-solid fa-download"></i>        <!-- (Read Speed) -->
+        <i class="fa-solid fa-upload"></i>          <!-- (Write Speed) -->
+
+    <!-- ============================================= -->
+    <!-- ====== 1.2: الأجهزة الطرفية (Peripherals) ====== -->
+    <!-- ============================================= -->
+
+        <!-- --- الكيبورد (Keyboard) --- -->
+        <i class="fa-solid fa-keyboard"></i>        <!-- (Keyboard General) -->
+        <i class="fa-solid fa-toggle-on"></i>       <!-- (Mechanical Switch) -->
+        <i class="fa-solid fa-fingerprint"></i>     <!-- (Biometric/Touch) -->
+        <i class="fa-solid fa-palette"></i>         <!-- (RGB Lighting) -->
+        <i class="fa-solid fa-ruler-horizontal"></i><!-- (Size: Full, TKL) -->
+        <i class="fa-solid fa-dice-one"></i>        <!-- (Keycap) -->
+        <i class="fa-solid fa-wave-square"></i>     <!-- (Sound/Clicky) -->
+
+        <!-- --- الماوس (Mouse) --- -->
+        <i class="fa-solid fa-computer-mouse"></i>  <!-- (Mouse General) -->
+        <i class="fa-solid fa-crosshairs"></i>      <!-- (DPI/Precision) -->
+        <i class="fa-solid fa-hand-pointer"></i>    <!-- (Buttons) -->
+        <i class="fa-solid fa-weight-hanging"></i>  <!-- (Weight) -->
+        <i class="fa-solid fa-satellite-dish"></i>  <!-- (Wireless/Receiver) -->
+        <i class="fa-solid fa-location-arrow"></i>  <!-- (Cursor) -->
+        
+        <!-- --- الشاشة (Monitor) --- -->
+        <i class="fa-solid fa-desktop"></i>         <!-- (Monitor General) -->
+        <i class="fa-solid fa-ruler-combined"></i>  <!-- (Size) -->
+        <i class="fa-solid fa-expand"></i>          <!-- (Resolution) -->
+        <i class="fa-solid fa-arrows-rotate"></i>   <!-- (Refresh Rate Hz) -->
+        <i class="fa-solid fa-eye"></i>             <!-- (Eye-care Tech) -->
+        <i class="fa-solid fa-circle-half-stroke"></i><!-- (Contrast) -->
+        <i class="fa-solid fa-panorama"></i>        <!-- (Ultrawide) -->
+
+        <!-- --- أجهزة الصوت (Audio) --- -->
+        <i class="fa-solid fa-headset"></i>         <!-- (Headset) -->
+        <i class="fa-solid fa-microphone"></i>      <!-- (Microphone) -->
+        <i class="fa-solid fa-microphone-lines"></i><!-- (Studio Mic) -->
+        <i class="fa-solid fa-volume-high"></i>     <!-- (Speakers) -->
+        <i class="fa-solid fa-music"></i>           <!-- (Audio Quality) -->
+        <i class="fa-solid fa-ear-listen"></i>      <!-- (Sound Quality) -->
+
+        <!-- --- أجهزة أخرى --- -->
+        <i class="fa-solid fa-camera"></i>          <!-- (Webcam) -->
+        <i class="fa-solid fa-video"></i>           <!-- (Video Capture) -->
+        <i class="fa-solid fa-print"></i>           <!-- (Printer) -->
+        <i class="fa-solid fa-fax"></i>             <!-- (Scanner/Fax) -->
+
+    <!-- ============================================= -->
+    <!-- ====== 1.3: مكونات ثانوية (System & Chassis) ====== -->
+    <!-- ============================================= -->
+
+        <!-- --- الكيسة (PC Case) --- -->
+        <i class="fa-solid fa-computer"></i>        <!-- (Modern Case) -->
+        <i class="fa-solid fa-cube"></i>            <!-- (Case Shape) -->
+        <i class="fa-solid fa-window-maximize"></i> <!-- (Tempered Glass Panel) -->
+
+        <!-- --- الطاقة والتبريد (Power & Cooling) --- -->
+        <i class="fa-solid fa-plug-circle-bolt"></i><!-- (PSU) -->
+        <i class="fa-solid fa-certificate"></i>     <!-- (80+ Certification) -->
+        <i class="fa-solid fa-fan"></i>             <!-- (Air Cooling Fan) -->
+        <i class="fa-solid fa-wind"></i>            <!-- (Airflow) -->
+        <i class="fa-solid fa-droplet"></i>         <!-- (Liquid Cooling) -->
+        <i class="fa-solid fa-temperature-arrow-down"></i> <!-- (Cooling) -->
+
+        <!-- --- الشبكات والاتصال (Networking & Ports) --- -->
+        <i class="fa-solid fa-network-wired"></i>   <!-- (LAN/Ethernet) -->
+        <i class="fa-solid fa-wifi"></i>            <!-- (Wi-Fi) -->
+        <i class="fa-brands fa-bluetooth-b"></i>    <!-- (Bluetooth) -->
+        <i class="fa-brands fa-usb"></i>            <!-- (USB Port) -->
+        <i class="fa-solid fa-bolt"></i>            <!-- (Thunderbolt Port) -->
+
+<!-- ========================================================================== -->
+<!-- ======================== الجزء الثاني: الألعاب وتصنيفاتها ======================== -->
+<!-- ========================================================================== -->
+
+    <!-- ============================================= -->
+    <!-- ====== 2.1: تصنيفات الأكشن (Action Genres) ====== -->
+    <!-- ============================================= -->
+        <i class="fa-solid fa-gun"></i>             <!-- (Shooter) -->
+        <i class="fa-solid fa-crosshairs"></i>      <!-- (First-Person Shooter) -->
+        <i class="fa-solid fa-explosion"></i>       <!-- (Action) -->
+        <i class="fa-solid fa-hand-fist"></i>       <!-- (Fighting) -->
+        <i class="fa-solid fa-person-running"></i>  <!-- (Adventure) -->
+        <i class="fa-solid fa-user-ninja"></i>      <!-- (Stealth) -->
+        <i class="fa-solid fa-jet-fighter-up"></i>  <!-- (War/Combat) -->
+        <i class="fa-solid fa-shield-halved"></i>   <!-- (Hack and Slash) -->
+        <i class="fa-solid fa-person-falling-burst"></i> <!-- (Battle Royale) -->
+
+    <!-- ============================================= -->
+    <!-- ====== 2.2: تصنيفات الاستراتيجية والفكر (Strategy Genres) ====== -->
+    <!-- ============================================= -->
+        <i class="fa-solid fa-chess-board"></i>     <!-- (Strategy) -->
+        <i class="fa-solid fa-brain"></i>           <!-- (Puzzle) -->
+        <i class="fa-solid fa-map-location-dot"></i><!-- (City Building / 4X) -->
+        <i class="fa-solid fa-tower-control"></i>   <!-- (Tower Defense) -->
+        <i class="fa-solid fa-chart-gantt"></i>     <!-- (Management) -->
+        <i class="fa-solid fa-landmark-flag"></i>   <!-- (Real-Time Strategy) -->
+        
+    <!-- ============================================= -->
+    <!-- ====== 2.3: تصنيفات الأدوار والخيال (RPG & Fantasy) ====== -->
+    <!-- ============================================= -->
+        <i class="fa-solid fa-scroll"></i>          <!-- (RPG / Quest) -->
+        <i class="fa-solid fa-hat-wizard"></i>      <!-- (Fantasy / Magic) -->
+        <i class="fa-solid fa-book-skull"></i>      <!-- (Dark Fantasy / Horror) -->
+        <i class="fa-solid fa-dungeon"></i>         <!-- (Dungeon Crawler) -->
+        <i class="fa-solid fa-tree"></i>            <!-- (Open World) -->
+        <i class="fa-solid fa-dragon"></i>          <!-- (Mythical Creatures) -->
+        <i class="fa-solid fa-ring"></i>            <!-- (Adventure/Fantasy) -->
+        <i class="fa-solid fa-atom"></i>            <!-- (Sci-Fi) -->
+        
+    <!-- ============================================= -->
+    <!-- ====== 2.4: تصنيفات أخرى (Other Genres) ====== -->
+    <!-- ============================================= -->
+        <i class="fa-solid fa-flag-checkered"></i>  <!-- (Racing) -->
+        <i class="fa-solid fa-car-side"></i>        <!-- (Driving Simulation) -->
+        <i class="fa-solid fa-futbol"></i>          <!-- (Sports - Soccer) -->
+        <i class="fa-solid fa-basketball"></i>      <!-- (Sports - Basketball) -->
+        <i class="fa-solid fa-trophy"></i>          <!-- (Championship/Sport) -->
+        <i class="fa-solid fa-face-grin-squint-tears"></i> <!-- (Comedy) -->
+        <i class="fa-solid fa-heart"></i>           <!-- (Casual / Romance) -->
+        <i class="fa-solid fa-seedling"></i>        <!-- (Farming / Simulation) -->
+        
+    <!-- ============================================= -->
+    <!-- ====== 2.5: مفاهيم وميزات الألعاب (Gaming Concepts) ====== -->
+    <!-- ============================================= -->
+        <i class="fa-solid fa-users"></i>           <!-- (Multiplayer) -->
+        <i class="fa-solid fa-user-group"></i>      <!-- (Co-op) -->
+        <i class="fa-solid fa-vr-cardboard"></i>    <!-- (Virtual Reality - VR) -->
+        <i class="fa-solid fa-gamepad"></i>         <!-- (Controller Support) -->
+        <i class="fa-solid fa-cloud"></i>           <!-- (Cloud Gaming) -->
+        <i class="fa-solid fa-star"></i>            <!-- (New Release) -->
+        <i class="fa-solid fa-fire"></i>            <!-- (Trending / Popular) -->
+        <i class="fa-solid fa-percent"></i>         <!-- (On Sale) -->
+
+<!-- ========================================================================== -->
+<!-- ================= الجزء الثالث: البرمجيات والأنظمة والماركات ================= -->
+<!-- ========================================================================== -->
+
+    <!-- ============================================= -->
+    <!-- ====== 3.1: أنظمة التشغيل والماركات (OS & Brands) ====== -->
+    <!-- ============================================= -->
+        
+        <!-- --- Microsoft Ecosystem --- -->
+        <i class="fa-brands fa-windows"></i>        <!-- (Windows OS) -->
+        <i class="fa-brands fa-microsoft"></i>      <!-- (Microsoft Corp.) -->
+        <i class="fa-brands fa-xbox"></i>           <!-- (Xbox) -->
+
+        <!-- --- Apple Ecosystem --- -->
+        <i class="fa-brands fa-apple"></i>          <!-- (Apple / macOS) -->
+
+        <!-- --- Linux Ecosystem --- -->
+        <i class="fa-brands fa-linux"></i>          <!-- (Linux General) -->
+        <i class="fa-brands fa-ubuntu"></i>         <!-- (Ubuntu) -->
+        <i class="fa-brands fa-redhat"></i>         <!-- (Red Hat) -->
+        <i class="fa-brands fa-fedora"></i>         <!-- (Fedora) -->
+        
+        <!-- --- Google Ecosystem --- -->
+        <i class="fa-brands fa-google"></i>         <!-- (Google) -->
+        <i class="fa-brands fa-android"></i>        <!-- (Android OS) -->
+        <i class="fa-brands fa-chrome"></i>         <!-- (Chrome Browser/OS) -->
+
+        <!-- --- Gaming Platforms --- -->
+        <i class="fa-brands fa-steam"></i>          <!-- (Steam) -->
+        <i class="fa-brands fa-playstation"></i>    <!-- (PlayStation) -->
+        <i class="fa-brands fa-discord"></i>        <!-- (Discord) -->
+        <i class="fa-brands fa-twitch"></i>         <!-- (Twitch) -->
+        
+        <!-- --- Hardware Brands (Alternatives) --- -->
+        <!-- لا يوجد شعارات رسمية مجانية، هذه بدائل مقترحة -->
+        <i class="fa-solid fa-microchip" style="color: #0071C5;"></i> <!-- (Intel Alternative) -->
+        <i class="fa-solid fa-microchip" style="color: #ED1C24;"></i> <!-- (AMD Alternative) -->
+        <i class="fa-solid fa-gamepad" style="color: #76B900;"></i>   <!-- (Nvidia Alternative) -->
+
+    <!-- ============================================= -->
+    <!-- ====== 3.2: برامج الإنتاجية والإبداع (Productivity & Creative) ====== -->
+    <!-- ============================================= -->
+        <!-- --- Microsoft Office --- -->
+        <i class="fa-solid fa-file-word"></i>       <!-- (Word) -->
+        <i class="fa-solid fa-file-excel"></i>      <!-- (Excel) -->
+        <i class="fa-solid fa-file-powerpoint"></i> <!-- (PowerPoint) -->
+        <i class="fa-solid fa-envelope-open-text"></i> <!-- (Outlook) -->
+        <i class="fa-solid fa-users-viewfinder"></i><!-- (Teams) -->
+
+        <!-- --- Adobe Creative Suite (Alternatives) --- -->
+        <i class="fa-solid fa-camera-retro"></i>    <!-- (Photoshop) -->
+        <i class="fa-solid fa-pen-nib"></i>         <!-- (Illustrator) -->
+        <i class="fa-solid fa-clapperboard"></i>    <!-- (Premiere Pro) -->
+        <i class="fa-solid fa-file-pdf"></i>        <!-- (Acrobat PDF) -->
+        
+        <!-- --- Browsers --- -->
+        <i class="fa-brands fa-firefox-browser"></i><!-- (Firefox) -->
+        <i class="fa-brands fa-safari"></i>         <!-- (Safari) -->
+        <i class="fa-brands fa-edge"></i>           <!-- (Microsoft Edge) -->
+        
+    <!-- ============================================= -->
+    <!-- ====== 3.3: مفاهيم برمجية عامة (General Software Concepts) ====== -->
+    <!-- ============================================= -->
+        <i class="fa-solid fa-code"></i>            <!-- (Code) -->
+        <i class="fa-solid fa-terminal"></i>        <!-- (Terminal / CMD) -->
+        <i class="fa-solid fa-bug"></i>             <!-- (Bug / Debugging) -->
+        <i class="fa-solid fa-shield-virus"></i>    <!-- (Antivirus) -->
+        <i class="fa-solid fa-lock"></i>            <!-- (Security / Encryption) -->
+        <i class="fa-solid fa-key"></i>             <!-- (Activation Key) -->
+        <i class="fa-solid fa-box-archive"></i>     <!-- (Compressed File) -->
+        <i class="fa-solid fa-floppy-disk"></i>     <!-- (Save) -->
+        <i class="fa-solid fa-folder-open"></i>     <!-- (Open File) -->
+        <i class="fa-solid fa-screwdriver-wrench"></i> <!-- (Utilities / Tools) -->
+        <i class="fa-solid fa-cloud-arrow-down"></i><!-- (Cloud Download) -->
+        <i class="fa-solid fa-cloud-arrow-up"></i>  <!-- (Cloud Upload) -->
+        <i class="fa-solid fa-share-nodes"></i>     <!-- (Sharing) -->
+        --------------------------------------------------------------------------------------------------------
+        <!-- ===========================
+     1. خصائص الترخيص والتفعيل
+=========================== -->
+<div class="hardware-feature"><i class="fa-solid fa-key"></i> Lifetime license</div>
+<div class="hardware-feature"><i class="fa-solid fa-calendar-check"></i> 1-year subscription</div>
+<div class="hardware-feature"><i class="fa-solid fa-user-lock"></i> Single-user activation</div>
+<div class="hardware-feature"><i class="fa-solid fa-users"></i> Multi-user support</div>
+<div class="hardware-feature"><i class="fa-solid fa-globe"></i> Global region</div>
+<div class="hardware-feature"><i class="fa-solid fa-download"></i> Digital delivery</div>
+
+<!-- =============================
+     2. أنظمة التشغيل والدعم التقني
+============================= -->
+<div class="hardware-feature"><i class="fa-brands fa-windows"></i> Windows 11 compatible</div>
+<div class="hardware-feature"><i class="fa-brands fa-apple"></i> macOS Sonoma ready</div>
+<div class="hardware-feature"><i class="fa-brands fa-linux"></i> Linux support</div>
+<div class="hardware-feature"><i class="fa-solid fa-shield-halved"></i> Secure boot ready</div>
+<div class="hardware-feature"><i class="fa-solid fa-rotate"></i> Auto updates</div>
+<div class="hardware-feature"><i class="fa-solid fa-server"></i> Virtualization support</div>
+
+<!-- ===============================
+     3. حزم أوفيس والإنتاجية
+=============================== -->
+<div class="hardware-feature"><i class="fa-solid fa-file-word"></i> Microsoft Word</div>
+<div class="hardware-feature"><i class="fa-solid fa-file-excel"></i> Microsoft Excel</div>
+<div class="hardware-feature"><i class="fa-solid fa-file-powerpoint"></i> PowerPoint templates</div>
+<div class="hardware-feature"><i class="fa-solid fa-envelope-open-text"></i> Outlook mailbox</div>
+<div class="hardware-feature"><i class="fa-solid fa-users-viewfinder"></i> Microsoft Teams access</div>
+<div class="hardware-feature"><i class="fa-solid fa-cloud"></i> 1TB OneDrive storage</div>
+
+<!-- ===============================
+     4. التصميم والإبداع (Canva / Adobe)
+=============================== -->
+<div class="hardware-feature"><i class="fa-solid fa-palette"></i> Premium templates</div>
+<div class="hardware-feature"><i class="fa-solid fa-pen-nib"></i> Vector editing</div>
+<div class="hardware-feature"><i class="fa-solid fa-wand-magic-sparkles"></i> AI design tools</div>
+<div class="hardware-feature"><i class="fa-solid fa-camera-retro"></i> Photo editing suite</div>
+<div class="hardware-feature"><i class="fa-solid fa-video"></i> 4K video exports</div>
+<div class="hardware-feature"><i class="fa-solid fa-users-gear"></i> Team collaboration</div>
+
+<!-- ===========================
+     5. الأمن والحماية
+=========================== -->
+<div class="hardware-feature"><i class="fa-solid fa-shield-virus"></i> Real-time protection</div>
+<div class="hardware-feature"><i class="fa-solid fa-bug-slash"></i> Malware removal</div>
+<div class="hardware-feature"><i class="fa-solid fa-user-shield"></i> Identity guard</div>
+<div class="hardware-feature"><i class="fa-solid fa-lock"></i> Encryption tools</div>
+<div class="hardware-feature"><i class="fa-solid fa-vault"></i> Password manager</div>
+<div class="hardware-feature"><i class="fa-solid fa-network-wired"></i> Firewall control</div>
+
+<!-- ==============================
+     6. برامج الهندسة والرسومات الفنية
+============================== -->
+<div class="hardware-feature"><i class="fa-solid fa-drafting-compass"></i> CAD drafting tools</div>
+<div class="hardware-feature"><i class="fa-solid fa-cube"></i> 3D modeling</div>
+<div class="hardware-feature"><i class="fa-solid fa-ruler-combined"></i> Precision measurements</div>
+<div class="hardware-feature"><i class="fa-solid fa-layer-group"></i> Layer management</div>
+<div class="hardware-feature"><i class="fa-solid fa-vector-square"></i> Vector workspace</div>
+<div class="hardware-feature"><i class="fa-solid fa-rotate"></i> Free product updates</div>
+
+<!-- ==============================
+     7. برامج إدارة الأعمال والمحاسبة
+============================== -->
+<div class="hardware-feature"><i class="fa-solid fa-chart-line"></i> Business analytics</div>
+<div class="hardware-feature"><i class="fa-solid fa-wallet"></i> Billing & invoicing</div>
+<div class="hardware-feature"><i class="fa-solid fa-hand-holding-dollar"></i> Payroll management</div>
+<div class="hardware-feature"><i class="fa-solid fa-file-invoice-dollar"></i> Tax reports</div>
+<div class="hardware-feature"><i class="fa-solid fa-scale-balanced"></i> Compliance tools</div>
+<div class="hardware-feature"><i class="fa-solid fa-database"></i> Secure backups</div>
+
+<!-- ===========================
+     8. أدوات المطورين والبرمجة
+=========================== -->
+<div class="hardware-feature"><i class="fa-solid fa-code"></i> IDE access</div>
+<div class="hardware-feature"><i class="fa-solid fa-terminal"></i> Command line tools</div>
+<div class="hardware-feature"><i class="fa-solid fa-plug-circle-check"></i> API integrations</div>
+<div class="hardware-feature"><i class="fa-solid fa-screwdriver-wrench"></i> DevOps toolkit</div>
+<div class="hardware-feature"><i class="fa-solid fa-cubes"></i> Container support</div>
+<div class="hardware-feature"><i class="fa-solid fa-cloud-arrow-up"></i> CI/CD pipelines</div>
+
+<!-- ===========================
+     9. خدمات سحابية وتخزين
+=========================== -->
+<div class="hardware-feature"><i class="fa-solid fa-cloud"></i> Cloud storage</div>
+<div class="hardware-feature"><i class="fa-solid fa-cloud-bolt"></i> Fast syncing</div>
+<div class="hardware-feature"><i class="fa-solid fa-shield-keyhole"></i> Zero-trust security</div>
+<div class="hardware-feature"><i class="fa-solid fa-diagram-project"></i> Project sharing</div>
+<div class="hardware-feature"><i class="fa-solid fa-square-share-nodes"></i> Team drives</div>
+<div class="hardware-feature"><i class="fa-solid fa-chart-pie"></i> Usage analytics</div>
+
+<!-- ===========================
+     10. برامج تعليمية واحترافية
+=========================== -->
+<div class="hardware-feature"><i class="fa-solid fa-graduation-cap"></i> Student license</div>
+<div class="hardware-feature"><i class="fa-solid fa-book"></i> Learning resources</div>
+<div class="hardware-feature"><i class="fa-solid fa-laptop-file"></i> E-learning platform access</div>
+<div class="hardware-feature"><i class="fa-solid fa-person-chalkboard"></i> Instructor support</div>
+<div class="hardware-feature"><i class="fa-solid fa-users-rectangle"></i> Classroom management</div>
+<div class="hardware-feature"><i class="fa-solid fa-circle-check"></i> Accreditation ready</div>

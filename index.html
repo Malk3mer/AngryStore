@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angry Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .trending-games {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      justify-items: center;
+    }
+    .hardware-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .hardware-feature i {
+      color: #3CB5CD;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo-link">
+      <img class="logo" src="img/ggdrehbgders.png" alt="Angry Store Logo" />
+    </a>
+    <nav class="nav-links">
+      <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
+      <a href="games.html"><i class="fas fa-gamepad"></i> Games</a>
+      <a href="services.html"><i class="fas fa-headset"></i> Services</a>
+      <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+      <a href="software.html"><i class="fas fa-microchip"></i> Software</a>
+      <a href="hardware.html"><i class="fas fa-desktop"></i> Hardware</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn btn-secondary"><i class="fas fa-user"></i> Sign In</button>
+      <button class="mobile-menu-btn" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu">
+  <nav class="mobile-nav">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="games.html"><i class="fas fa-gamepad"></i> Games</a>
+    <a href="services.html"><i class="fas fa-headset"></i> Services</a>
+    <a href="hardware.html"><i class="fas fa-desktop"></i> Hardware</a>
+    <a href="software.html"><i class="fas fa-microchip"></i> Software</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+    <button class="btn btn-primary mobile-signin"><i class="fas fa-user"></i> Sign In</button>
+  </nav>
+</div>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <span class="hero-subtitle">Welcome to Angry Store</span>
+        <h1 class="hero-title">Your Trusted Store for Original Gaming</h1>
+        <p class="hero-desc">
+          At Angry Store, we bring you 100% original PC games and subscriptions
+          from trusted sources. Every account is private and non‑shared, giving
+          you safe access, lifetime ownership, and guaranteed authenticity.
+        </p>
+        <form class="search-form">
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Search games..."
+          />
+          <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
+        </form>
+      </div>
+      <div class="hero-image">
+        <img
+          src="img/3940304b536796dcc176aa83203a3955.png"
+          alt="Featured Game"
+        />
+      </div>
+    </div>
+  </section>
+ 
+  <section class="trending">
+    <div class="container">
+      <div class="trending-header">
+        <span class="trending-label">Trending</span>
+        <h2 class="trending-title">Trending Games</h2>
+      </div>
+      <div class="trending-games" id="trendingGamesContainer">
+        <!-- سيتم توليد الكروت ديناميكيًا هنا -->
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US SECTION -->
+  <section class="features-section">
+    <div class="container">
+      <div class="trending-header">
+        <span class="trending-label">Why Choose Us</span>
+        <h2 class="trending-title">What Makes Us Different</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>100% Original</h3>
+          <p>All products are verified and 100% original. No cracked or pirated software.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3>Instant Delivery</h3>
+          <p>Get your product instantly via WhatsApp. No waiting, no delays.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3>24/7 Support</h3>
+          <p>Our support team is available around the clock to help you.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-infinity"></i>
+          </div>
+          <h3>Lifetime License</h3>
+          <p>All software comes with lifetime license. No monthly fees, no renewals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <h3>Angry Store</h3>
+          <p>Your trusted store for 100% original games, software, and hardware. We provide instant delivery and lifetime support.</p>
+          <div class="footer-contact">
+            <p><i class="fas fa-phone"></i> +20 150 787 5527</p>
+            <p><i class="fas fa-envelope"></i> malkamer145@gmail.com</p>
+            <p><i class="fas fa-clock"></i> 10:00 AM - 10:00 PM Daily</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="software.html">Software</a></li>
+            <li><a href="hardware.html">Hardware</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/+201507875527" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+          </div>
+          <p class="footer-note">Connect with us on social media for latest updates and exclusive offers!</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Angry Store. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/201507875527" class="whatsapp-float" target="_blank" title="Contact us on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script>
+    document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+      document.body.classList.toggle('mobile-menu-open');
+    });
+
+    // عرض منتجات الألعاب في الصفحة الرئيسية
+    document.addEventListener('DOMContentLoaded', () => {
+      const STORAGE_KEY = 'angryStoreProducts_v1';
+      const container = document.getElementById('trendingGamesContainer');
+      const all = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      const products = all.filter(p => (p.page || '').trim() === 'games.html').slice(0, 6);
+
+      function escapeHtml(str) {
+        if (str === null || str === undefined) return '';
+        return String(str)
+          .replaceAll('&', '&amp;')
+          .replaceAll('<', '&lt;')
+          .replaceAll('>', '&gt;')
+          .replaceAll('"', '&quot;')
+          .replaceAll("'", '&#039;');
+      }
+
+            const tagIcons = {
+// === 1.1: المكونات الأساسية (Core Components) ===
+    'CPU General': 'fa-solid fa-microchip',
+    'Cores/Threads': 'fa-solid fa-gears',
+    'Clock Speed': 'fa-solid fa-gauge-high',
+    'Socket Type': 'fa-solid fa-puzzle-piece',
+    'Processing Power': 'fa-solid fa-brain',
+
+    'GPU - Modern Look': 'fa-solid fa-gamepad-modern',
+    'Graphics': 'fa-solid fa-image',
+    'Multi-Display': 'fa-solid fa-images',
+    '3D Rendering': 'fa-solid fa-cubes',
+    'Video Processing': 'fa-solid fa-film',
+
+    'RAM Module': 'fa-solid fa-memory',
+    'Capacity/Modules': 'fa-solid fa-layer-group',
+    'Latency/Timings': 'fa-solid fa-stopwatch-20',
+    'Frequency/Speed': 'fa-solid fa-bolt-lightning',
+    'Bandwidth': 'fa-solid fa-arrows-left-right-to-line',
+
+    'Motherboard': 'fa-solid fa-server',
+    'Circuitry/Chipset': 'fa-solid fa-sitemap',
+    'Ports/Connectivity': 'fa-solid fa-plug',
+
+    'HDD': 'fa-solid fa-hard-drive',
+    'SSD': 'fa-solid fa-compact-disc',
+    'SD Card/Flash': 'fa-solid fa-sd-card',
+    'Data Storage': 'fa-solid fa-database',
+    'Read Speed': 'fa-solid fa-download',
+    'Write Speed': 'fa-solid fa-upload',
+
+    // === 1.2: الأجهزة الطرفية (Peripherals) ===
+    'Keyboard General': 'fa-solid fa-keyboard',
+    'Mechanical Switch': 'fa-solid fa-toggle-on',
+    'Biometric/Touch': 'fa-solid fa-fingerprint',
+    'RGB Lighting': 'fa-solid fa-palette',
+    'Size: Full, TKL': 'fa-solid fa-ruler-horizontal',
+    'Keycap': 'fa-solid fa-dice-one',
+    'Sound/Clicky': 'fa-solid fa-wave-square',
+
+    'Mouse General': 'fa-solid fa-computer-mouse',
+    'DPI/Precision': 'fa-solid fa-crosshairs',
+    'Buttons': 'fa-solid fa-hand-pointer',
+    'Weight': 'fa-solid fa-weight-hanging',
+    'Wireless/Receiver': 'fa-solid fa-satellite-dish',
+    'Cursor': 'fa-solid fa-location-arrow',
+
+    'Monitor General': 'fa-solid fa-desktop',
+    'Size': 'fa-solid fa-ruler-combined',
+    'Resolution': 'fa-solid fa-expand',
+    'Refresh Rate Hz': 'fa-solid fa-arrows-rotate',
+    'Eye-care Tech': 'fa-solid fa-eye',
+    'Contrast': 'fa-solid fa-circle-half-stroke',
+    'Ultrawide': 'fa-solid fa-panorama',
+
+    'Headset': 'fa-solid fa-headset',
+    'Microphone': 'fa-solid fa-microphone',
+    'Studio Mic': 'fa-solid fa-microphone-lines',
+    'Speakers': 'fa-solid fa-volume-high',
+    'Audio Quality': 'fa-solid fa-music',
+    'Sound Quality': 'fa-solid fa-ear-listen',
+
+    'Webcam': 'fa-solid fa-camera',
+    'Video Capture': 'fa-solid fa-video',
+    'Printer': 'fa-solid fa-print',
+    'Scanner/Fax': 'fa-solid fa-fax',
+
+    // === 1.3: مكونات ثانوية (System & Chassis) ===
+    'Modern Case': 'fa-solid fa-computer',
+    'Case Shape': 'fa-solid fa-cube',
+    'Tempered Glass Panel': 'fa-solid fa-window-maximize',
+
+    'PSU': 'fa-solid fa-plug-circle-bolt',
+    '80+ Certification': 'fa-solid fa-certificate',
+    'Air Cooling Fan': 'fa-solid fa-fan',
+    'Airflow': 'fa-solid fa-wind',
+    'Liquid Cooling': 'fa-solid fa-droplet',
+    'Cooling': 'fa-solid fa-temperature-arrow-down',
+
+    'LAN/Ethernet': 'fa-solid fa-network-wired',
+    'Wi-Fi': 'fa-solid fa-wifi',
+    'Bluetooth': 'fa-brands fa-bluetooth-b',
+    'USB Port': 'fa-brands fa-usb',
+    'Thunderbolt Port': 'fa-solid fa-bolt',
+
+    // === 2.1: تصنيفات الأكشن (Action Genres) ===
+    'Shooter': 'fa-solid fa-gun',
+    'First-Person Shooter': 'fa-solid fa-crosshairs',
+    'Action': 'fa-solid fa-explosion',
+    'Fighting': 'fa-solid fa-hand-fist',
+    'Adventure': 'fa-solid fa-person-running',
+    'Stealth': 'fa-solid fa-user-ninja',
+    'War/Combat': 'fa-solid fa-jet-fighter-up',
+    'Hack and Slash': 'fa-solid fa-shield-halved',
+    'Battle Royale': 'fa-solid fa-person-falling-burst',
+
+    // === 2.2: تصنيفات الاستراتيجية والفكر ===
+    'Strategy': 'fa-solid fa-chess-board',
+    'Puzzle': 'fa-solid fa-brain',
+    'City Building / 4X': 'fa-solid fa-map-location-dot',
+    'Tower Defense': 'fa-solid fa-tower-control',
+    'Management': 'fa-solid fa-chart-gantt',
+    'Real-Time Strategy': 'fa-solid fa-landmark-flag',
+
+    // === 2.3: تصنيفات الأدوار والخيال ===
+    'RPG / Quest': 'fa-solid fa-scroll',
+    'Fantasy / Magic': 'fa-solid fa-hat-wizard',
+    'Dark Fantasy / Horror': 'fa-solid fa-book-skull',
+    'Dungeon Crawler': 'fa-solid fa-dungeon',
+    'Open World': 'fa-solid fa-tree',
+    'Mythical Creatures': 'fa-solid fa-dragon',
+    'Adventure/Fantasy': 'fa-solid fa-ring',
+    'Sci-Fi': 'fa-solid fa-atom',
+
+    // === 2.4: تصنيفات أخرى ===
+    'Racing': 'fa-solid fa-flag-checkered',
+    'Driving Simulation': 'fa-solid fa-car-side',
+    'Sports - Soccer': 'fa-solid fa-futbol',
+    'Sports - Basketball': 'fa-solid fa-basketball',
+    'Championship/Sport': 'fa-solid fa-trophy',
+    'Comedy': 'fa-solid fa-face-grin-squint-tears',
+    'Casual / Romance': 'fa-solid fa-heart',
+    'Farming / Simulation': 'fa-solid fa-seedling',
+
+    // === 2.5: مفاهيم وميزات الألعاب ===
+    'Multiplayer': 'fa-solid fa-users',
+    'Co-op': 'fa-solid fa-user-group',
+    'Virtual Reality - VR': 'fa-solid fa-vr-cardboard',
+    'Controller Support': 'fa-solid fa-gamepad',
+    'Cloud Gaming': 'fa-solid fa-cloud',
+    'New Release': 'fa-solid fa-star',
+    'Trending / Popular': 'fa-solid fa-fire',
+    'On Sale': 'fa-solid fa-percent',
+
+    // === 3.1: أنظمة التشغيل والماركات ===
+    'Windows OS': 'fa-brands fa-windows',
+    'Microsoft Corp.': 'fa-brands fa-microsoft',
+    'Xbox': 'fa-brands fa-xbox',
+    'Apple / macOS': 'fa-brands fa-apple',
+    'Linux General': 'fa-brands fa-linux',
+    'Ubuntu': 'fa-brands fa-ubuntu',
+    'Red Hat': 'fa-brands fa-redhat',
+    'Fedora': 'fa-brands fa-fedora',
+    'Google': 'fa-brands fa-google',
+    'Android OS': 'fa-brands fa-android',
+    'Chrome Browser/OS': 'fa-brands fa-chrome',
+    'Steam': 'fa-brands fa-steam',
+    'PlayStation': 'fa-brands fa-playstation',
+    'Discord': 'fa-brands fa-discord',
+    'Twitch': 'fa-brands fa-twitch',
+    'Intel Alternative': 'fa-solid fa-microchip',
+    'AMD Alternative': 'fa-solid fa-microchip',
+    'Nvidia Alternative': 'fa-solid fa-gamepad',
+
+    // === 3.2: برامج الإنتاجية والإبداع ===
+    'Word': 'fa-solid fa-file-word',
+    'Excel': 'fa-solid fa-file-excel',
+    'PowerPoint': 'fa-solid fa-file-powerpoint',
+    'Outlook': 'fa-solid fa-envelope-open-text',
+    'Teams': 'fa-solid fa-users-viewfinder',
+    'Photoshop': 'fa-solid fa-camera-retro',
+    'Illustrator': 'fa-solid fa-pen-nib',
+    'Premiere Pro': 'fa-solid fa-clapperboard',
+    'Acrobat PDF': 'fa-solid fa-file-pdf',
+    'Firefox': 'fa-brands fa-firefox-browser',
+    'Safari': 'fa-brands fa-safari',
+    'Microsoft Edge': 'fa-brands fa-edge',
+
+    // === 3.3: مفاهيم برمجية عامة ===
+    'Code': 'fa-solid fa-code',
+    'Terminal / CMD': 'fa-solid fa-terminal',
+    'Bug / Debugging': 'fa-solid fa-bug',
+    'Antivirus': 'fa-solid fa-shield-virus',
+    'Security / Encryption': 'fa-solid fa-lock',
+    'Activation Key': 'fa-solid fa-key',
+    'Compressed File': 'fa-solid fa-box-archive',
+    'Save': 'fa-solid fa-floppy-disk',
+    'Open File': 'fa-solid fa-folder-open',
+    'Utilities / Tools': 'fa-solid fa-screwdriver-wrench',
+    'Cloud Download': 'fa-solid fa-cloud-arrow-down',
+    'Cloud Upload': 'fa-solid fa-cloud-arrow-up',
+    'Sharing': 'fa-solid fa-share-nodes',
+
+    // === خصائص الترخيص والتفعيل ===
+    'Lifetime license': 'fa-solid fa-key',
+    '1-year subscription': 'fa-solid fa-calendar-check',
+    'Single-user activation': 'fa-solid fa-user-lock',
+    'Multi-user support': 'fa-solid fa-users',
+    'Global region': 'fa-solid fa-globe',
+    'Digital delivery': 'fa-solid fa-download',
+
+    // === أنظمة التشغيل والدعم التقني ===
+    'Windows 11 compatible': 'fa-brands fa-windows',
+    'macOS Sonoma ready': 'fa-brands fa-apple',
+    'Linux support': 'fa-brands fa-linux',
+    'Secure boot ready': 'fa-solid fa-shield-halved',
+    'Auto updates': 'fa-solid fa-rotate',
+    'Virtualization support': 'fa-solid fa-server',
+
+    // === حزم أوفيس والإنتاجية ===
+    'Microsoft Word': 'fa-solid fa-file-word',
+    'Microsoft Excel': 'fa-solid fa-file-excel',
+    'PowerPoint templates': 'fa-solid fa-file-powerpoint',
+    'Outlook mailbox': 'fa-solid fa-envelope-open-text',
+    'Microsoft Teams access': 'fa-solid fa-users-viewfinder',
+    '1TB OneDrive storage': 'fa-solid fa-cloud',
+
+    // === التصميم والإبداع ===
+    'Premium templates': 'fa-solid fa-palette',
+    'Vector editing': 'fa-solid fa-pen-nib',
+    'AI design tools': 'fa-solid fa-wand-magic-sparkles',
+    'Photo editing suite': 'fa-solid fa-camera-retro',
+    '4K video exports': 'fa-solid fa-video',
+    'Team collaboration': 'fa-solid fa-users-gear',
+
+    // === الأمن والحماية ===
+    'Real-time protection': 'fa-solid fa-shield-virus',
+    'Malware removal': 'fa-solid fa-bug-slash',
+    'Identity guard': 'fa-solid fa-user-shield',
+    'Encryption tools': 'fa-solid fa-lock',
+    'Password manager': 'fa-solid fa-vault',
+    'Firewall control': 'fa-solid fa-network-wired',
+
+    // === برامج الهندسة والرسومات الفنية ===
+    'CAD drafting tools': 'fa-solid fa-drafting-compass',
+    '3D modeling': 'fa-solid fa-cube',
+    'Precision measurements': 'fa-solid fa-ruler-combined',
+    'Layer management': 'fa-solid fa-layer-group',
+    'Vector workspace': 'fa-solid fa-vector-square',
+    'Free product updates': 'fa-solid fa-rotate',
+
+    // === برامج إدارة الأعمال والمحاسبة ===
+    'Business analytics': 'fa-solid fa-chart-line',
+    'Billing & invoicing': 'fa-solid fa-wallet',
+    'Payroll management': 'fa-solid fa-hand-holding-dollar',
+    'Tax reports': 'fa-solid fa-file-invoice-dollar',
+    'Compliance tools': 'fa-solid fa-scale-balanced',
+    'Secure backups': 'fa-solid fa-database',
+
+    // === أدوات المطورين والبرمجة ===
+    'IDE access': 'fa-solid fa-code',
+    'Command line tools': 'fa-solid fa-terminal',
+    'API integrations': 'fa-solid fa-plug-circle-check',
+    'DevOps toolkit': 'fa-solid fa-screwdriver-wrench',
+    'Container support': 'fa-solid fa-cubes',
+    'CI/CD pipelines': 'fa-solid fa-cloud-arrow-up',
+
+    // === خدمات سحابية وتخزين ===
+    'Cloud storage': 'fa-solid fa-cloud',
+    'Fast syncing': 'fa-solid fa-cloud-bolt',
+    'Zero-trust security': 'fa-solid fa-shield-keyhole',
+    'Project sharing': 'fa-solid fa-diagram-project',
+    'Team drives': 'fa-solid fa-square-share-nodes',
+    'Usage analytics': 'fa-solid fa-chart-pie',
+
+    // === برامج تعليمية واحترافية ===
+    'Student license': 'fa-solid fa-graduation-cap',
+    'Learning resources': 'fa-solid fa-book',
+    'E-learning platform access': 'fa-solid fa-laptop-file',
+    'Instructor support': 'fa-solid fa-person-chalkboard',
+    'Classroom management': 'fa-solid fa-users-rectangle',
+    'Accreditation ready': 'fa-solid fa-circle-check'
+            };
+
+      if (!products.length) {
+        container.innerHTML = '<div style="color: #888; padding: 40px; text-align: center; grid-column: 1/-1;">No games available yet. Check back soon!</div>';
+        return;
+      }
+
+      container.innerHTML = '';
+      products.forEach(p => {
+        let category = p.category || 'Game';
+        let featuresHtml = (p.tags || []).slice(0, 2).map(t => {
+          const icon = tagIcons[t] || 'fa-brands fa-steam';
+          return `<div class="hardware-feature"><i class="${icon}"></i> ${escapeHtml(t)}</div>`;
+        }).join('');
+
+        const card = document.createElement('div');
+        card.className = 'game-card';
+        card.innerHTML = `
+          <div class="game-image">
+            <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" onerror="this.style.display='none'"/>
+            <div class="game-category">${escapeHtml(category)}</div>
+          </div>
+          <div class="game-details">
+            <h3 class="game-title">${escapeHtml(p.name)}</h3>
+            <div class="hardware-features">
+              ${featuresHtml}
+            </div>
+            <div class="game-info">
+              <div class="game-price">${escapeHtml(p.price)} EGP</div>
+              <a href="https://wa.me/+201507875527" target="_blank" class="btn buy-btn"><i class="fa-brands fa-whatsapp"></i> Buy</a>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    });
+  </script>
+</body>
+</html>

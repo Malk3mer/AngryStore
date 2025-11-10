@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة الإدارة | Angry Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #111;
+            color: #fff;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+
+        .admin-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #222;
+        }
+
+        .header h1 {
+            color: #ff2b2b;
+            font-size: 2rem;
+        }
+
+        .logout-btn {
+            background: #820000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #550000;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 30px;
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #222;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-card {
+            background: #151515;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #222;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-card h4 {
+            color: #aaa;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .number {
+            color: #ff2b2b;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .panel.products-form {
+            background: #0f0f0f;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .panel.products-list {
+            background: #181818;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #ff2b2b;
+            margin-bottom: 20px;
+        }
+
+        form label {
+            display: block;
+            margin: 15px 0 5px;
+            color: #ed6363;
+            font-weight: 600;
+        }
+
+        form input,
+        form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #222;
+            background: #151515;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        form input:focus,
+        form select:focus {
+            outline: none;
+            border-color: #ff2b2b;
+            box-shadow: 0 0 10px rgba(255, 43, 43, 0.3);
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .save {
+            background: #25d366;
+            color: #fff;
+            flex: 1;
+        }
+
+        .save:hover {
+            background: #1da857;
+        }
+
+        .clear {
+            background: #444;
+            color: #fff;
+            flex: 1;
+        }
+
+        .clear:hover {
+            background: #555;
+        }
+
+        .tags-select {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 15px;
+            background: #1a1a1a;
+            border-radius: 6px;
+            border: 1px solid #222;
+        }
+
+        .tag-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: #222;
+            border-radius: 6px;
+            cursor: pointer;
+            min-width: fit-content;
+        }
+
+        .tag-checkbox input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .tag-checkbox label {
+            cursor: pointer;
+            margin: 0;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #151515;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #2d2d2d;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: #ff2b2b;
+            box-shadow: 0 0 15px rgba(255, 43, 43, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            background: #232323;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            color: #ff2b2b;
+            margin: 10px 0 5px;
+            font-size: 1.1rem;
+        }
+
+        .card .meta {
+            color: #aaa;
+            font-size: 0.85em;
+            margin: 5px 0;
+        }
+
+        .card .tags-display {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        .tag-badge {
+            background: #222;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            color: #ccc;
+        }
+
+        .card .btns {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .edit,
+        .del {
+            flex: 1;
+            padding: 8px;
+            font-size: 0.9em;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .edit {
+            background: #ff6b6b;
+            color: #111;
+        }
+
+        .edit:hover {
+            background: #ff5252;
+        }
+
+        .del {
+            background: #770000;
+            color: #fff;
+        }
+
+        .del:hover {
+            background: #550000;
+        }
+
+        .empty {
+            color: #888;
+            padding: 40px 20px;
+            text-align: center;
+            background: #1a1a1a;
+            border-radius: 8px;
+            border: 1px solid #222;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .stat-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-wrap">
+        <div class="header">
+            <h1>🎮 إدارة المنتجات</h1>
+            <button class="logout-btn" id="logoutBtn">تسجيل الخروج</button>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="stats" id="stats">
+            <div class="stat-card" id="totalStats">
+                <h4>📊 إجمالي المنتجات</h4>
+                <div class="number" id="totalNumber">0</div>
+            </div>
+            <div class="stat-card" id="softwareStats">
+                <h4>💻 البرامج</h4>
+                <div class="number" id="softwareNumber">0</div>
+            </div>
+            <div class="stat-card" id="gamesStats">
+                <h4>🎮 الألعاب</h4>
+                <div class="number" id="gamesNumber">0</div>
+            </div>
+            <div class="stat-card" id="hardwareStats">
+                <h4>⚙️ الهاردوير</h4>
+                <div class="number" id="hardwareNumber">0</div>
+            </div>
+        </div>
+
+        <!-- Add Product Form -->
+        <div class="panel products-form">
+            <h2>إضافة/تعديل منتج</h2>
+            <form id="productForm">
+                <label>اسم المنتج*</label>
+                <input id="name" required placeholder="مثال: Windows 11 Pro">
+
+                <label>السعر (EGP)*</label>
+                <input id="price" type="number" required placeholder="مثال: 99">
+
+                <label>رابط الصورة*</label>
+                <input id="image" required placeholder="img/xxxx.jpg أو https://...">
+
+                <label>التصنيف (Category)*</label>
+                <select id="category" required>
+                    <option value="">اختر التصنيف...</option>
+                    <option value="Software">💻 Software</option>
+                    <option value="Game">🎮 Game</option>
+                    <option value="Hardware">⚙️ Hardware</option>
+                    <option value="Windows">🪟 Windows</option>
+                    <option value="Office Suite">📊 Office Suite</option>
+                    <option value="Creative Suite">🎨 Creative Suite</option>
+                    <option value="Security">🛡️ Security</option>
+                    <option value="Adventure">🗺️ Adventure</option>
+                    <option value="Action">💥 Action</option>
+                    <option value="Sports">⚽ Sports</option>
+                    <option value="Strategy">♟️ Strategy</option>
+                    <option value="GPU">🖥️ GPU</option>
+                    <option value="CPU">⚡ CPU</option>
+                    <option value="RAM">💾 RAM</option>
+                    <option value="Storage">💿 Storage</option>
+                </select>
+
+                <label>المميزات (اختر واحد أو أكثر)*</label>
+                <div class="tags-select" id="tagsContainer">
+                    <!-- سيتم ملؤه بـ JavaScript -->
+                </div>
+
+                <label>الصفحة*</label>
+                <select id="page" required>
+                    <option value="">اختر...</option>
+                    <option value="software.html">📱 software.html</option>
+                    <option value="games.html">🎯 games.html</option>
+                    <option value="hardware.html">🛠️ hardware.html</option>
+                    <option value="index.html">🏠 index.html</option>
+                </select>
+
+                <div class="actions">
+                    <button type="submit" class="save">💾 حفظ</button>
+                    <button type="button" id="clearBtn" class="clear">🔄 تفريغ</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Products List -->
+        <div class="panel products-list">
+            <h2>قائمة المنتجات</h2>
+            <div id="products" class="grid"></div>
+        </div>
+    </div>
+
+    <script>
+        // التحقق من الدخول
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = localStorage.getItem('angry_admin_logged_in');
+            const adminToken = localStorage.getItem('admin_token');
+            
+            if (isLoggedIn !== 'true' || !adminToken) {
+                window.location.href = 'login.html';
+                return;
+            }
+        });
+
+        // قائمة التاجات المتاحة الكاملة
+const AVAILABLE_TAGS = [
+    // === 1.1: المكونات الأساسية (Core Components) ===
+    { name: 'CPU General', icon: 'fa-solid fa-microchip' },
+    { name: 'Cores/Threads', icon: 'fa-solid fa-gears' },
+    { name: 'Clock Speed', icon: 'fa-solid fa-gauge-high' },
+    { name: 'Socket Type', icon: 'fa-solid fa-puzzle-piece' },
+    { name: 'Processing Power', icon: 'fa-solid fa-brain' },
+
+    { name: 'GPU - Modern Look', icon: 'fa-solid fa-gamepad-modern' },
+    { name: 'Graphics', icon: 'fa-solid fa-image' },
+    { name: 'Multi-Display', icon: 'fa-solid fa-images' },
+    { name: '3D Rendering', icon: 'fa-solid fa-cubes' },
+    { name: 'Video Processing', icon: 'fa-solid fa-film' },
+
+    { name: 'RAM Module', icon: 'fa-solid fa-memory' },
+    { name: 'Capacity/Modules', icon: 'fa-solid fa-layer-group' },
+    { name: 'Latency/Timings', icon: 'fa-solid fa-stopwatch-20' },
+    { name: 'Frequency/Speed', icon: 'fa-solid fa-bolt-lightning' },
+    { name: 'Bandwidth', icon: 'fa-solid fa-arrows-left-right-to-line' },
+
+    { name: 'Motherboard', icon: 'fa-solid fa-server' },
+    { name: 'Circuitry/Chipset', icon: 'fa-solid fa-sitemap' },
+    { name: 'Ports/Connectivity', icon: 'fa-solid fa-plug' },
+
+    { name: 'HDD', icon: 'fa-solid fa-hard-drive' },
+    { name: 'SSD', icon: 'fa-solid fa-compact-disc' },
+    { name: 'SD Card/Flash', icon: 'fa-solid fa-sd-card' },
+    { name: 'Data Storage', icon: 'fa-solid fa-database' },
+    { name: 'Read Speed', icon: 'fa-solid fa-download' },
+    { name: 'Write Speed', icon: 'fa-solid fa-upload' },
+
+    // === 1.2: الأجهزة الطرفية (Peripherals) ===
+    { name: 'Keyboard General', icon: 'fa-solid fa-keyboard' },
+    { name: 'Mechanical Switch', icon: 'fa-solid fa-toggle-on' },
+    { name: 'Biometric/Touch', icon: 'fa-solid fa-fingerprint' },
+    { name: 'RGB Lighting', icon: 'fa-solid fa-palette' },
+    { name: 'Size: Full, TKL', icon: 'fa-solid fa-ruler-horizontal' },
+    { name: 'Keycap', icon: 'fa-solid fa-dice-one' },
+    { name: 'Sound/Clicky', icon: 'fa-solid fa-wave-square' },
+
+    { name: 'Mouse General', icon: 'fa-solid fa-computer-mouse' },
+    { name: 'DPI/Precision', icon: 'fa-solid fa-crosshairs' },
+    { name: 'Buttons', icon: 'fa-solid fa-hand-pointer' },
+    { name: 'Weight', icon: 'fa-solid fa-weight-hanging' },
+    { name: 'Wireless/Receiver', icon: 'fa-solid fa-satellite-dish' },
+    { name: 'Cursor', icon: 'fa-solid fa-location-arrow' },
+
+    { name: 'Monitor General', icon: 'fa-solid fa-desktop' },
+    { name: 'Size', icon: 'fa-solid fa-ruler-combined' },
+    { name: 'Resolution', icon: 'fa-solid fa-expand' },
+    { name: 'Refresh Rate Hz', icon: 'fa-solid fa-arrows-rotate' },
+    { name: 'Eye-care Tech', icon: 'fa-solid fa-eye' },
+    { name: 'Contrast', icon: 'fa-solid fa-circle-half-stroke' },
+    { name: 'Ultrawide', icon: 'fa-solid fa-panorama' },
+
+    { name: 'Headset', icon: 'fa-solid fa-headset' },
+    { name: 'Microphone', icon: 'fa-solid fa-microphone' },
+    { name: 'Studio Mic', icon: 'fa-solid fa-microphone-lines' },
+    { name: 'Speakers', icon: 'fa-solid fa-volume-high' },
+    { name: 'Audio Quality', icon: 'fa-solid fa-music' },
+    { name: 'Sound Quality', icon: 'fa-solid fa-ear-listen' },
+
+    { name: 'Webcam', icon: 'fa-solid fa-camera' },
+    { name: 'Video Capture', icon: 'fa-solid fa-video' },
+    { name: 'Printer', icon: 'fa-solid fa-print' },
+    { name: 'Scanner/Fax', icon: 'fa-solid fa-fax' },
+
+    // === 1.3: مكونات ثانوية (System & Chassis) ===
+    { name: 'Modern Case', icon: 'fa-solid fa-computer' },
+    { name: 'Case Shape', icon: 'fa-solid fa-cube' },
+    { name: 'Tempered Glass Panel', icon: 'fa-solid fa-window-maximize' },
+
+    { name: 'PSU', icon: 'fa-solid fa-plug-circle-bolt' },
+    { name: '80+ Certification', icon: 'fa-solid fa-certificate' },
+    { name: 'Air Cooling Fan', icon: 'fa-solid fa-fan' },
+    { name: 'Airflow', icon: 'fa-solid fa-wind' },
+    { name: 'Liquid Cooling', icon: 'fa-solid fa-droplet' },
+    { name: 'Cooling', icon: 'fa-solid fa-temperature-arrow-down' },
+
+    { name: 'LAN/Ethernet', icon: 'fa-solid fa-network-wired' },
+    { name: 'Wi-Fi', icon: 'fa-solid fa-wifi' },
+    { name: 'Bluetooth', icon: 'fa-brands fa-bluetooth-b' },
+    { name: 'USB Port', icon: 'fa-brands fa-usb' },
+    { name: 'Thunderbolt Port', icon: 'fa-solid fa-bolt' },
+
+    // === 2.1: تصنيفات الأكشن (Action Genres) ===
+    { name: 'Shooter', icon: 'fa-solid fa-gun' },
+    { name: 'First-Person Shooter', icon: 'fa-solid fa-crosshairs' },
+    { name: 'Action', icon: 'fa-solid fa-explosion' },
+    { name: 'Fighting', icon: 'fa-solid fa-hand-fist' },
+    { name: 'Adventure', icon: 'fa-solid fa-person-running' },
+    { name: 'Stealth', icon: 'fa-solid fa-user-ninja' },
+    { name: 'War/Combat', icon: 'fa-solid fa-jet-fighter-up' },
+    { name: 'Hack and Slash', icon: 'fa-solid fa-shield-halved' },
+    { name: 'Battle Royale', icon: 'fa-solid fa-person-falling-burst' },
+
+    // === 2.2: تصنيفات الاستراتيجية والفكر ===
+    { name: 'Strategy', icon: 'fa-solid fa-chess-board' },
+    { name: 'Puzzle', icon: 'fa-solid fa-brain' },
+    { name: 'City Building / 4X', icon: 'fa-solid fa-map-location-dot' },
+    { name: 'Tower Defense', icon: 'fa-solid fa-tower-control' },
+    { name: 'Management', icon: 'fa-solid fa-chart-gantt' },
+    { name: 'Real-Time Strategy', icon: 'fa-solid fa-landmark-flag' },
+
+    // === 2.3: تصنيفات الأدوار والخيال ===
+    { name: 'RPG / Quest', icon: 'fa-solid fa-scroll' },
+    { name: 'Fantasy / Magic', icon: 'fa-solid fa-hat-wizard' },
+    { name: 'Dark Fantasy / Horror', icon: 'fa-solid fa-book-skull' },
+    { name: 'Dungeon Crawler', icon: 'fa-solid fa-dungeon' },
+    { name: 'Open World', icon: 'fa-solid fa-tree' },
+    { name: 'Mythical Creatures', icon: 'fa-solid fa-dragon' },
+    { name: 'Adventure/Fantasy', icon: 'fa-solid fa-ring' },
+    { name: 'Sci-Fi', icon: 'fa-solid fa-atom' },
+
+    // === 2.4: تصنيفات أخرى ===
+    { name: 'Racing', icon: 'fa-solid fa-flag-checkered' },
+    { name: 'Driving Simulation', icon: 'fa-solid fa-car-side' },
+    { name: 'Sports - Soccer', icon: 'fa-solid fa-futbol' },
+    { name: 'Sports - Basketball', icon: 'fa-solid fa-basketball' },
+    { name: 'Championship/Sport', icon: 'fa-solid fa-trophy' },
+    { name: 'Comedy', icon: 'fa-solid fa-face-grin-squint-tears' },
+    { name: 'Casual / Romance', icon: 'fa-solid fa-heart' },
+    { name: 'Farming / Simulation', icon: 'fa-solid fa-seedling' },
+
+    // === 2.5: مفاهيم وميزات الألعاب ===
+    { name: 'Multiplayer', icon: 'fa-solid fa-users' },
+    { name: 'Co-op', icon: 'fa-solid fa-user-group' },
+    { name: 'Virtual Reality - VR', icon: 'fa-solid fa-vr-cardboard' },
+    { name: 'Controller Support', icon: 'fa-solid fa-gamepad' },
+    { name: 'Cloud Gaming', icon: 'fa-solid fa-cloud' },
+    { name: 'New Release', icon: 'fa-solid fa-star' },
+    { name: 'Trending / Popular', icon: 'fa-solid fa-fire' },
+    { name: 'On Sale', icon: 'fa-solid fa-percent' },
+
+    // === 3.1: أنظمة التشغيل والماركات ===
+    { name: 'Windows OS', icon: 'fa-brands fa-windows' },
+    { name: 'Microsoft Corp.', icon: 'fa-brands fa-microsoft' },
+    { name: 'Xbox', icon: 'fa-brands fa-xbox' },
+    { name: 'Apple / macOS', icon: 'fa-brands fa-apple' },
+    { name: 'Linux General', icon: 'fa-brands fa-linux' },
+    { name: 'Ubuntu', icon: 'fa-brands fa-ubuntu' },
+    { name: 'Red Hat', icon: 'fa-brands fa-redhat' },
+    { name: 'Fedora', icon: 'fa-brands fa-fedora' },
+    { name: 'Google', icon: 'fa-brands fa-google' },
+    { name: 'Android OS', icon: 'fa-brands fa-android' },
+    { name: 'Chrome Browser/OS', icon: 'fa-brands fa-chrome' },
+    { name: 'Steam', icon: 'fa-brands fa-steam' },
+    { name: 'PlayStation', icon: 'fa-brands fa-playstation' },
+    { name: 'Discord', icon: 'fa-brands fa-discord' },
+    { name: 'Twitch', icon: 'fa-brands fa-twitch' },
+    { name: 'Intel Alternative', icon: 'fa-solid fa-microchip' },
+    { name: 'AMD Alternative', icon: 'fa-solid fa-microchip' },
+    { name: 'Nvidia Alternative', icon: 'fa-solid fa-gamepad' },
+
+    // === 3.2: برامج الإنتاجية والإبداع ===
+    { name: 'Word', icon: 'fa-solid fa-file-word' },
+    { name: 'Excel', icon: 'fa-solid fa-file-excel' },
+    { name: 'PowerPoint', icon: 'fa-solid fa-file-powerpoint' },
+    { name: 'Outlook', icon: 'fa-solid fa-envelope-open-text' },
+    { name: 'Teams', icon: 'fa-solid fa-users-viewfinder' },
+    { name: 'Photoshop', icon: 'fa-solid fa-camera-retro' },
+    { name: 'Illustrator', icon: 'fa-solid fa-pen-nib' },
+    { name: 'Premiere Pro', icon: 'fa-solid fa-clapperboard' },
+    { name: 'Acrobat PDF', icon: 'fa-solid fa-file-pdf' },
+    { name: 'Firefox', icon: 'fa-brands fa-firefox-browser' },
+    { name: 'Safari', icon: 'fa-brands fa-safari' },
+    { name: 'Microsoft Edge', icon: 'fa-brands fa-edge' },
+
+    // === 3.3: مفاهيم برمجية عامة ===
+    { name: 'Code', icon: 'fa-solid fa-code' },
+    { name: 'Terminal / CMD', icon: 'fa-solid fa-terminal' },
+    { name: 'Bug / Debugging', icon: 'fa-solid fa-bug' },
+    { name: 'Antivirus', icon: 'fa-solid fa-shield-virus' },
+    { name: 'Security / Encryption', icon: 'fa-solid fa-lock' },
+    { name: 'Activation Key', icon: 'fa-solid fa-key' },
+    { name: 'Compressed File', icon: 'fa-solid fa-box-archive' },
+    { name: 'Save', icon: 'fa-solid fa-floppy-disk' },
+    { name: 'Open File', icon: 'fa-solid fa-folder-open' },
+    { name: 'Utilities / Tools', icon: 'fa-solid fa-screwdriver-wrench' },
+    { name: 'Cloud Download', icon: 'fa-solid fa-cloud-arrow-down' },
+    { name: 'Cloud Upload', icon: 'fa-solid fa-cloud-arrow-up' },
+    { name: 'Sharing', icon: 'fa-solid fa-share-nodes' },
+
+    // === خصائص الترخيص والتفعيل (من القسم الأخير) ===
+    { name: 'Lifetime license', icon: 'fa-solid fa-key' },
+    { name: '1-year subscription', icon: 'fa-solid fa-calendar-check' },
+    { name: 'Single-user activation', icon: 'fa-solid fa-user-lock' },
+    { name: 'Multi-user support', icon: 'fa-solid fa-users' },
+    { name: 'Global region', icon: 'fa-solid fa-globe' },
+    { name: 'Digital delivery', icon: 'fa-solid fa-download' },
+
+    // === أنظمة التشغيل والدعم التقني ===
+    { name: 'Windows 11 compatible', icon: 'fa-brands fa-windows' },
+    { name: 'macOS Sonoma ready', icon: 'fa-brands fa-apple' },
+    { name: 'Linux support', icon: 'fa-brands fa-linux' },
+    { name: 'Secure boot ready', icon: 'fa-solid fa-shield-halved' },
+    { name: 'Auto updates', icon: 'fa-solid fa-rotate' },
+    { name: 'Virtualization support', icon: 'fa-solid fa-server' },
+
+    // === حزم أوفيس والإنتاجية ===
+    { name: 'Microsoft Word', icon: 'fa-solid fa-file-word' },
+    { name: 'Microsoft Excel', icon: 'fa-solid fa-file-excel' },
+    { name: 'PowerPoint templates', icon: 'fa-solid fa-file-powerpoint' },
+    { name: 'Outlook mailbox', icon: 'fa-solid fa-envelope-open-text' },
+    { name: 'Microsoft Teams access', icon: 'fa-solid fa-users-viewfinder' },
+    { name: '1TB OneDrive storage', icon: 'fa-solid fa-cloud' },
+
+    // === التصميم والإبداع ===
+    { name: 'Premium templates', icon: 'fa-solid fa-palette' },
+    { name: 'Vector editing', icon: 'fa-solid fa-pen-nib' },
+    { name: 'AI design tools', icon: 'fa-solid fa-wand-magic-sparkles' },
+    { name: 'Photo editing suite', icon: 'fa-solid fa-camera-retro' },
+    { name: '4K video exports', icon: 'fa-solid fa-video' },
+    { name: 'Team collaboration', icon: 'fa-solid fa-users-gear' },
+
+    // === الأمن والحماية ===
+    { name: 'Real-time protection', icon: 'fa-solid fa-shield-virus' },
+    { name: 'Malware removal', icon: 'fa-solid fa-bug-slash' },
+    { name: 'Identity guard', icon: 'fa-solid fa-user-shield' },
+    { name: 'Encryption tools', icon: 'fa-solid fa-lock' },
+    { name: 'Password manager', icon: 'fa-solid fa-vault' },
+    { name: 'Firewall control', icon: 'fa-solid fa-network-wired' },
+
+    // === برامج الهندسة والرسومات الفنية ===
+    { name: 'CAD drafting tools', icon: 'fa-solid fa-drafting-compass' },
+    { name: '3D modeling', icon: 'fa-solid fa-cube' },
+    { name: 'Precision measurements', icon: 'fa-solid fa-ruler-combined' },
+    { name: 'Layer management', icon: 'fa-solid fa-layer-group' },
+    { name: 'Vector workspace', icon: 'fa-solid fa-vector-square' },
+    { name: 'Free product updates', icon: 'fa-solid fa-rotate' },
+
+    // === برامج إدارة الأعمال والمحاسبة ===
+    { name: 'Business analytics', icon: 'fa-solid fa-chart-line' },
+    { name: 'Billing & invoicing', icon: 'fa-solid fa-wallet' },
+    { name: 'Payroll management', icon: 'fa-solid fa-hand-holding-dollar' },
+    { name: 'Tax reports', icon: 'fa-solid fa-file-invoice-dollar' },
+    { name: 'Compliance tools', icon: 'fa-solid fa-scale-balanced' },
+    { name: 'Secure backups', icon: 'fa-solid fa-database' },
+
+    // === أدوات المطورين والبرمجة ===
+    { name: 'IDE access', icon: 'fa-solid fa-code' },
+    { name: 'Command line tools', icon: 'fa-solid fa-terminal' },
+    { name: 'API integrations', icon: 'fa-solid fa-plug-circle-check' },
+    { name: 'DevOps toolkit', icon: 'fa-solid fa-screwdriver-wrench' },
+    { name: 'Container support', icon: 'fa-solid fa-cubes' },
+    { name: 'CI/CD pipelines', icon: 'fa-solid fa-cloud-arrow-up' },
+
+    // === خدمات سحابية وتخزين ===
+    { name: 'Cloud storage', icon: 'fa-solid fa-cloud' },
+    { name: 'Fast syncing', icon: 'fa-solid fa-cloud-bolt' },
+    { name: 'Zero-trust security', icon: 'fa-solid fa-shield-keyhole' },
+    { name: 'Project sharing', icon: 'fa-solid fa-diagram-project' },
+    { name: 'Team drives', icon: 'fa-solid fa-square-share-nodes' },
+    { name: 'Usage analytics', icon: 'fa-solid fa-chart-pie' },
+
+    // === برامج تعليمية واحترافية ===
+    { name: 'Student license', icon: 'fa-solid fa-graduation-cap' },
+    { name: 'Learning resources', icon: 'fa-solid fa-book' },
+    { name: 'E-learning platform access', icon: 'fa-solid fa-laptop-file' },
+    { name: 'Instructor support', icon: 'fa-solid fa-person-chalkboard' },
+    { name: 'Classroom management', icon: 'fa-solid fa-users-rectangle' },
+    { name: 'Accreditation ready', icon: 'fa-solid fa-circle-check' }
+];
+
+        const form = document.getElementById('productForm');
+        const nameInp = document.getElementById('name');
+        const priceInp = document.getElementById('price');
+        const imageInp = document.getElementById('image');
+        const categorySel = document.getElementById('category');
+        const tagsContainer = document.getElementById('tagsContainer');
+        const pageSel = document.getElementById('page');
+        const clearBtn = document.getElementById('clearBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const productsDiv = document.getElementById('products');
+        const STORAGE_KEY = 'angryStoreProducts_v1';
+        
+        let products = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        let editIndex = null;
+
+        function escape(str) {
+            return String(str || '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+        }
+
+        function populateTags() {
+            tagsContainer.innerHTML = '';
+            AVAILABLE_TAGS.forEach((tag) => {
+                const label = document.createElement('label');
+                label.className = 'tag-checkbox';
+                label.innerHTML = `
+                    <input type="checkbox" class="tag-option" value="${escape(tag.name)}" data-icon="${tag.icon}">
+                    <span><i class="${tag.icon}"></i> ${escape(tag.name)}</span>
+                `;
+                tagsContainer.appendChild(label);
+            });
+        }
+
+        function save() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+        }
+
+        function getSelectedTags() {
+            const selected = [];
+            tagsContainer.querySelectorAll('.tag-option:checked').forEach(checkbox => {
+                selected.push(checkbox.value);
+            });
+            return selected;
+        }
+
+        function render() {
+            productsDiv.innerHTML = '';
+            if (!products.length) {
+                productsDiv.innerHTML = '<div class="empty">لا يوجد منتجات بعد. أضف منتج جديد من فضلك!</div>';
+                return;
+            }
+            products.forEach((p, i) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                const tagsDisplay = (p.tags || []).map(t => `<span class="tag-badge">${escape(t)}</span>`).join('');
+                card.innerHTML = `
+                    <img src="${escape(p.image)}" alt="${escape(p.name)}" onerror="this.style.display='none'">
+                    <h3>${escape(p.name)}</h3>
+                    <div class="meta"><strong>السعر:</strong> ${escape(p.price)} EGP</div>
+                    <div class="meta"><strong>التصنيف:</strong> ${escape(p.category)}</div>
+                    <div class="meta"><strong>الصفحة:</strong> ${escape(p.page)}</div>
+                    <div class="tags-display">${tagsDisplay}</div>
+                    <div class="btns">
+                        <button class="edit" data-i="${i}">✏️ تعديل</button>
+                        <button class="del" data-i="${i}">🗑️ حذف</button>
+                    </div>
+                `;
+                productsDiv.appendChild(card);
+            });
+
+            productsDiv.querySelectorAll('.edit').forEach(btn => {
+                btn.addEventListener('click', () => startEdit(Number(btn.dataset.i)));
+            });
+
+            productsDiv.querySelectorAll('.del').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (confirm('هل تريد حذف هذا المنتج؟')) {
+                        products.splice(Number(btn.dataset.i), 1);
+                        save();
+                        render();
+                        if (editIndex === Number(btn.dataset.i)) cancelEdit();
+                    }
+                });
+            });
+        }
+
+        function startEdit(i) {
+            const p = products[i];
+            editIndex = i;
+            nameInp.value = p.name;
+            priceInp.value = p.price;
+            imageInp.value = p.image || '';
+            categorySel.value = p.category || '';
+            pageSel.value = p.page || '';
+            tagsContainer.querySelectorAll('.tag-option').forEach(checkbox => {
+                checkbox.checked = (p.tags || []).includes(checkbox.value);
+            });
+            nameInp.focus();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function cancelEdit() {
+            editIndex = null;
+            form.reset();
+            tagsContainer.querySelectorAll('.tag-option').forEach(cb => cb.checked = false);
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = nameInp.value.trim();
+            const price = priceInp.value.trim();
+            const image = imageInp.value.trim();
+            const category = categorySel.value;
+            const tags = getSelectedTags();
+            const page = pageSel.value;
+
+            if (!name || !price || !image || !category || !tags.length || !page) {
+                alert('الرجاء تعبئة جميع الحقول المطلوبة واختيار على الأقل ميزة واحدة');
+                return;
+            }
+
+            const product = { name, price, image, category, tags, page };
+            if (editIndex !== null) {
+                products[editIndex] = product;
+                editIndex = null;
+            } else {
+                products.push(product);
+            }
+            save();
+            render();
+            form.reset();
+            tagsContainer.querySelectorAll('.tag-option').forEach(cb => cb.checked = false);
+            alert('تم الحفظ بنجاح! ✅');
+        });
+
+        clearBtn.addEventListener('click', cancelEdit);
+
+        logoutBtn.addEventListener('click', () => {
+            if (confirm('هل تريد تسجيل الخروج؟')) {
+                localStorage.removeItem('angry_admin_logged_in');
+                localStorage.removeItem('admin_token');
+                localStorage.removeItem('admin_login_time');
+                localStorage.removeItem('admin_username');
+                window.location.href = 'login.html';
+            }
+        });
+
+        populateTags();
+        render();
+    </script>
+</body>
+</html>

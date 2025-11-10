@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="html-root">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services - Angry Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- English Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" id="english-font" />
+  <!-- Arabic Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" id="arabic-font" disabled />
+  <!-- Font Awesome للأيقونات -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>/* ======================================
+   LANGUAGE TOGGLE & RTL SUPPORT
+====================================== */
+
+/* Language Toggle Button */
+.language-toggle {
+  background-color: #3CB5CD;
+  color: #fff;
+  border: none;
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.language-toggle:hover {
+  background-color: #3ECCC2;
+  transform: translateY(-2px);
+}
+
+/* Font Management for Different Languages */
+body[dir="ltr"] {
+  font-family: 'Roboto', sans-serif;
+}
+
+body[dir="rtl"] {
+  font-family: 'Cairo', 'Roboto', sans-serif;
+}
+
+/* RTL Adjustments */
+[dir="rtl"] .hero-inner {
+  text-align: right;
+}
+
+[dir="rtl"] .section-header {
+  text-align: center;
+}
+
+[dir="rtl"] .feature-badge {
+  right: auto;
+  left: 15px;
+}
+
+[dir="rtl"] .nav-actions {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .language-toggle {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+[dir="rtl"] .payment-list li {
+  text-align: right;
+}
+
+[dir="rtl"] .social-icons a {
+  margin-right: 0;
+  margin-left: 1rem;
+}
+
+/* Remove Purple Colors - Keep Same Style as Homepage */
+.payment-support-section {
+  background: linear-gradient(135deg, #c41f09 0%, #d44233 100%);
+  color: white;
+}
+
+.hero-secondary {
+  background-color: #c41f09; /* Same red as homepage */
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); /* Add clip-path back */
+}
+
+/* Smooth transitions for language switching */
+[data-en], [data-ar] {
+  transition: all 0.3s ease;
+}
+
+/* Mobile responsiveness for language toggle */
+@media (max-width: 600px) {
+  .language-toggle {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .language-toggle .lang-text {
+    display: none;
+  }
+}
+
+/* Fix feature cards in Arabic */
+[dir="rtl"] .feature-card {
+  text-align: right;
+}
+
+[dir="rtl"] .feature-card h3,
+[dir="rtl"] .feature-card p {
+  text-align: right;
+}
+
+/* Fix payment cards in RTL */
+[dir="rtl"] .payment-header,
+[dir="rtl"] .support-header {
+  justify-content: flex-start;
+  text-align: right;
+}
+
+/* Ensure proper text alignment in RTL */
+[dir="rtl"] .hero-text,
+[dir="rtl"] .hero-desc {
+  text-align: right;
+}
+
+[dir="rtl"] .search-form {
+  direction: rtl;
+}</style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo-link">
+        <img class="logo" src="img/ggdrehbgders.png" alt="Angry Store Logo" />
+      </a>
+      <nav class="nav-links">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a> <!-- تم تعديل هذا السطر -->
+    <a href="games.html"><i class="fas fa-gamepad"></i> Games</a>
+    <a href="services.html"><i class="fas fa-headset"></i> Services</a>
+    <a href="hardware.html" class="active"><i class="fas fa-desktop"></i> Hardware</a>
+    <a href="software.html"><i class="fas fa-microchip"></i> Software</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+
+      </nav>
+      <div class="nav-actions">
+        <!-- Language Toggle Button -->
+        <button class="btn language-toggle" id="languageToggle">
+          <i class="fas fa-globe"></i> 
+          <span class="lang-text">عربي</span>
+        </button>
+        <button class="btn btn-secondary"><i class="fas fa-user"></i> Sign In</button>
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu">
+    <nav class="mobile-nav">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a> <!-- تم تعديل هذا السطر -->
+    <a href="games.html"><i class="fas fa-gamepad"></i> Games</a>
+    <a href="services.html"><i class="fas fa-headset"></i> Services</a>
+    <a href="hardware.html" class="active"><i class="fas fa-desktop"></i> Hardware</a>
+    <a href="software.html"><i class="fas fa-microchip"></i> Software</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+
+      <button class="btn btn-primary mobile-signin"><i class="fas fa-user"></i> Sign In</button>
+    </nav>
+  </div>
+
+  <!-- SERVICES HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <span class="hero-subtitle" data-en="🎮 Our Services" data-ar="🎮 خدماتنا المميزة">🎮 Our Services</span>
+        <h1 class="hero-title" data-en="Angry Store - Your Trusted Gaming Partner" data-ar="Angry Store - متجرك المضمون للألعاب الأصلية">Angry Store - Your Trusted Gaming Partner</h1>
+        <p class="hero-desc" data-en="We specialize in providing 100% authentic gaming accounts and subscriptions with guaranteed quality and security. Discover why thousands of gamers in the Arab world trust us." data-ar="نحن متخصصون في توفير حسابات وألعاب أصلية 100% مع ضمان الجودة والأمان. اكتشف لماذا يثق بنا آلاف اللاعبين في الوطن العربي.">We specialize in providing 100% authentic gaming accounts and subscriptions with guaranteed quality and security. Discover why thousands of gamers in the Arab world trust us.</p>
+      </div>
+      <div class="hero-image">
+        <img src="img/3940304b536796dcc176aa83203a3955.png" alt="Gaming Services" />
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN FEATURES -->
+  <section class="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="trending-label" data-en="⭐ Features" data-ar="⭐ مميزاتنا">⭐ Features</span>
+        <h2 class="section-title" data-en="Why Choose Angry Store?" data-ar="لماذا Angry Store؟">Why Choose Angry Store?</h2>
+        <p class="section-desc" data-en="We guarantee a safe and comfortable shopping experience with the best services in the market" data-ar="نضمن لك تجربة شراء آمنة ومريحة مع أفضل الخدمات في السوق">We guarantee a safe and comfortable shopping experience with the best services in the market</p>
+      </div>
+      
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div class="feature-icon original"><i class="fas fa-shield-check"></i></div>
+          <h3 data-en="100% Original 🎮" data-ar="أصلي 100% 🎮">100% Original 🎮</h3>
+          <p data-en="All games and software are authentic and guaranteed from official companies. No piracy or fake copies." data-ar="كل الألعاب والبرامج عندنا أصلية ومضمونة من الشركات الرسمية، مفيش تقليد أو نسخ مقرصنة.">All games and software are authentic and guaranteed from official companies. No piracy or fake copies.</p>
+          <div class="feature-badge">✅</div>
+        </div>
+        
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div class="feature-icon fast"><i class="fas fa-bolt"></i></div>
+          <h3 data-en="Super Fast Delivery ⚡" data-ar="تسليم سريع جداً ⚡">Super Fast Delivery ⚡</h3>
+          <p data-en="Digital Keys: Delivered immediately after payment. Ready Accounts: Delivered within 30 minutes maximum." data-ar="المفاتيح الرقمية (Keys): بتوصلك فور الدفع. الحسابات الجاهزة: بتتسلم خلال نص ساعة بحد أقصى.">Digital Keys: Delivered immediately after payment. Ready Accounts: Delivered within 30 minutes maximum.</p>
+          <div class="feature-badge instant">⚡</div>
+        </div>
+        
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div class="feature-icon support"><i class="fas fa-book-open"></i></div>
+          <h3 data-en="Complete Tutorial 📘" data-ar="شرح كامل بعد الشراء 📘">Complete Tutorial 📘</h3>
+          <p data-en="We provide detailed steps to change email and password to your personal information, and stay with you until the account is completely yours." data-ar="بنديك خطوات تفصيلية لتغيير الإيميل والباسورد لمعلوماتك الشخصية، ونفضل معاك لحد ما الحساب يبقى ملكك بالكامل.">We provide detailed steps to change email and password to your personal information, and stay with you until the account is completely yours.</p>
+          <div class="feature-badge tutorial">📚</div>
+        </div>
+        
+        <!-- Feature 4 -->
+        <div class="feature-card">
+          <div class="feature-icon security"><i class="fas fa-lock"></i></div>
+          <h3 data-en="Security Guarantee 🔐" data-ar="ضمان الحماية 🔐">Security Guarantee 🔐</h3>
+          <p data-en="Any problem you face has direct support. We explain all important notes (like region change or account currency usage)." data-ar="أي مشكلة بتقابلك ليها دعم مباشر. بنوضح كل الملاحظات المهمة (زي موضوع تغيير المنطقة أو استخدام عملة الحساب).">Any problem you face has direct support. We explain all important notes (like region change or account currency usage).</p>
+          <div class="feature-badge security">🔒</div>
+        </div>
+        
+        <!-- Feature 5 -->
+        <div class="feature-card">
+          <div class="feature-icon price"><i class="fas fa-tag"></i></div>
+          <h3 data-en="Competitive Prices 💰" data-ar="أسعار منافسة 💰">Competitive Prices 💰</h3>
+          <p data-en="We offer cheaper prices than official platforms like Steam, Epic, or Uplay by a significant percentage." data-ar="بنوفر أسعار أرخص من المنصات الرسمية زي Steam أو Epic أو Uplay بنسبة كبيرة.">We offer cheaper prices than official platforms like Steam, Epic, or Uplay by a significant percentage.</p>
+          <div class="feature-badge price">💸</div>
+        </div>
+        
+        <!-- Feature 6 -->
+        <div class="feature-card">
+          <div class="feature-icon variety"><i class="fas fa-gamepad"></i></div>
+          <h3 data-en="Product Variety 🕹️" data-ar="تنوع المنتجات 🕹️">Product Variety 🕹️</h3>
+          <p data-en="PC Games (Steam, Uplay, Rockstar) • Xbox & PlayStation Games • Original Software (Windows - Office - Design) • Subscriptions (Game Pass - EA Play - PS Plus)" data-ar="ألعاب PC (Steam, Uplay, Rockstar) • ألعاب Xbox و PlayStation • برامج أصلية (ويندوز – أوفيس – تصميم) • اشتراكات (Game Pass – EA Play – PS Plus)">PC Games (Steam, Uplay, Rockstar) • Xbox & PlayStation Games • Original Software (Windows - Office - Design) • Subscriptions (Game Pass - EA Play - PS Plus)</p>
+          <div class="feature-badge variety">🎯</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- FAQ SECTION -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="trending-label" data-en="❓ FAQ" data-ar="❓ الأسئلة">❓ FAQ</span>
+        <h2 class="section-title" data-en="Frequently Asked Questions" data-ar="الأسئلة الشائعة">Frequently Asked Questions</h2>
+      </div>
+      
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3 data-en="How do I receive my account after purchase?" data-ar="كيف أستلم حسابي بعد الشراء؟">How do I receive my account after purchase?</h3>
+            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+          </div>
+          <div class="faq-answer">
+            <p data-en="Delivery is done instantly via WhatsApp after payment confirmation. You'll receive all login details and setup instructions directly in the chat." data-ar="التسليم يتم فوراً عبر واتساب بعد تأكيد الدفع. هتستلم كل تفاصيل الدخول وإرشادات الإعداد مباشرة في المحادثة.">Delivery is done instantly via WhatsApp after payment confirmation. You'll receive all login details and setup instructions directly in the chat.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3 data-en="Are accounts shared with other people?" data-ar="هل الحسابات مشتركة مع أشخاص تانيين؟">Are accounts shared with other people?</h3>
+            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+          </div>
+          <div class="faq-answer">
+            <p data-en="Absolutely not. Each account is exclusively yours and no one else can access it. This ensures complete security and lifetime ownership." data-ar="مطلقاً. كل حساب خاص بيك لوحدك ومحدش غيرك هيقدر يوصله. ده بيضمن الأمان الكامل وملكية مدى الحياة.">Absolutely not. Each account is exclusively yours and no one else can access it. This ensures complete security and lifetime ownership.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3 data-en="What if I face issues with my account?" data-ar="إيه اللي أعمله لو قابلتني مشكلة في الحساب؟">What if I face issues with my account?</h3>
+            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+          </div>
+          <div class="faq-answer">
+            <p data-en="Contact us immediately on WhatsApp and we'll solve it as soon as possible. We have 24/7 technical support to ensure your comfort." data-ar="تواصل معانا فوراً على واتساب وهنحلها في أسرع وقت. عندنا دعم فني 24/7 لضمان راحتك.">Contact us immediately on WhatsApp and we'll solve it as soon as possible. We have 24/7 technical support to ensure your comfort.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p data-en="&copy; 2025 Angry Store. All rights reserved." data-ar="&copy; 2025 Angry Store. جميع الحقوق محفوظة.">&copy; 2025 Angry Store. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/+201507875527"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+      document.body.classList.toggle('mobile-menu-open');
+    });
+    
+    // FAQ toggle functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.closest('.faq-item');
+        const icon = question.querySelector('.faq-toggle i');
+        
+        item.classList.toggle('active');
+        
+        if (item.classList.contains('active')) {
+          icon.classList.replace('fa-plus', 'fa-minus');
+        } else {
+          icon.classList.replace('fa-minus', 'fa-plus');
+        }
+      });
+    });
+
+    // Language Toggle System
+    let currentLanguage = 'en';
+    
+    const languageToggle = document.getElementById('languageToggle');
+    const htmlRoot = document.getElementById('html-root');
+    const englishFont = document.getElementById('english-font');
+    const arabicFont = document.getElementById('arabic-font');
+
+    function switchLanguage() {
+      if (currentLanguage === 'en') {
+        // Switch to Arabic
+        currentLanguage = 'ar';
+        htmlRoot.setAttribute('lang', 'ar');
+        htmlRoot.setAttribute('dir', 'rtl');
+        
+        // Enable Arabic font, disable English font
+        arabicFont.disabled = false;
+        englishFont.disabled = true;
+        
+        // Update toggle button text
+        languageToggle.querySelector('.lang-text').textContent = 'English';
+        
+        // Update all text content
+        document.querySelectorAll('[data-ar]').forEach(element => {
+          element.textContent = element.getAttribute('data-ar');
+        });
+        
+        // Update WhatsApp link for Arabic
+        document.querySelector('.whatsapp-btn').href = 'https://wa.me/+201507875534?text=أحتاج%20مساعدة%20في%20Angry%20Store';
+        
+      } else {
+        // Switch to English
+        currentLanguage = 'en';
+        htmlRoot.setAttribute('lang', 'en');
+        htmlRoot.setAttribute('dir', 'ltr');
+        
+        // Enable English font, disable Arabic font
+        englishFont.disabled = false;
+        arabicFont.disabled = true;
+        
+        // Update toggle button text
+        languageToggle.querySelector('.lang-text').textContent = 'عربي';
+        
+        // Update all text content
+        document.querySelectorAll('[data-en]').forEach(element => {
+          element.textContent = element.getAttribute('data-en');
+        });
+        
+        // Update WhatsApp link for English
+        document.querySelector('.whatsapp-btn').href = 'https://wa.me/+201507875534?text=I%20need%20help%20with%20Angry%20Store';
+      }
+      
+      // Save language preference
+      localStorage.setItem('preferred-language', currentLanguage);
+    }
+
+    // Language toggle event listener
+    languageToggle.addEventListener('click', switchLanguage);
+
+    // Load saved language preference on page load
+    window.addEventListener('DOMContentLoaded', function() {
+      const savedLanguage = localStorage.getItem('preferred-language');
+      if (savedLanguage && savedLanguage !== currentLanguage) {
+        switchLanguage();
+      }
+    });
+  </script>
+</body>
+</html>
