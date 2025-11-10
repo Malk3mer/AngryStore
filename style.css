@@ -634,46 +634,121 @@ body.mobile-menu-open {
 .unified-tag {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 8px 16px;
-  border-radius: 25px;
-  font-size: 0.88rem;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 0.9rem;
   font-weight: 600;
-  color: #c41f09 !important;
-  background: rgba(196, 31, 9, 0.08) !important;
-  border: 2px solid rgba(196, 31, 9, 0.2);
-  transition: all 0.3s ease;
+  color: #fff !important;
+  background: linear-gradient(135deg, #c41f09 0%, #a01707 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 2px 8px rgba(196, 31, 9, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
+  position: relative;
+  overflow: hidden;
 }
 
+/* تأثير اللمعة الخفيفة */
+.hardware-feature::after,
+.tag-badge::after,
+.product-tag::after,
+.unified-tag::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.hardware-feature:hover::after,
+.tag-badge:hover::after,
+.product-tag:hover::after,
+.unified-tag:hover::after {
+  left: 150%;
+}
+
+/* الأيقونة */
 .hardware-feature i,
 .tag-badge i,
 .product-tag i,
 .game-tags .tag i,
 .unified-tag i {
-  color: #c41f09 !important;
-  font-size: 0.95rem;
+  color: #fff !important;
+  font-size: 1rem;
+  opacity: 0.95;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
 }
 
+/* تأثير الـ Hover */
 .hardware-feature:hover,
 .tag-badge:hover,
 .product-tag:hover,
 .game-tags .tag:hover,
 .unified-tag:hover {
-  background: #c41f09 !important;
-  color: #fff !important;
-  border-color: #c41f09;
+  background: linear-gradient(135deg, #d62310 0%, #c41f09 100%) !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(196, 31, 9, 0.25);
+  box-shadow: 
+    0 6px 20px rgba(196, 31, 9, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .hardware-feature:hover i,
 .tag-badge:hover i,
 .product-tag:hover i,
 .unified-tag:hover i {
-  color: #fff !important;
+  transform: scale(1.1);
 }
 
+/* تأثير الضغط (Active) */
+.hardware-feature:active,
+.tag-badge:active,
+.product-tag:active,
+.unified-tag:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 8px rgba(196, 31, 9, 0.25),
+    inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* للتاجات الطويلة */
+.hardware-feature,
+.unified-tag {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* استجابة للموبايل */
+@media (max-width: 600px) {
+  .hardware-feature,
+  .tag-badge,
+  .product-tag,
+  .unified-tag {
+    font-size: 0.85rem;
+    padding: 7px 14px;
+    gap: 6px;
+  }
+
+  .hardware-feature i,
+  .tag-badge i,
+  .product-tag i,
+  .unified-tag i {
+    font-size: 0.9rem;
+  }
+}
 /* ========================================================================
    ✨ قسم المميزات (FEATURES SECTION)
 ======================================================================== */
