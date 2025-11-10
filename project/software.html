@@ -168,21 +168,46 @@
     // عرض المنتجات
     document.addEventListener('DOMContentLoaded', () => {
         const STORAGE_KEY = 'angryStoreProducts_v2';
-        const container = document.getElementById('softwareCardsContainer');
-        const all = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-        const products = all.filter(p => (p.page || '').trim() === 'software.html');
+        const container = document.getElementById('softwareGamesContainer'); // ✅ تأكد من ID الـ container
+        const currentPage = 'software.html';
 
-        function escapeHtml(str) {
-            if (str === null || str === undefined) return '';
-            return String(str)
-                .replaceAll('&', '&amp;')
-                .replaceAll('<', '&lt;')
-                .replaceAll('>', '&gt;')
-                .replaceAll('"', '&quot;')
-                .replaceAll("'", '&#039;');
+        // ✅ محاولة القراءة من localStorage أولاً
+        let allProducts = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+        // ✅ إذا كان localStorage فارغ، اقرأ من JSON
+        if (allProducts.length === 0) {
+            fetch('data/products.json')
+                .then(res => {
+                    if (!res.ok) throw new Error('Failed to load products.json');
+                    return res.json();
+                })
+                .then(data => {
+                    allProducts = data.products || [];
+                    displayProducts(allProducts);
+                })
+                .catch(err => {
+                    console.error('Error loading products:', err);
+                    container.innerHTML = '<div style="color: #888; padding: 40px; text-align: center; grid-column: 1/-1;">❌ Failed to load products. Make sure products.json exists in data/ folder.</div>';
+                });
+        } else {
+            displayProducts(allProducts);
         }
 
-        const tagIcons = {
+        function displayProducts(allProducts) {
+            // ✅ فلترة المنتجات حسب الصفحة
+            const products = allProducts.filter(p => (p.page || '').trim() === currentPage);
+
+            function escapeHtml(str) {
+                if (str === null || str === undefined) return '';
+                return String(str)
+                    .replaceAll('&', '&amp;')
+                    .replaceAll('<', '&lt;')
+                    .replaceAll('>', '&gt;')
+                    .replaceAll('"', '&quot;')
+                    .replaceAll("'", '&#039;');
+            }
+
+const tagIcons = {
             // === 1.1: المكونات الأساسية (Core Components) ===
             'CPU General': 'fa-solid fa-microchip',
             'Cores/Threads': 'fa-solid fa-gears',
@@ -446,178 +471,165 @@
             'Accreditation ready': 'fa-solid fa-circle-check'
         };
 
-        // ===== توحيد تصميم التاجات (Unified Tags Style) =====
-(function() {
-    function unifyTags(root = document) {
-        // قائمة كل السيلكتورز اللي ممكن تحتوي على تاجات
-        const tagSelectors = [
-            '.hardware-feature',
-            '.tag-badge',
-            '.product-tag',
-            '.game-tags .tag',
-            '.tags-display span',
-            '.tags-select .tag-checkbox span',
-            '.tags-select label'
-        ];
+            // ===== توحيد تصميم التاجات (Unified Tags Style) =====
+            (function() {
+                function unifyTags(root = document) {
+                    const tagSelectors = [
+                        '.hardware-feature',
+                        '.tag-badge',
+                        '.product-tag',
+                        '.game-tags .tag',
+                        '.tags-display span',
+                        '.tags-select .tag-checkbox span',
+                        '.tags-select label'
+                    ];
 
-        // جمع كل العناصر في Set لتجنب التكرار
-        const tagElements = new Set();
-        tagSelectors.forEach(selector => {
-            root.querySelectorAll(selector).forEach(el => tagElements.add(el));
-        });
+                    const tagElements = new Set();
+                    tagSelectors.forEach(selector => {
+                        root.querySelectorAll(selector).forEach(el => tagElements.add(el));
+                    });
 
-        // تطبيق التصميم الموحد على كل عنصر
-        tagElements.forEach(element => {
-            // ✅ استثناء: لا نغير game-category (شارة الفئة)
-            if (element.classList.contains('game-category')) return;
+                    tagElements.forEach(element => {
+                        if (element.classList.contains('game-category')) return;
 
-            // ✅ لو العنصر label، نطبق على span الداخلي
-            if (element.matches('label.tag-checkbox')) {
-                const span = element.querySelector('span');
-                if (span) {
-                    span.classList.add('unified-tag');
-                    // إزالة أي لون inline من الأيقونات
-                    span.querySelectorAll('i').forEach(icon => {
-                        icon.style.color = '';
-                        icon.style.opacity = '';
+                        if (element.matches('label.tag-checkbox')) {
+                            const span = element.querySelector('span');
+                            if (span) {
+                                span.classList.add('unified-tag');
+                                span.querySelectorAll('i').forEach(icon => {
+                                    icon.style.color = '';
+                                    icon.style.opacity = '';
+                                });
+                            }
+                            return;
+                        }
+
+                        element.classList.add('unified-tag');
+                        element.querySelectorAll('i').forEach(icon => {
+                            icon.style.color = '';
+                            icon.style.opacity = '';
+                        });
                     });
                 }
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    unifyTags();
+
+                    const observer = new MutationObserver(mutations => {
+                        mutations.forEach(mutation => {
+                            if (mutation.addedNodes && mutation.addedNodes.length) {
+                                mutation.addedNodes.forEach(node => {
+                                    if (node.nodeType === 1) {
+                                        unifyTags(node);
+                                    }
+                                });
+                            }
+                        });
+                    });
+
+                    observer.observe(document.body, {
+                        childList: true,
+                        subtree: true
+                    });
+
+                    console.log('✅ Unified Tags Script Loaded!');
+                });
+            })();
+
+            if (!products.length) {
+                container.innerHTML = '<div style="color: #888; padding: 40px; text-align: center; grid-column: 1/-1;">💻 No software products available yet</div>';
                 return;
             }
 
-            // ✅ إضافة الكلاس الموحد
-            element.classList.add('unified-tag');
+            container.innerHTML = '';
+            
+            products.forEach(p => {
+                // ✅ تحديد حالة التوفر
+                const isAvailable = p.available !== false;
+                const availabilityClass = isAvailable ? '' : 'out-of-stock';
 
-            // ✅ إزالة أي ألوان inline من الأيقونات داخل التاج
-            element.querySelectorAll('i').forEach(icon => {
-                icon.style.color = '';
-                icon.style.opacity = '';
-            });
+                let category = p.category || 'Software';
+                let featuresHtml = (p.tags || []).slice(0, 3).map(t => {
+                    const icon = tagIcons[t] || 'fa-solid fa-star';
+                    return `<div class="hardware-feature"><i class="${icon}"></i> ${escapeHtml(t)}</div>`;
+                }).join('');
 
-            // ✅ (اختياري) لو عايز تضيف أيقونة افتراضية للتاجات اللي مفيهاش أيقونة:
-            // if (!element.querySelector('i')) {
-            //     element.insertAdjacentHTML('afterbegin', '<i class="fa-solid fa-tag"></i> ');
-            // }
-        });
-    }
-
-    // ✅ تشغيل عند تحميل الصفحة
-    document.addEventListener('DOMContentLoaded', () => {
-        unifyTags();
-
-        // ✅ مراقبة DOM للعناصر الجديدة (للمنتجات الديناميكية)
-        const observer = new MutationObserver(mutations => {
-            mutations.forEach(mutation => {
-                if (mutation.addedNodes && mutation.addedNodes.length) {
-                    mutation.addedNodes.forEach(node => {
-                        if (node.nodeType === 1) { // عنصر HTML
-                            unifyTags(node);
-                        }
-                    });
-                }
-            });
-        });
-
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-
-        console.log('✅ Unified Tags Script Loaded!');
-    });
-})();
-
-        if (!products.length) {
-            container.innerHTML = '<div style="color: #888; padding: 40px; text-align: center; grid-column: 1/-1;">💻 No products available yet</div>';
-            return;
-        }
-
-        container.innerHTML = '';
-        
-        products.forEach(p => {
-            // ✅ تحديد حالة التوفر
-            const isAvailable = p.available !== false;
-            const availabilityClass = isAvailable ? '' : 'out-of-stock';
-
-            let category = p.category || 'Software';
-            let featuresHtml = (p.tags || []).slice(0, 3).map(t => {
-                const icon = tagIcons[t] || 'fa-solid fa-laptop-code';
-                return `<div class="hardware-feature"><i class="${icon}"></i> ${escapeHtml(t)}</div>`;
-            }).join('');
-
-            const whatsappMessage = encodeURIComponent(`Hello 👋
+                const whatsappMessage = encodeURIComponent(`Hello 👋
 I want to buy:
 💻 ${p.name}
 💰 Price: ${p.price} EGP
 🏷️ Category: ${category}`);
-            
-            // ✅ تغيير الزر حسب حالة التوفر
-            const buyButton = isAvailable
-                ? `<a href="https://wa.me/+201507875527?text=${whatsappMessage}" target="_blank" class="btn buy-btn"><i class="fa-brands fa-whatsapp"></i> Buy Now</a>`
-                : `<button class="btn buy-btn" disabled style="opacity: 0.4; cursor: not-allowed;"><i class="fa-solid fa-ban"></i> Unavailable</button>`;
-
-            const card = document.createElement('div');
-            card.className = `game-card ${availabilityClass}`;
-            
-            card.innerHTML = `
-                <div class="game-image">
-                    <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" onerror="this.src='img/placeholder.jpg'; this.onerror=null;"/>
-                    <div class="game-category">${escapeHtml(category)}</div>
-                </div>
-                <div class="game-details">
-                    <h3 class="game-title">${escapeHtml(p.name)}</h3>
-                    <div class="hardware-features">
-                        ${featuresHtml || '<div class="hardware-feature" style="color: #666;"><i class="fa-solid fa-info-circle"></i> No features listed</div>'}
-                    </div>
-                    <div class="game-info">
-                        <div class="game-price">${escapeHtml(p.price)} EGP</div>
-                        ${buyButton}
-                    </div>
-                </div>
-                ${!isAvailable ? '<div class="unavailable-overlay"><div class="badge"><i class="fas fa-times-circle"></i> Out of Stock</div></div>' : ''}
-            `;
-            container.appendChild(card);
-        });
-
-        // بحث ديناميكي
-        const searchInput = document.getElementById('softwareSearchInput');
-        const searchForm = document.getElementById('softwareSearchForm');
-
-        function performSearch() {
-            const term = searchInput.value.toLowerCase().trim();
-            const cards = container.getElementsByClassName('game-card');
-            let visibleCount = 0;
-
-            Array.from(cards).forEach(card => {
-                const title = (card.querySelector('.game-title')?.textContent || '').toLowerCase();
-                const category = (card.querySelector('.game-category')?.textContent || '').toLowerCase();
-                const tagsText = Array.from(card.querySelectorAll('.hardware-feature')).map(n => n.textContent.toLowerCase()).join(' ');
                 
-                const shouldShow = term === '' || title.includes(term) || category.includes(term) || tagsText.includes(term);
-                card.style.display = shouldShow ? '' : 'none';
-                if (shouldShow) visibleCount++;
+                // ✅ تغيير الزر حسب حالة التوفر
+                const buyButton = isAvailable
+                    ? `<a href="https://wa.me/+201507875527?text=${whatsappMessage}" target="_blank" class="btn buy-btn"><i class="fa-brands fa-whatsapp"></i> Buy Now</a>`
+                    : `<button class="btn buy-btn" disabled style="opacity: 0.4; cursor: not-allowed;"><i class="fa-solid fa-ban"></i> Unavailable</button>`;
+
+                const card = document.createElement('div');
+                card.className = `game-card ${availabilityClass}`;
+                
+                card.innerHTML = `
+                    <div class="game-image">
+                        <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" onerror="this.src='img/placeholder.jpg'; this.onerror=null;"/>
+                        <div class="game-category">${escapeHtml(category)}</div>
+                    </div>
+                    <div class="game-details">
+                        <h3 class="game-title">${escapeHtml(p.name)}</h3>
+                        <div class="hardware-features">
+                            ${featuresHtml || '<div class="hardware-feature" style="color: #666;"><i class="fa-solid fa-info-circle"></i> No features listed</div>'}
+                        </div>
+                        <div class="game-info">
+                            <div class="game-price">${escapeHtml(p.price)} EGP</div>
+                            ${buyButton}
+                        </div>
+                    </div>
+                    ${!isAvailable ? '<div class="unavailable-badge"><i class="fas fa-times-circle"></i> Out of Stock</div>' : ''}
+                `;
+                container.appendChild(card);
             });
 
-            let noMsg = container.querySelector('.no-results-message');
-            if (noMsg) noMsg.remove();
+            // بحث ديناميكي
+            const searchInput = document.getElementById('softwareSearchInput');
+            const searchForm = document.getElementById('softwareSearchForm');
 
-            if (!visibleCount && term) {
-                noMsg = document.createElement('div');
-                noMsg.className = 'no-results-message';
-                noMsg.style.cssText = 'color:#888;padding:40px;text-align:center;grid-column:1/-1;';
-                noMsg.innerHTML = `<i class="fa-solid fa-search" style="font-size:3rem;opacity:0.5;"></i><p>No results for "<strong>${escapeHtml(term)}</strong>"</p>`;
-                container.appendChild(noMsg);
+            if (searchInput && searchForm) {
+                function performSearch() {
+                    const term = searchInput.value.toLowerCase().trim();
+                    const cards = container.getElementsByClassName('game-card');
+                    let visibleCount = 0;
+
+                    Array.from(cards).forEach(card => {
+                        const title = (card.querySelector('.game-title')?.textContent || '').toLowerCase();
+                        const category = (card.querySelector('.game-category')?.textContent || '').toLowerCase();
+                        const tagsText = Array.from(card.querySelectorAll('.hardware-feature')).map(n => n.textContent.toLowerCase()).join(' ');
+                        
+                        const shouldShow = term === '' || title.includes(term) || category.includes(term) || tagsText.includes(term);
+                        card.style.display = shouldShow ? '' : 'none';
+                        if (shouldShow) visibleCount++;
+                    });
+
+                    let noMsg = container.querySelector('.no-results-message');
+                    if (noMsg) noMsg.remove();
+
+                    if (!visibleCount && term) {
+                        noMsg = document.createElement('div');
+                        noMsg.className = 'no-results-message';
+                        noMsg.style.cssText = 'color:#888;padding:40px;text-align:center;grid-column:1/-1;';
+                        noMsg.innerHTML = `<i class="fa-solid fa-search" style="font-size:3rem;opacity:0.5;"></i><p>No results for "<strong>${escapeHtml(term)}</strong>"</p>`;
+                        container.appendChild(noMsg);
+                    }
+                }
+
+                searchInput.addEventListener('keyup', performSearch);
+                searchInput.addEventListener('search', performSearch);
+                searchForm.addEventListener('submit', ev => {
+                    ev.preventDefault();
+                    performSearch();
+                });
             }
+
+            console.log(`✅ Software Products Loaded: ${products.length}`);
         }
-
-        searchInput.addEventListener('keyup', performSearch);
-        searchInput.addEventListener('search', performSearch);
-        searchForm.addEventListener('submit', ev => {
-            ev.preventDefault();
-            performSearch();
-        });
-
-        console.log(`✅ Software Products Loaded: ${products.length}`);
     });
 </script>
 </body>

@@ -1,127 +1,103 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hardware - Angry Store</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    .trending-games {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-      justify-items: center;
-    }
-    .hardware-feature {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
-      font-size: 0.9rem;
-    }
-    .hardware-feature i {
-      color: #3CB5CD;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Games - Angry Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .trending-games {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            justify-items: center;
+        }
+    </style>
 </head>
 <body>
-  <!-- NAVBAR -->
-  <header class="nav">
-    <div class="container nav-inner">
-      <a href="index.html" class="logo-link">
-        <img class="logo" src="img/ggdrehbgders.png" alt="Angry Store Logo" />
-      </a>
-      <nav class="nav-links">
-        <a href="index.html"><i class="fas fa-home"></i> Home</a>
-        <a href="games.html"><i class="fas fa-gamepad"></i> Games</a>
-        <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
-        <a href="software.html"><i class="fas fa-microchip"></i> Software</a>
-        <a href="hardware.html" class="active"><i class="fas fa-desktop"></i> Hardware</a>
-      </nav>
-      <div class="nav-actions">
-        <button class="btn btn-secondary"><i class="fas fa-user"></i> Sign In</button>
-        <button class="mobile-menu-btn" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+    <!-- NAVBAR -->
+    <header class="nav">
+        <div class="container nav-inner">
+            <a href="index.html" class="logo-link">
+                <img class="logo" src="img/ggdrehbgders.png" alt="Angry Store Logo" />
+            </a>
+            <nav class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="games.html" class="active"><i class="fas fa-gamepad"></i> Games</a>
+                <a href="hardware.html"><i class="fas fa-desktop"></i> Hardware</a>
+                <a href="software.html"><i class="fas fa-microchip"></i> Software</a>
+                <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="btn btn-secondary"><i class="fas fa-user"></i> Sign In</button>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu">
+        <nav class="mobile-nav">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="games.html" class="active"><i class="fas fa-gamepad"></i> Games</a>
+            <a href="hardware.html"><i class="fas fa-desktop"></i> Hardware</a>
+            <a href="software.html"><i class="fas fa-microchip"></i> Software</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <button class="btn btn-primary mobile-signin"><i class="fas fa-user"></i> Sign In</button>
+        </nav>
     </div>
-  </header>
 
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu">
-    <nav class="mobile-nav">
-      <a href="index.html"><i class="fas fa-home"></i> Home</a>
-      <a href="games.html"><i class="fas fa-gamepad"></i> Games</a>
-      <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
-      <a href="software.html"><i class="fas fa-microchip"></i> Software</a>
-      <a href="hardware.html" class="active"><i class="fas fa-desktop"></i> Hardware</a>
-      <button class="btn btn-primary mobile-signin"><i class="fas fa-user"></i> Sign In</button>
-    </nav>
-  </div>
+    <!-- HERO SECTION -->
+    <section class="hero hero-secondary">
+        <div class="container hero-inner">
+            <div class="hero-text">
+                <span class="hero-subtitle">Explore Our Collection</span>
+                <h1 class="hero-title">Discover Your Next Adventure!</h1>
+                <p class="hero-desc">Browse through our vast selection of 100% original PC, Xbox, and PlayStation games. Find new releases, classic titles, and hidden gems.</p>
+                <form class="search-form" id="gameSearchForm">
+                    <input type="text" class="search-input" id="gameSearchInput" placeholder="Search by game title or category..." />
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
+                </form>
+            </div>
+            <div class="hero-image">
+                <img src="img/3940304b536796dcc176aa83203a3955.png" alt="Gaming Collection" />
+            </div>
+        </div>
+    </section>
 
-  <!-- HERO SECTION for Hardware Page -->
-  <section class="hero hero-secondary">
-    <div class="container hero-inner">
-      <div class="hero-text">
-        <span class="hero-subtitle">Powerful Gaming Rigs</span>
-        <h1 class="hero-title">Discover Top-Tier Hardware!</h1>
-        <p class="hero-desc">
-          Browse our wide selection of the latest computer components and gaming hardware.
-          Get ready to experience your favorite games with the highest performance.
-        </p>
-        <!-- Search bar specific to the hardware page -->
-        <form class="search-form" id="hardwareSearchForm">
-          <input
-            type="text"
-            class="search-input"
-            id="hardwareSearchInput"
-            placeholder="Search by component name or category..."
-          />
-          <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
-        </form>
-      </div>
-      <div class="hero-image">
-        <img
-          src="img/3940304b536796dcc176aa83203a3955.png"
-          alt="PC Hardware Collection"
-        />
-      </div>
-    </div>
-  </section>
+    <!-- ALL GAMES SECTION -->
+    <section class="all-games-section trending">
+        <div class="container">
+            <div class="trending-header">
+                <span class="trending-label">Our Library</span>
+                <h2 class="trending-title">All Available Games</h2>
+            </div>
+            <div class="trending-games" id="gameCardsContainer">
+                <!-- سيتم توليد الكروت ديناميكيًا هنا -->
+            </div>
+        </div>
+    </section>
 
-  <!-- ALL HARDWARE SECTION -->
-  <section class="all-games-section trending">
-    <div class="container">
-      <div class="trending-header">
-        <span class="trending-label">Product Showcase</span>
-        <h2 class="trending-title">All Available Hardware</h2>
-      </div>
-      <div class="trending-games" id="hardwareCardsContainer">
-        <!-- سيتم توليد الكروت ديناميكيًا هنا -->
-      </div>
-    </div>
-  </section>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2025 Angry Store. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/+201507875527"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
 
-  <footer class="footer">
-    <div class="container footer-content">
-      <p>&copy; 2025 Angry Store. All rights reserved.</p>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/+201507875527"><i class="fab fa-whatsapp"></i></a>
-      </div>
-    </div>
-  </footer>
-
-<script>
+ <script>
     // Mobile menu toggle
     document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
         document.body.classList.toggle('mobile-menu-open');
@@ -130,19 +106,44 @@
     // عرض المنتجات
     document.addEventListener('DOMContentLoaded', () => {
         const STORAGE_KEY = 'angryStoreProducts_v2';
-        const container = document.getElementById('softwareCardsContainer');
-        const all = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-        const products = all.filter(p => (p.page || '').trim() === 'software.html');
+        const container = document.getElementById('gamesContainer'); // ✅ تأكد من ID الـ container في games.html
+        const currentPage = 'games.html';
 
-        function escapeHtml(str) {
-            if (str === null || str === undefined) return '';
-            return String(str)
-                .replaceAll('&', '&amp;')
-                .replaceAll('<', '&lt;')
-                .replaceAll('>', '&gt;')
-                .replaceAll('"', '&quot;')
-                .replaceAll("'", '&#039;');
+        // ✅ محاولة القراءة من localStorage أولاً
+        let allProducts = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+        // ✅ إذا كان localStorage فارغ، اقرأ من JSON
+        if (allProducts.length === 0) {
+            fetch('data/products.json')
+                .then(res => {
+                    if (!res.ok) throw new Error('Failed to load products.json');
+                    return res.json();
+                })
+                .then(data => {
+                    allProducts = data.products || [];
+                    displayProducts(allProducts);
+                })
+                .catch(err => {
+                    console.error('Error loading products:', err);
+                    container.innerHTML = '<div style="color: #888; padding: 40px; text-align: center; grid-column: 1/-1;">❌ Failed to load products. Make sure products.json exists in data/ folder.</div>';
+                });
+        } else {
+            displayProducts(allProducts);
         }
+
+        function displayProducts(allProducts) {
+            // ✅ فلترة المنتجات حسب الصفحة
+            const products = allProducts.filter(p => (p.page || '').trim() === currentPage);
+
+            function escapeHtml(str) {
+                if (str === null || str === undefined) return '';
+                return String(str)
+                    .replaceAll('&', '&amp;')
+                    .replaceAll('<', '&lt;')
+                    .replaceAll('>', '&gt;')
+                    .replaceAll('"', '&quot;')
+                    .replaceAll("'", '&#039;');
+            }
 
         const tagIcons = {
             // === 1.1: المكونات الأساسية (Core Components) ===
@@ -151,23 +152,19 @@
             'Clock Speed': 'fa-solid fa-gauge-high',
             'Socket Type': 'fa-solid fa-puzzle-piece',
             'Processing Power': 'fa-solid fa-brain',
-
             'GPU - Modern Look': 'fa-solid fa-gamepad-modern',
             'Graphics': 'fa-solid fa-image',
             'Multi-Display': 'fa-solid fa-images',
             '3D Rendering': 'fa-solid fa-cubes',
             'Video Processing': 'fa-solid fa-film',
-
             'RAM Module': 'fa-solid fa-memory',
             'Capacity/Modules': 'fa-solid fa-layer-group',
             'Latency/Timings': 'fa-solid fa-stopwatch-20',
             'Frequency/Speed': 'fa-solid fa-bolt-lightning',
             'Bandwidth': 'fa-solid fa-arrows-left-right-to-line',
-
             'Motherboard': 'fa-solid fa-server',
             'Circuitry/Chipset': 'fa-solid fa-sitemap',
             'Ports/Connectivity': 'fa-solid fa-plug',
-
             'HDD': 'fa-solid fa-hard-drive',
             'SSD': 'fa-solid fa-compact-disc',
             'SD Card/Flash': 'fa-solid fa-sd-card',
@@ -183,14 +180,12 @@
             'Size: Full, TKL': 'fa-solid fa-ruler-horizontal',
             'Keycap': 'fa-solid fa-dice-one',
             'Sound/Clicky': 'fa-solid fa-wave-square',
-
             'Mouse General': 'fa-solid fa-computer-mouse',
             'DPI/Precision': 'fa-solid fa-crosshairs',
             'Buttons': 'fa-solid fa-hand-pointer',
             'Weight': 'fa-solid fa-weight-hanging',
             'Wireless/Receiver': 'fa-solid fa-satellite-dish',
             'Cursor': 'fa-solid fa-location-arrow',
-
             'Monitor General': 'fa-solid fa-desktop',
             'Size': 'fa-solid fa-ruler-combined',
             'Resolution': 'fa-solid fa-expand',
@@ -198,14 +193,12 @@
             'Eye-care Tech': 'fa-solid fa-eye',
             'Contrast': 'fa-solid fa-circle-half-stroke',
             'Ultrawide': 'fa-solid fa-panorama',
-
             'Headset': 'fa-solid fa-headset',
             'Microphone': 'fa-solid fa-microphone',
             'Studio Mic': 'fa-solid fa-microphone-lines',
             'Speakers': 'fa-solid fa-volume-high',
             'Audio Quality': 'fa-solid fa-music',
             'Sound Quality': 'fa-solid fa-ear-listen',
-
             'Webcam': 'fa-solid fa-camera',
             'Video Capture': 'fa-solid fa-video',
             'Printer': 'fa-solid fa-print',
@@ -215,14 +208,12 @@
             'Modern Case': 'fa-solid fa-computer',
             'Case Shape': 'fa-solid fa-cube',
             'Tempered Glass Panel': 'fa-solid fa-window-maximize',
-
             'PSU': 'fa-solid fa-plug-circle-bolt',
             '80+ Certification': 'fa-solid fa-certificate',
             'Air Cooling Fan': 'fa-solid fa-fan',
             'Airflow': 'fa-solid fa-wind',
             'Liquid Cooling': 'fa-solid fa-droplet',
             'Cooling': 'fa-solid fa-temperature-arrow-down',
-
             'LAN/Ethernet': 'fa-solid fa-network-wired',
             'Wi-Fi': 'fa-solid fa-wifi',
             'Bluetooth': 'fa-brands fa-bluetooth-b',
@@ -406,179 +397,149 @@
             'Instructor support': 'fa-solid fa-person-chalkboard',
             'Classroom management': 'fa-solid fa-users-rectangle',
             'Accreditation ready': 'fa-solid fa-circle-check'
-        };  
-        // ===== توحيد تصميم التاجات (Unified Tags Style) =====
-(function() {
-    function unifyTags(root = document) {
-        // قائمة كل السيلكتورز اللي ممكن تحتوي على تاجات
-        const tagSelectors = [
-            '.hardware-feature',
-            '.tag-badge',
-            '.product-tag',
-            '.game-tags .tag',
-            '.tags-display span',
-            '.tags-select .tag-checkbox span',
-            '.tags-select label'
-        ];
+        };
 
-        // جمع كل العناصر في Set لتجنب التكرار
-        const tagElements = new Set();
-        tagSelectors.forEach(selector => {
-            root.querySelectorAll(selector).forEach(el => tagElements.add(el));
-        });
 
-        // تطبيق التصميم الموحد على كل عنصر
-        tagElements.forEach(element => {
-            // ✅ استثناء: لا نغير game-category (شارة الفئة)
-            if (element.classList.contains('game-category')) return;
+            // ===== توحيد تصميم التاجات =====
+            (function() {
+                function unifyTags(root = document) {
+                    const tagSelectors = [
+                        '.hardware-feature',
+                        '.tag-badge',
+                        '.product-tag',
+                        '.game-tags .tag',
+                        '.tags-display span'
+                    ];
 
-            // ✅ لو العنصر label، نطبق على span الداخلي
-            if (element.matches('label.tag-checkbox')) {
-                const span = element.querySelector('span');
-                if (span) {
-                    span.classList.add('unified-tag');
-                    // إزالة أي لون inline من الأيقونات
-                    span.querySelectorAll('i').forEach(icon => {
-                        icon.style.color = '';
-                        icon.style.opacity = '';
+                    const tagElements = new Set();
+                    tagSelectors.forEach(selector => {
+                        root.querySelectorAll(selector).forEach(el => tagElements.add(el));
+                    });
+
+                    tagElements.forEach(element => {
+                        if (element.classList.contains('game-category')) return;
+                        element.classList.add('unified-tag');
+                        element.querySelectorAll('i').forEach(icon => {
+                            icon.style.color = '';
+                            icon.style.opacity = '';
+                        });
                     });
                 }
+
+                unifyTags();
+
+                const observer = new MutationObserver(mutations => {
+                    mutations.forEach(mutation => {
+                        if (mutation.addedNodes && mutation.addedNodes.length) {
+                            mutation.addedNodes.forEach(node => {
+                                if (node.nodeType === 1) {
+                                    unifyTags(node);
+                                }
+                            });
+                        }
+                    });
+                });
+
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+
+                console.log('✅ Unified Tags Script Loaded!');
+            })();
+
+            if (!products.length) {
+                container.innerHTML = '<div style="color: #888; padding: 40px; text-align: center; grid-column: 1/-1;">🎮 No games available yet</div>';
                 return;
             }
 
-            // ✅ إضافة الكلاس الموحد
-            element.classList.add('unified-tag');
+            container.innerHTML = '';
+            
+            products.forEach(p => {
+                const isAvailable = p.available !== false;
+                const availabilityClass = isAvailable ? '' : 'out-of-stock';
 
-            // ✅ إزالة أي ألوان inline من الأيقونات داخل التاج
-            element.querySelectorAll('i').forEach(icon => {
-                icon.style.color = '';
-                icon.style.opacity = '';
-            });
+                let category = p.category || 'Games';
+                let featuresHtml = (p.tags || []).slice(0, 3).map(t => {
+                    const icon = tagIcons[t] || 'fa-solid fa-star';
+                    return `<div class="hardware-feature"><i class="${icon}"></i> ${escapeHtml(t)}</div>`;
+                }).join('');
 
-            // ✅ (اختياري) لو عايز تضيف أيقونة افتراضية للتاجات اللي مفيهاش أيقونة:
-            // if (!element.querySelector('i')) {
-            //     element.insertAdjacentHTML('afterbegin', '<i class="fa-solid fa-tag"></i> ');
-            // }
-        });
-    }
-
-    // ✅ تشغيل عند تحميل الصفحة
-    document.addEventListener('DOMContentLoaded', () => {
-        unifyTags();
-
-        // ✅ مراقبة DOM للعناصر الجديدة (للمنتجات الديناميكية)
-        const observer = new MutationObserver(mutations => {
-            mutations.forEach(mutation => {
-                if (mutation.addedNodes && mutation.addedNodes.length) {
-                    mutation.addedNodes.forEach(node => {
-                        if (node.nodeType === 1) { // عنصر HTML
-                            unifyTags(node);
-                        }
-                    });
-                }
-            });
-        });
-
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-
-        console.log('✅ Unified Tags Script Loaded!');
-    });
-})();
-
-        if (!products.length) {
-            container.innerHTML = '<div style="color: #888; padding: 40px; text-align: center; grid-column: 1/-1;">💻 No products available yet</div>';
-            return;
-        }
-
-        container.innerHTML = '';
-        
-        products.forEach(p => {
-            // ✅ تحديد حالة التوفر
-            const isAvailable = p.available !== false;
-            const availabilityClass = isAvailable ? '' : 'out-of-stock';
-
-            let category = p.category || 'Software';
-            let featuresHtml = (p.tags || []).slice(0, 3).map(t => {
-                const icon = tagIcons[t] || 'fa-solid fa-laptop-code';
-                return `<div class="hardware-feature"><i class="${icon}"></i> ${escapeHtml(t)}</div>`;
-            }).join('');
-
-            const whatsappMessage = encodeURIComponent(`Hello 👋
+                const whatsappMessage = encodeURIComponent(`Hello 👋
 I want to buy:
-💻 ${p.name}
+🎮 ${p.name}
 💰 Price: ${p.price} EGP
 🏷️ Category: ${category}`);
-            
-            // ✅ تغيير الزر حسب حالة التوفر
-            const buyButton = isAvailable
-                ? `<a href="https://wa.me/+201507875527?text=${whatsappMessage}" target="_blank" class="btn buy-btn"><i class="fa-brands fa-whatsapp"></i> Buy Now</a>`
-                : `<button class="btn buy-btn" disabled style="opacity: 0.4; cursor: not-allowed;"><i class="fa-solid fa-ban"></i> Unavailable</button>`;
-
-            const card = document.createElement('div');
-            card.className = `game-card ${availabilityClass}`;
-            
-            card.innerHTML = `
-                <div class="game-image">
-                    <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" onerror="this.src='img/placeholder.jpg'; this.onerror=null;"/>
-                    <div class="game-category">${escapeHtml(category)}</div>
-                </div>
-                <div class="game-details">
-                    <h3 class="game-title">${escapeHtml(p.name)}</h3>
-                    <div class="hardware-features">
-                        ${featuresHtml || '<div class="hardware-feature" style="color: #666;"><i class="fa-solid fa-info-circle"></i> No features listed</div>'}
-                    </div>
-                    <div class="game-info">
-                        <div class="game-price">${escapeHtml(p.price)} EGP</div>
-                        ${buyButton}
-                    </div>
-                </div>
-                ${!isAvailable ? '<div class="unavailable-overlay"><div class="badge"><i class="fas fa-times-circle"></i> Out of Stock</div></div>' : ''}
-            `;
-            container.appendChild(card);
-        });
-
-        // بحث ديناميكي
-        const searchInput = document.getElementById('softwareSearchInput');
-        const searchForm = document.getElementById('softwareSearchForm');
-
-        function performSearch() {
-            const term = searchInput.value.toLowerCase().trim();
-            const cards = container.getElementsByClassName('game-card');
-            let visibleCount = 0;
-
-            Array.from(cards).forEach(card => {
-                const title = (card.querySelector('.game-title')?.textContent || '').toLowerCase();
-                const category = (card.querySelector('.game-category')?.textContent || '').toLowerCase();
-                const tagsText = Array.from(card.querySelectorAll('.hardware-feature')).map(n => n.textContent.toLowerCase()).join(' ');
                 
-                const shouldShow = term === '' || title.includes(term) || category.includes(term) || tagsText.includes(term);
-                card.style.display = shouldShow ? '' : 'none';
-                if (shouldShow) visibleCount++;
+                const buyButton = isAvailable
+                    ? `<a href="https://wa.me/+201507875527?text=${whatsappMessage}" target="_blank" class="btn buy-btn"><i class="fa-brands fa-whatsapp"></i> Buy Now</a>`
+                    : `<button class="btn buy-btn" disabled style="opacity: 0.4; cursor: not-allowed;"><i class="fa-solid fa-ban"></i> Unavailable</button>`;
+
+                const card = document.createElement('div');
+                card.className = `game-card ${availabilityClass}`;
+                
+                card.innerHTML = `
+                    <div class="game-image">
+                        <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" onerror="this.src='img/placeholder.jpg'; this.onerror=null;"/>
+                        <div class="game-category">${escapeHtml(category)}</div>
+                    </div>
+                    <div class="game-details">
+                        <h3 class="game-title">${escapeHtml(p.name)}</h3>
+                        <div class="hardware-features">
+                            ${featuresHtml || '<div class="hardware-feature" style="color: #666;"><i class="fa-solid fa-info-circle"></i> No features listed</div>'}
+                        </div>
+                        <div class="game-info">
+                            <div class="game-price">${escapeHtml(p.price)} EGP</div>
+                            ${buyButton}
+                        </div>
+                    </div>
+                    ${!isAvailable ? '<div class="unavailable-badge"><i class="fas fa-times-circle"></i> Out of Stock</div>' : ''}
+                `;
+                container.appendChild(card);
             });
 
-            let noMsg = container.querySelector('.no-results-message');
-            if (noMsg) noMsg.remove();
+            // بحث ديناميكي
+            const searchInput = document.getElementById('gamesSearchInput');
+            const searchForm = document.getElementById('gamesSearchForm');
 
-            if (!visibleCount && term) {
-                noMsg = document.createElement('div');
-                noMsg.className = 'no-results-message';
-                noMsg.style.cssText = 'color:#888;padding:40px;text-align:center;grid-column:1/-1;';
-                noMsg.innerHTML = `<i class="fa-solid fa-search" style="font-size:3rem;opacity:0.5;"></i><p>No results for "<strong>${escapeHtml(term)}</strong>"</p>`;
-                container.appendChild(noMsg);
+            if (searchInput && searchForm) {
+                function performSearch() {
+                    const term = searchInput.value.toLowerCase().trim();
+                    const cards = container.getElementsByClassName('game-card');
+                    let visibleCount = 0;
+
+                    Array.from(cards).forEach(card => {
+                        const title = (card.querySelector('.game-title')?.textContent || '').toLowerCase();
+                        const category = (card.querySelector('.game-category')?.textContent || '').toLowerCase();
+                        const tagsText = Array.from(card.querySelectorAll('.hardware-feature')).map(n => n.textContent.toLowerCase()).join(' ');
+                        
+                        const shouldShow = term === '' || title.includes(term) || category.includes(term) || tagsText.includes(term);
+                        card.style.display = shouldShow ? '' : 'none';
+                        if (shouldShow) visibleCount++;
+                    });
+
+                    let noMsg = container.querySelector('.no-results-message');
+                    if (noMsg) noMsg.remove();
+
+                    if (!visibleCount && term) {
+                        noMsg = document.createElement('div');
+                        noMsg.className = 'no-results-message';
+                        noMsg.style.cssText = 'color:#888;padding:40px;text-align:center;grid-column:1/-1;';
+                        noMsg.innerHTML = `<i class="fa-solid fa-search" style="font-size:3rem;opacity:0.5;"></i><p>No results for "<strong>${escapeHtml(term)}</strong>"</p>`;
+                        container.appendChild(noMsg);
+                    }
+                }
+
+                searchInput.addEventListener('keyup', performSearch);
+                searchInput.addEventListener('search', performSearch);
+                searchForm.addEventListener('submit', ev => {
+                    ev.preventDefault();
+                    performSearch();
+                });
             }
+
+            console.log(`✅ Games Products Loaded: ${products.length}`);
         }
-
-        searchInput.addEventListener('keyup', performSearch);
-        searchInput.addEventListener('search', performSearch);
-        searchForm.addEventListener('submit', ev => {
-            ev.preventDefault();
-            performSearch();
-        });
-
-        console.log(`✅ Software Products Loaded: ${products.length}`);
     });
 </script>
 </body>

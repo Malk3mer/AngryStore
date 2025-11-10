@@ -784,13 +784,14 @@
         </div>
     </div>
 
-    <script>
-        // التحقق من الدخول
-        if (localStorage.getItem('angry_admin_logged_in') !== 'true') {
-            window.location.href = 'login.html';
-        }
+<script>
+    // التحقق من الدخول
+    if (localStorage.getItem('angry_admin_logged_in') !== 'true') {
+        window.location.href = 'login.html';
+    }
 
- const AVAILABLE_TAGS = [
+
+    const AVAILABLE_TAGS = [
     // === 1.1: المكونات الأساسية (Core Components) ===
     { name: 'CPU General', icon: 'fa-solid fa-microchip' },
     { name: 'Cores/Threads', icon: 'fa-solid fa-gears' },
@@ -1052,197 +1053,244 @@
     { name: 'Instructor support', icon: 'fa-solid fa-person-chalkboard' },
     { name: 'Classroom management', icon: 'fa-solid fa-users-rectangle' },
     { name: 'Accreditation ready', icon: 'fa-solid fa-circle-check' }
-];
+    ];
 
-        const STORAGE_KEY = 'angryStoreProducts_v2';
-        let products = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-        let editIndex = null;
-        let isAvailable = true;
+    const STORAGE_KEY = 'angryStoreProducts_v2';
+    let products = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    let editIndex = null;
+    let isAvailable = true;
 
-        const form = document.getElementById('productForm');
-        const nameInp = document.getElementById('name');
-        const priceInp = document.getElementById('price');
-        const imageInp = document.getElementById('image');
-        const categorySel = document.getElementById('category');
-        const tagsContainer = document.getElementById('tagsContainer');
-        const pageSel = document.getElementById('page');
-        const clearBtn = document.getElementById('clearBtn');
-        const logoutBtn = document.getElementById('logoutBtn');
-        const productsDiv = document.getElementById('products');
-        const availabilityToggle = document.getElementById('availabilityToggle');
-        const availabilityText = document.getElementById('availabilityText');
+    const form = document.getElementById('productForm');
+    const nameInp = document.getElementById('name');
+    const priceInp = document.getElementById('price');
+    const imageInp = document.getElementById('image');
+    const categorySel = document.getElementById('category');
+    const tagsContainer = document.getElementById('tagsContainer');
+    const pageSel = document.getElementById('page');
+    const clearBtn = document.getElementById('clearBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const productsDiv = document.getElementById('products');
+    const availabilityToggle = document.getElementById('availabilityToggle');
+    const availabilityText = document.getElementById('availabilityText');
 
-        function escape(str) {
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
-        }
+    function escape(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
 
-        function populateTags() {
-            tagsContainer.innerHTML = '';
-            AVAILABLE_TAGS.forEach((tag) => {
-                const label = document.createElement('label');
-                label.className = 'tag-checkbox';
-                label.innerHTML = `
-                    <input type="checkbox" class="tag-option" value="${escape(tag.name)}">
-                    <span><i class="${tag.icon}"></i> ${escape(tag.name)}</span>
-                `;
-                tagsContainer.appendChild(label);
-            });
-        }
-
-        function save() {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
-            updateStats();
-        }
-
-        function updateStats() {
-            const total = products.length;
-            const available = products.filter(p => p.available !== false).length;
-            const indexCount = products.filter(p => p.page === 'index.html').length;
-            const softwareCount = products.filter(p => p.page === 'software.html').length;
-            const gamesCount = products.filter(p => p.page === 'games.html').length;
-            const hardwareCount = products.filter(p => p.page === 'hardware.html').length;
-
-            document.getElementById('totalNumber').textContent = total;
-            document.getElementById('availableNumber').textContent = available;
-            document.getElementById('indexNumber').textContent = indexCount;
-            document.getElementById('softwareNumber').textContent = softwareCount;
-            document.getElementById('gamesNumber').textContent = gamesCount;
-            document.getElementById('hardwareNumber').textContent = hardwareCount;
-        }
-
-        function getSelectedTags() {
-            return Array.from(tagsContainer.querySelectorAll('.tag-option:checked')).map(cb => cb.value);
-        }
-
-        function render() {
-            productsDiv.innerHTML = '';
-            if (!products.length) {
-                productsDiv.innerHTML = '<div class="empty">لا يوجد منتجات بعد</div>';
-                return;
-            }
-
-            products.forEach((p, i) => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                const tagsDisplay = (p.tags || []).map(t => `<span class="tag-badge">${escape(t)}</span>`).join('');
-                const availBadge = p.available !== false 
-                    ? '<div class="availability-badge available">✅ متوفر</div>'
-                    : '<div class="availability-badge unavailable">❌ غير متوفر</div>';
-                
-                card.innerHTML = `
-                    <img src="${escape(p.image)}" alt="${escape(p.name)}" onerror="this.style.display='none'">
-                    <h3>${escape(p.name)}</h3>
-                    ${availBadge}
-                    <div class="meta"><strong>السعر:</strong> ${escape(p.price)} EGP</div>
-                    <div class="meta"><strong>التصنيف:</strong> ${escape(p.category)}</div>
-                    <div class="meta"><strong>الصفحة:</strong> ${escape(p.page)}</div>
-                    <div class="tags-display">${tagsDisplay}</div>
-                    <div class="btns">
-                        <button class="edit" data-i="${i}">✏️ تعديل</button>
-                        <button class="del" data-i="${i}">🗑️ حذف</button>
-                    </div>
-                `;
-                productsDiv.appendChild(card);
-            });
-
-            document.querySelectorAll('.edit').forEach(btn => {
-                btn.addEventListener('click', () => startEdit(Number(btn.dataset.i)));
-            });
-
-            document.querySelectorAll('.del').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    if (confirm('هل تريد حذف هذا المنتج؟')) {
-                        products.splice(Number(btn.dataset.i), 1);
-                        save();
-                        render();
-                    }
-                });
-            });
-        }
-
-        function startEdit(i) {
-            const p = products[i];
-            editIndex = i;
-            nameInp.value = p.name;
-            priceInp.value = p.price;
-            imageInp.value = p.image || '';
-            categorySel.value = p.category || '';
-            pageSel.value = p.page || '';
-            isAvailable = p.available !== false;
-            availabilityToggle.classList.toggle('active', isAvailable);
-            availabilityText.textContent = isAvailable ? 'متوفر' : 'غير متوفر';
-            
-            tagsContainer.querySelectorAll('.tag-option').forEach(checkbox => {
-                checkbox.checked = (p.tags || []).includes(checkbox.value);
-            });
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function cancelEdit() {
-            editIndex = null;
-            form.reset();
-            isAvailable = true;
-            availabilityToggle.classList.add('active');
-            availabilityText.textContent = 'متوفر';
-            tagsContainer.querySelectorAll('.tag-option').forEach(cb => cb.checked = false);
-        }
-
-        availabilityToggle.addEventListener('click', () => {
-            isAvailable = !isAvailable;
-            availabilityToggle.classList.toggle('active', isAvailable);
-            availabilityText.textContent = isAvailable ? 'متوفر' : 'غير متوفر';
+    function populateTags() {
+        tagsContainer.innerHTML = '';
+        AVAILABLE_TAGS.forEach((tag) => {
+            const label = document.createElement('label');
+            label.className = 'tag-checkbox';
+            label.innerHTML = `
+                <input type="checkbox" class="tag-option" value="${escape(tag.name)}">
+                <span><i class="${tag.icon}"></i> ${escape(tag.name)}</span>
+            `;
+            tagsContainer.appendChild(label);
         });
+    }
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = nameInp.value.trim();
-            const price = priceInp.value.trim();
-            const image = imageInp.value.trim();
-            const category = categorySel.value;
-            const tags = getSelectedTags();
-            const page = pageSel.value;
-
-            if (!name || !price || !image || !category || !tags.length || !page) {
-                alert('الرجاء تعبئة جميع الحقول');
-                return;
-            }
-
-            const product = { name, price, image, category, tags, page, available: isAvailable };
-            
-            if (editIndex !== null) {
-                products[editIndex] = product;
-                editIndex = null;
-            } else {
-                products.push(product);
-            }
-            
-            save();
-            render();
-            cancelEdit();
-            
-            const msg = document.createElement('div');
-            msg.className = 'success-message';
-            msg.textContent = '✅ تم الحفظ بنجاح!';
-            document.body.appendChild(msg);
-            setTimeout(() => msg.remove(), 3000);
-        });
-
-        clearBtn.addEventListener('click', cancelEdit);
-
-        logoutBtn.addEventListener('click', () => {
-            if (confirm('هل تريد تسجيل الخروج؟')) {
-                localStorage.removeItem('angry_admin_logged_in');
-                localStorage.removeItem('admin_token');
-                window.location.href = 'login.html';
-            }
-        });
-
-        populateTags();
+    // ✅ الدالة الجديدة: حفظ في localStorage وإنشاء JSON للتحميل
+    function save() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+        
+        // ✅ إنشاء ملف JSON للتحميل
+        const jsonData = JSON.stringify({ products: products }, null, 2);
+        const blob = new Blob([jsonData], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        
+        // ✅ إظهار رسالة مع زر التحميل
+        showDownloadButton(url);
+        
         updateStats();
+    }
+
+    // ✅ دالة لإظهار زر تحميل JSON
+    function showDownloadButton(url) {
+        // إزالة الزر القديم إن وجد
+        const oldBtn = document.getElementById('downloadJsonBtn');
+        if (oldBtn) oldBtn.remove();
+
+        const downloadBtn = document.createElement('a');
+        downloadBtn.id = 'downloadJsonBtn';
+        downloadBtn.href = url;
+        downloadBtn.download = 'products.json';
+        downloadBtn.textContent = '📥 تحميل products.json';
+        downloadBtn.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #25d366 0%, #1da857 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+            z-index: 9999;
+            animation: bounce 2s infinite;
+        `;
+        
+        document.body.appendChild(downloadBtn);
+
+        // إضافة أنيميشن
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    function updateStats() {
+        const total = products.length;
+        const available = products.filter(p => p.available !== false).length;
+        const indexCount = products.filter(p => p.page === 'index.html').length;
+        const softwareCount = products.filter(p => p.page === 'software.html').length;
+        const gamesCount = products.filter(p => p.page === 'games.html').length;
+        const hardwareCount = products.filter(p => p.page === 'hardware.html').length;
+
+        document.getElementById('totalNumber').textContent = total;
+        document.getElementById('availableNumber').textContent = available;
+        document.getElementById('indexNumber').textContent = indexCount;
+        document.getElementById('softwareNumber').textContent = softwareCount;
+        document.getElementById('gamesNumber').textContent = gamesCount;
+        document.getElementById('hardwareNumber').textContent = hardwareCount;
+    }
+
+    function getSelectedTags() {
+        return Array.from(tagsContainer.querySelectorAll('.tag-option:checked')).map(cb => cb.value);
+    }
+
+    function render() {
+        productsDiv.innerHTML = '';
+        if (!products.length) {
+            productsDiv.innerHTML = '<div class="empty">لا يوجد منتجات بعد</div>';
+            return;
+        }
+
+        products.forEach((p, i) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            const tagsDisplay = (p.tags || []).map(t => `<span class="tag-badge">${escape(t)}</span>`).join('');
+            const availBadge = p.available !== false 
+                ? '<div class="availability-badge available">✅ متوفر</div>'
+                : '<div class="availability-badge unavailable">❌ غير متوفر</div>';
+            
+            card.innerHTML = `
+                <img src="${escape(p.image)}" alt="${escape(p.name)}" onerror="this.style.display='none'">
+                <h3>${escape(p.name)}</h3>
+                ${availBadge}
+                <div class="meta"><strong>السعر:</strong> ${escape(p.price)} EGP</div>
+                <div class="meta"><strong>التصنيف:</strong> ${escape(p.category)}</div>
+                <div class="meta"><strong>الصفحة:</strong> ${escape(p.page)}</div>
+                <div class="tags-display">${tagsDisplay}</div>
+                <div class="btns">
+                    <button class="edit" data-i="${i}">✏️ تعديل</button>
+                    <button class="del" data-i="${i}">🗑️ حذف</button>
+                </div>
+            `;
+            productsDiv.appendChild(card);
+        });
+
+        document.querySelectorAll('.edit').forEach(btn => {
+            btn.addEventListener('click', () => startEdit(Number(btn.dataset.i)));
+        });
+
+        document.querySelectorAll('.del').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (confirm('هل تريد حذف هذا المنتج؟')) {
+                    products.splice(Number(btn.dataset.i), 1);
+                    save();
+                    render();
+                }
+            });
+        });
+    }
+
+    function startEdit(i) {
+        const p = products[i];
+        editIndex = i;
+        nameInp.value = p.name;
+        priceInp.value = p.price;
+        imageInp.value = p.image || '';
+        categorySel.value = p.category || '';
+        pageSel.value = p.page || '';
+        isAvailable = p.available !== false;
+        availabilityToggle.classList.toggle('active', isAvailable);
+        availabilityText.textContent = isAvailable ? 'متوفر' : 'غير متوفر';
+        
+        tagsContainer.querySelectorAll('.tag-option').forEach(checkbox => {
+            checkbox.checked = (p.tags || []).includes(checkbox.value);
+        });
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function cancelEdit() {
+        editIndex = null;
+        form.reset();
+        isAvailable = true;
+        availabilityToggle.classList.add('active');
+        availabilityText.textContent = 'متوفر';
+        tagsContainer.querySelectorAll('.tag-option').forEach(cb => cb.checked = false);
+    }
+
+    availabilityToggle.addEventListener('click', () => {
+        isAvailable = !isAvailable;
+        availabilityToggle.classList.toggle('active', isAvailable);
+        availabilityText.textContent = isAvailable ? 'متوفر' : 'غير متوفر';
+    });
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = nameInp.value.trim();
+        const price = priceInp.value.trim();
+        const image = imageInp.value.trim();
+        const category = categorySel.value;
+        const tags = getSelectedTags();
+        const page = pageSel.value;
+
+        if (!name || !price || !image || !category || !tags.length || !page) {
+            alert('الرجاء تعبئة جميع الحقول');
+            return;
+        }
+
+        const product = { name, price, image, category, tags, page, available: isAvailable };
+        
+        if (editIndex !== null) {
+            products[editIndex] = product;
+            editIndex = null;
+        } else {
+            products.push(product);
+        }
+        
+        save();
         render();
-    </script>
-</body>
-</html>
+        cancelEdit();
+        
+        const msg = document.createElement('div');
+        msg.className = 'success-message';
+        msg.textContent = '✅ تم الحفظ بنجاح! لا تنسى تحميل products.json';
+        document.body.appendChild(msg);
+        setTimeout(() => msg.remove(), 5000);
+    });
+
+    clearBtn.addEventListener('click', cancelEdit);
+
+    logoutBtn.addEventListener('click', () => {
+        if (confirm('هل تريد تسجيل الخروج؟')) {
+            localStorage.removeItem('angry_admin_logged_in');
+            localStorage.removeItem('admin_token');
+            window.location.href = 'login.html';
+        }
+    });
+
+    populateTags();
+    updateStats();
+    render();
+</script>

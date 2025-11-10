@@ -618,15 +618,21 @@ body.mobile-menu-open {
 /* ========================================================================
    🏷️ تصميم التاجات (TAGS STYLING)
 ======================================================================== */
+/* الكونتينر الرئيسي للتاجات */
 .hardware-features,
 .game-tags,
-.tags-display {
+.tags-display,
+.product-tags-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin: 15px 0;
+  gap: 12px;
+  margin: 20px 0;
+  padding: 15px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
+/* تصميم التاج الواحد */
 .hardware-feature,
 .tag-badge,
 .product-tag,
@@ -635,118 +641,164 @@ body.mobile-menu-open {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 9px 18px;
-  border-radius: 8px;
+  padding: 10px 20px;
+  border-radius: 10px;
   font-size: 0.9rem;
   font-weight: 600;
   color: #fff !important;
   background: linear-gradient(135deg, #c41f09 0%, #a01707 100%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.15);
   box-shadow: 
-    0 2px 8px rgba(196, 31, 9, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    0 4px 12px rgba(196, 31, 9, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   position: relative;
   overflow: hidden;
+  cursor: default;
+  text-decoration: none;
 }
 
-/* تأثير اللمعة الخفيفة */
-.hardware-feature::after,
-.tag-badge::after,
-.product-tag::after,
-.unified-tag::after {
+/* تأثير اللمعة المتحركة */
+.hardware-feature::before,
+.tag-badge::before,
+.product-tag::before,
+.unified-tag::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 50%;
-  height: 100%;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
   background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.15),
-    transparent
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 70%
   );
-  transition: left 0.6s ease;
+  transform: rotate(45deg);
+  transition: left 0.7s ease;
 }
 
-.hardware-feature:hover::after,
-.tag-badge:hover::after,
-.product-tag:hover::after,
-.unified-tag:hover::after {
+.hardware-feature:hover::before,
+.tag-badge:hover::before,
+.product-tag:hover::before,
+.unified-tag:hover::before {
   left: 150%;
 }
 
-/* الأيقونة */
+/* الأيقونة داخل التاج */
 .hardware-feature i,
 .tag-badge i,
 .product-tag i,
 .game-tags .tag i,
 .unified-tag i {
   color: #fff !important;
-  font-size: 1rem;
-  opacity: 0.95;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
-  transition: transform 0.3s ease;
+  font-size: 1.05rem;
+  opacity: 1;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.25));
+  transition: all 0.3s ease;
 }
 
-/* تأثير الـ Hover */
+/* تأثير الـ Hover على التاج */
 .hardware-feature:hover,
 .tag-badge:hover,
 .product-tag:hover,
 .game-tags .tag:hover,
 .unified-tag:hover {
   background: linear-gradient(135deg, #d62310 0%, #c41f09 100%) !important;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.03);
   box-shadow: 
-    0 6px 20px rgba(196, 31, 9, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.2);
+    0 8px 25px rgba(196, 31, 9, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
+/* تأثير على الأيقونة عند الـ Hover */
 .hardware-feature:hover i,
 .tag-badge:hover i,
 .product-tag:hover i,
 .unified-tag:hover i {
-  transform: scale(1.1);
+  transform: scale(1.15) rotate(5deg);
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.3));
 }
 
-/* تأثير الضغط (Active) */
-.hardware-feature:active,
-.tag-badge:active,
-.product-tag:active,
-.unified-tag:active {
-  transform: translateY(0);
-  box-shadow: 
-    0 2px 8px rgba(196, 31, 9, 0.25),
-    inset 0 1px 3px rgba(0, 0, 0, 0.2);
+/* نبضة خفيفة للتاج (اختياري) */
+@keyframes subtle-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.hardware-feature:hover,
+.unified-tag:hover {
+  animation: subtle-pulse 1.5s ease-in-out infinite;
+}
+
+/* عنوان القسم (Tags Title) */
+.tags-section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tags-section-title::before {
+  content: '';
+  width: 4px;
+  height: 20px;
+  background: linear-gradient(to bottom, #c41f09, #ff4757);
+  border-radius: 2px;
+}
+
+.tags-section-title i {
+  color: #c41f09;
+  font-size: 1.2rem;
+}
+
+/* تصميم خاص لتاج "مميز" أو "جديد" */
+.tag-featured,
+.tag-new {
+  background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%) !important;
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 4px 12px rgba(255, 71, 87, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 6px 20px rgba(255, 71, 87, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
 }
 
 /* للتاجات الطويلة */
 .hardware-feature,
 .unified-tag {
-  max-width: 250px;
+  max-width: 280px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* استجابة للموبايل */
-@media (max-width: 600px) {
-  .hardware-feature,
-  .tag-badge,
-  .product-tag,
-  .unified-tag {
-    font-size: 0.85rem;
-    padding: 7px 14px;
-    gap: 6px;
+/* التوافق مع الثيم الداكن (Dark Mode) */
+@media (prefers-color-scheme: dark) {
+  .hardware-features,
+  .tags-display {
+    border-color: rgba(255, 255, 255, 0.1);
   }
 
-  .hardware-feature i,
-  .tag-badge i,
-  .product-tag i,
-  .unified-tag i {
-    font-size: 0.9rem;
+  .tags-section-title {
+    color: #fff;
   }
 }
 /* ========================================================================
@@ -1171,4 +1223,141 @@ body.mobile-menu-open {
   .section-title {
     font-size: 1.6rem;
   }
+}
+/* Loading Spinner */
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+    color: #c41f09;
+}
+
+.loading-spinner i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Filters Bar */
+.filters-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.filter-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.6rem 1.2rem;
+    border: 2px solid #e0e0e0;
+    background: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-btn:hover {
+    border-color: #c41f09;
+    color: #c41f09;
+}
+
+.filter-btn.active {
+    background: #c41f09;
+    color: #fff;
+    border-color: #c41f09;
+}
+
+.sort-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sort-select {
+    padding: 0.6rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Discount Badge */
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #e74c3c;
+    color: #fff;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    z-index: 2;
+}
+
+/* Out of Stock Badge */
+.out-of-stock-badge {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-weight: 600;
+    z-index: 2;
+}
+
+/* Platform Info */
+.product-platform {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Cart Badge */
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #e74c3c;
+    color: #fff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .filters-bar {
+        flex-direction: column;
+    }
+    
+    .filter-group,
+    .sort-group {
+        width: 100%;
+        justify-content: center;
+    }
 }

@@ -1,0 +1,32 @@
+{
+  "categories": [
+    {
+      "id": "games",
+      "name": "Games",
+      "icon": "fa-gamepad",
+      "color": "#e74c3c",
+      "count": 0
+    },
+    {
+      "id": "software",
+      "name": "Software",
+      "icon": "fa-laptop-code",
+      "color": "#3498db",
+      "count": 0
+    },
+    {
+      "id": "hardware",
+      "name": "Hardware",
+      "icon": "fa-microchip",
+      "color": "#2ecc71",
+      "count": 0
+    },
+    {
+      "id": "subscriptions",
+      "name": "Subscriptions",
+      "icon": "fa-crown",
+      "color": "#f39c12",
+      "count": 0
+    }
+  ]
+}
