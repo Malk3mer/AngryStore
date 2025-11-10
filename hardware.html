@@ -406,7 +406,87 @@
             'Instructor support': 'fa-solid fa-person-chalkboard',
             'Classroom management': 'fa-solid fa-users-rectangle',
             'Accreditation ready': 'fa-solid fa-circle-check'
-        };
+        };  
+        // ===== توحيد تصميم التاجات (Unified Tags Style) =====
+(function() {
+    function unifyTags(root = document) {
+        // قائمة كل السيلكتورز اللي ممكن تحتوي على تاجات
+        const tagSelectors = [
+            '.hardware-feature',
+            '.tag-badge',
+            '.product-tag',
+            '.game-tags .tag',
+            '.tags-display span',
+            '.tags-select .tag-checkbox span',
+            '.tags-select label'
+        ];
+
+        // جمع كل العناصر في Set لتجنب التكرار
+        const tagElements = new Set();
+        tagSelectors.forEach(selector => {
+            root.querySelectorAll(selector).forEach(el => tagElements.add(el));
+        });
+
+        // تطبيق التصميم الموحد على كل عنصر
+        tagElements.forEach(element => {
+            // ✅ استثناء: لا نغير game-category (شارة الفئة)
+            if (element.classList.contains('game-category')) return;
+
+            // ✅ لو العنصر label، نطبق على span الداخلي
+            if (element.matches('label.tag-checkbox')) {
+                const span = element.querySelector('span');
+                if (span) {
+                    span.classList.add('unified-tag');
+                    // إزالة أي لون inline من الأيقونات
+                    span.querySelectorAll('i').forEach(icon => {
+                        icon.style.color = '';
+                        icon.style.opacity = '';
+                    });
+                }
+                return;
+            }
+
+            // ✅ إضافة الكلاس الموحد
+            element.classList.add('unified-tag');
+
+            // ✅ إزالة أي ألوان inline من الأيقونات داخل التاج
+            element.querySelectorAll('i').forEach(icon => {
+                icon.style.color = '';
+                icon.style.opacity = '';
+            });
+
+            // ✅ (اختياري) لو عايز تضيف أيقونة افتراضية للتاجات اللي مفيهاش أيقونة:
+            // if (!element.querySelector('i')) {
+            //     element.insertAdjacentHTML('afterbegin', '<i class="fa-solid fa-tag"></i> ');
+            // }
+        });
+    }
+
+    // ✅ تشغيل عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', () => {
+        unifyTags();
+
+        // ✅ مراقبة DOM للعناصر الجديدة (للمنتجات الديناميكية)
+        const observer = new MutationObserver(mutations => {
+            mutations.forEach(mutation => {
+                if (mutation.addedNodes && mutation.addedNodes.length) {
+                    mutation.addedNodes.forEach(node => {
+                        if (node.nodeType === 1) { // عنصر HTML
+                            unifyTags(node);
+                        }
+                    });
+                }
+            });
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+
+        console.log('✅ Unified Tags Script Loaded!');
+    });
+})();
 
         if (!products.length) {
             container.innerHTML = '<div style="color: #888; padding: 40px; text-align: center; grid-column: 1/-1;">💻 No products available yet</div>';
