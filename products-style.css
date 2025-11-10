@@ -1,3 +1,24 @@
+/* ===== حالة التوفر - Badge ===== */
+.availability-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 8px 0;
+}
+
+.availability-badge.available {
+    background: rgba(37, 211, 102, 0.2);
+    color: #25d366;
+    border: 1px solid rgba(37, 211, 102, 0.5);
+}
+
+.availability-badge.unavailable {
+    background: rgba(255, 43, 43, 0.2);
+    color: #ff2b2b;
+    border: 1px solid rgba(255, 43, 43, 0.5);
+}
 /* ===== Container المنتجات ===== */
 #products-container {
     display: grid;
