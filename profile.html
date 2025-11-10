@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لوحة الإدارة | Angry Store</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * {
@@ -14,510 +14,296 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 100%);
+            background: #111;
             color: #fff;
-            font-family: 'Cairo', Arial, sans-serif;
-            min-height: 100vh;
+            font-family: 'Roboto', Arial, sans-serif;
         }
 
         .admin-wrap {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 30px 20px;
+            padding: 20px;
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
-            padding: 25px;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d1515 100%);
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(255, 43, 43, 0.1);
-            border: 1px solid rgba(255, 43, 43, 0.2);
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #222;
         }
 
         .header h1 {
             color: #ff2b2b;
-            font-size: 2.2rem;
-            text-shadow: 0 0 20px rgba(255, 43, 43, 0.5);
+            font-size: 2rem;
         }
 
         .logout-btn {
-            background: linear-gradient(135deg, #820000 0%, #550000 100%);
+            background: #820000;
             color: #fff;
-            padding: 12px 25px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(130, 0, 0, 0.3);
         }
 
         .logout-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(130, 0, 0, 0.5);
+            background: #550000;
         }
 
         .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 30px;
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #222;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .stat-card {
-            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid #333;
+            background: #151515;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #222;
             text-align: center;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ff2b2b, #ff6b6b);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
         }
 
         .stat-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(255, 43, 43, 0.2);
-            border-color: #ff2b2b;
-        }
-
-        .stat-card:hover::before {
-            transform: scaleX(1);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
         .stat-card h4 {
             color: #aaa;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            font-weight: 500;
+            font-size: 1rem;
+            margin-bottom: 10px;
         }
 
         .stat-card .number {
             color: #ff2b2b;
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            text-shadow: 0 0 15px rgba(255, 43, 43, 0.3);
         }
 
-        .stat-card .number.green {
-            color: #25d366;
-            text-shadow: 0 0 15px rgba(37, 211, 102, 0.3);
+        .panel.products-form {
+            background: #0f0f0f;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
 
-        .panel {
-            background: linear-gradient(135deg, #151515 0%, #1a1a1a 100%);
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            border: 1px solid #2d2d2d;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        .panel.products-list {
+            background: #181818;
+            padding: 25px;
+            border-radius: 10px;
         }
 
         h2 {
             color: #ff2b2b;
-            margin-bottom: 25px;
-            font-size: 1.8rem;
-            text-shadow: 0 0 15px rgba(255, 43, 43, 0.3);
+            margin-bottom: 20px;
         }
 
         form label {
             display: block;
-            margin: 20px 0 8px;
-            color: #ff6b6b;
+            margin: 15px 0 5px;
+            color: #ed6363;
             font-weight: 600;
-            font-size: 1rem;
         }
 
         form input,
         form select {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             margin-bottom: 15px;
-            border-radius: 8px;
-            border: 2px solid #2d2d2d;
-            background: #0f0f0f;
+            border-radius: 6px;
+            border: 1px solid #222;
+            background: #151515;
             color: #fff;
             font-size: 1rem;
-            transition: all 0.3s;
-            font-family: 'Cairo', sans-serif;
         }
 
         form input:focus,
         form select:focus {
             outline: none;
             border-color: #ff2b2b;
-            box-shadow: 0 0 15px rgba(255, 43, 43, 0.3);
-            background: #1a1a1a;
-        }
-
-        .availability-toggle {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            background: rgba(26, 26, 26, 0.8);
-            border-radius: 10px;
-            border: 2px solid rgba(255, 43, 43, 0.2);
-            margin: 20px 0;
-        }
-
-        .toggle-switch {
-            position: relative;
-            width: 60px;
-            height: 30px;
-            background: #444;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .toggle-switch.active {
-            background: linear-gradient(135deg, #25d366 0%, #1da857 100%);
-        }
-
-        .toggle-switch .slider {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 24px;
-            height: 24px;
-            background: white;
-            border-radius: 50%;
-            transition: transform 0.3s;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        .toggle-switch.active .slider {
-            transform: translateX(30px);
-        }
-
-        .availability-label {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #ff6b6b;
+            box-shadow: 0 0 10px rgba(255, 43, 43, 0.3);
         }
 
         .actions {
             display: flex;
-            gap: 15px;
-            margin: 25px 0;
+            gap: 10px;
+            margin: 20px 0;
         }
 
         button {
-            padding: 14px;
+            padding: 12px;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s;
-            font-size: 1rem;
-            font-family: 'Cairo', sans-serif;
         }
 
         .save {
-            background: linear-gradient(135deg, #25d366 0%, #1da857 100%);
+            background: #25d366;
             color: #fff;
             flex: 1;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
         }
 
         .save:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+            background: #1da857;
         }
 
         .clear {
-            background: linear-gradient(135deg, #444 0%, #333 100%);
+            background: #444;
             color: #fff;
             flex: 1;
-            box-shadow: 0 4px 15px rgba(68, 68, 68, 0.3);
         }
 
         .clear:hover {
-            background: linear-gradient(135deg, #555 0%, #444 100%);
-            transform: translateY(-2px);
+            background: #555;
         }
 
         .tags-select {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 12px;
-            margin: 20px 0;
-            max-height: 400px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+            max-height: 300px;
             overflow-y: auto;
-            padding: 20px;
-            background: #0a0a0a;
-            border-radius: 10px;
-            border: 2px solid #2d2d2d;
-        }
-
-        .tags-select::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .tags-select::-webkit-scrollbar-track {
-            background: #151515;
-            border-radius: 4px;
-        }
-
-        .tags-select::-webkit-scrollbar-thumb {
-            background: #ff2b2b;
-            border-radius: 4px;
+            padding: 15px;
+            background: #1a1a1a;
+            border-radius: 6px;
+            border: 1px solid #222;
         }
 
         .tag-checkbox {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 14px;
-            background: #1a1a1a;
-            border-radius: 8px;
+            gap: 8px;
+            padding: 8px 12px;
+            background: #222;
+            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid #2d2d2d;
-        }
-
-        .tag-checkbox:hover {
-            background: #252525;
-            border-color: #ff2b2b;
-            transform: translateX(5px);
-        }
-
-        .tag-checkbox input:checked ~ span {
-            color: #ff2b2b;
-            font-weight: 600;
+            min-width: fit-content;
         }
 
         .tag-checkbox input {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             cursor: pointer;
-            accent-color: #ff2b2b;
         }
 
-        .tag-checkbox span {
+        .tag-checkbox label {
             cursor: pointer;
+            margin: 0;
             color: #ccc;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
         }
 
         .card {
-            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
-            padding: 20px;
-            border-radius: 12px;
-            border: 2px solid #2d2d2d;
+            background: #151515;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #2d2d2d;
             transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* ===== تصميم المنتج الغير متوفر في الأدمن ===== */
-        .card.out-of-stock {
-            opacity: 1;
-        }
-
-        .card.out-of-stock::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(26, 26, 26, 0.9) 100%);
-            backdrop-filter: blur(2px);
-            z-index: 1;
-            border-radius: 12px;
-        }
-
-        .card.out-of-stock .unavailable-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-            text-align: center;
-        }
-
-        .unavailable-overlay .badge {
-            background: linear-gradient(135deg, #ff2b2b 0%, #d32f2f 100%);
-            color: white;
-            padding: 15px 35px;
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            box-shadow: 0 8px 30px rgba(255, 43, 43, 0.6);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #ff2b2b, #ff6b6b);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-            z-index: 3;
         }
 
         .card:hover {
             border-color: #ff2b2b;
-            box-shadow: 0 10px 30px rgba(255, 43, 43, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .card:hover::before {
-            transform: scaleX(1);
+            box-shadow: 0 0 15px rgba(255, 43, 43, 0.2);
         }
 
         .card img {
             width: 100%;
-            height: 180px;
+            height: 150px;
             object-fit: cover;
-            border-radius: 10px;
-            background: #0f0f0f;
-            margin-bottom: 15px;
-            border: 2px solid #2d2d2d;
+            border-radius: 8px;
+            background: #232323;
+            margin-bottom: 12px;
         }
 
         .card h3 {
             color: #ff2b2b;
-            margin: 12px 0 8px;
-            font-size: 1.2rem;
+            margin: 10px 0 5px;
+            font-size: 1.1rem;
         }
 
         .card .meta {
             color: #aaa;
-            font-size: 0.9em;
-            margin: 8px 0;
-            padding: 5px 0;
-        }
-
-        .card .meta strong {
-            color: #ff6b6b;
-        }
-
-        .availability-badge {
-            display: inline-block;
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin: 8px 0;
-        }
-
-        .availability-badge.available {
-            background: rgba(37, 211, 102, 0.2);
-            color: #25d366;
-            border: 1px solid rgba(37, 211, 102, 0.5);
-        }
-
-        .availability-badge.unavailable {
-            background: rgba(255, 43, 43, 0.2);
-            color: #ff2b2b;
-            border: 1px solid rgba(255, 43, 43, 0.5);
+            font-size: 0.85em;
+            margin: 5px 0;
         }
 
         .card .tags-display {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
-            margin: 12px 0;
+            gap: 5px;
+            margin: 10px 0;
         }
 
         .tag-badge {
-            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
-            padding: 5px 12px;
-            border-radius: 6px;
+            background: #222;
+            padding: 4px 10px;
+            border-radius: 4px;
             font-size: 0.8em;
             color: #ccc;
-            border: 1px solid #3d3d3d;
         }
 
         .card .btns {
             display: flex;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 8px;
+            margin-top: 12px;
         }
 
         .edit,
         .del {
             flex: 1;
-            padding: 10px;
-            font-size: 0.95em;
+            padding: 8px;
+            font-size: 0.9em;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.3s;
         }
 
         .edit {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            background: #ff6b6b;
+            color: #111;
         }
 
         .edit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5);
+            background: #ff5252;
         }
 
         .del {
-            background: linear-gradient(135deg, #770000 0%, #550000 100%);
+            background: #770000;
             color: #fff;
-            box-shadow: 0 4px 15px rgba(119, 0, 0, 0.3);
         }
 
         .del:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(119, 0, 0, 0.5);
+            background: #550000;
         }
 
         .empty {
             color: #888;
-            padding: 60px 20px;
+            padding: 40px 20px;
             text-align: center;
             background: #1a1a1a;
-            border-radius: 12px;
-            border: 2px dashed #333;
-            font-size: 1.1rem;
+            border-radius: 8px;
+            border: 1px solid #222;
         }
 
         @media (max-width: 768px) {
@@ -526,45 +312,17 @@
                 gap: 15px;
             }
 
-            .header h1 {
-                font-size: 1.8rem;
-            }
-
             .grid {
                 grid-template-columns: 1fr;
             }
 
             .stats {
-                grid-template-columns: 1fr;
+                flex-direction: column;
+                gap: 15px;
             }
 
-            .tags-select {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .success-message {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #25d366 0%, #1da857 100%);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
-            z-index: 9999;
-            font-weight: 600;
-            animation: slideIn 0.5s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
+            .stat-card {
+                width: 100%;
             }
         }
     </style>
@@ -578,34 +336,26 @@
 
         <!-- Statistics Section -->
         <div class="stats" id="stats">
-            <div class="stat-card">
+            <div class="stat-card" id="totalStats">
                 <h4>📊 إجمالي المنتجات</h4>
                 <div class="number" id="totalNumber">0</div>
             </div>
-            <div class="stat-card">
-                <h4>✅ المنتجات المتاحة</h4>
-                <div class="number green" id="availableNumber">0</div>
-            </div>
-            <div class="stat-card">
-                <h4>🏠 الصفحة الرئيسية</h4>
-                <div class="number" id="indexNumber">0</div>
-            </div>
-            <div class="stat-card">
+            <div class="stat-card" id="softwareStats">
                 <h4>💻 البرامج</h4>
                 <div class="number" id="softwareNumber">0</div>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" id="gamesStats">
                 <h4>🎮 الألعاب</h4>
                 <div class="number" id="gamesNumber">0</div>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" id="hardwareStats">
                 <h4>⚙️ الهاردوير</h4>
                 <div class="number" id="hardwareNumber">0</div>
             </div>
         </div>
 
         <!-- Add Product Form -->
-        <div class="panel">
+        <div class="panel products-form">
             <h2>إضافة/تعديل منتج</h2>
             <form id="productForm">
                 <label>اسم المنتج*</label>
@@ -620,227 +370,35 @@
                 <label>التصنيف (Category)*</label>
                 <select id="category" required>
                     <option value="">اختر التصنيف...</option>
-              
-    <!-- ====== 1️⃣ الأكثر طلباً: الألعاب الشائعة ====== -->
-    <optgroup label="🔥 الألعاب الأكثر طلباً">
-        <option value="FPS">🎯 FPS - إطلاق نار منظور أول</option>
-        <option value="Battle Royale">🏆 Battle Royale - باتل رويال</option>
-        <option value="Open World">🌍 Open World - عالم مفتوح</option>
-        <option value="RPG">⚡ RPG - لعب أدوار</option>
-        <option value="Action Adventure">⚔️ Action Adventure - أكشن ومغامرة</option>
-        <option value="Football">⚽ Football - كرة قدم</option>
-        <option value="Racing Simulation">🏁 Racing Simulation - سباقات واقعية</option>
-        <option value="Survival Horror">😱 Survival Horror - رعب البقاء</option>
-        <option value="Survival">⛺ Survival - البقاء على قيد الحياة</option>
-        <option value="MMORPG">🌐 MMORPG - لعب أدوار أونلاين</option>
-    </optgroup>
-
-    <!-- ====== 2️⃣ اشتراكات الألعاب (الأكثر مبيعاً) ====== -->
-    <optgroup label="🎮 اشتراكات الألعاب">
-        <option value="Xbox Game Pass">🎮 Xbox Game Pass - اشتراك</option>
-        <option value="PlayStation Plus">🎮 PlayStation Plus - اشتراك</option>
-        <option value="EA Play">🎮 EA Play - اشتراك</option>
-        <option value="Ubisoft+">🎮 Ubisoft+ - اشتراك</option>
-        <option value="GeForce NOW">☁️ GeForce NOW - اشتراك</option>
-        <option value="Nintendo Switch Online">🎮 Nintendo Switch Online</option>
-    </optgroup>
-
-    <!-- ====== 3️⃣ الهاردوير الأساسي (ضروري لكل جهاز) ====== -->
-    <optgroup label="⚙️ الهاردوير الأساسي">
-        <option value="GPU">🖥️ GPU - كرت شاشة</option>
-        <option value="CPU">⚡ CPU - معالج</option>
-        <option value="RAM">💾 RAM - رامات</option>
-        <option value="M.2 NVMe">🚀 M.2 NVMe - هارد سريع</option>
-        <option value="SSD">💿 SSD - هارد SSD</option>
-        <option value="Motherboard">🔌 Motherboard - مازربورد</option>
-        <option value="Power Supply">🔋 Power Supply - باور سبلاي</option>
-        <option value="HDD">💽 HDD - هارد HDD</option>
-    </optgroup>
-
-    <!-- ====== 4️⃣ ملحقات الجيمنج (Peripherals) ====== -->
-    <optgroup label="🎮 ملحقات الجيمنج">
-        <option value="Gaming Monitor">🎮 Gaming Monitor - شاشة جيمنج</option>
-        <option value="Gaming Mouse">🖱️ Gaming Mouse - ماوس جيمنج</option>
-        <option value="Mechanical Keyboard">⌨️ Mechanical Keyboard - كيبورد ميكانيكال</option>
-        <option value="Gaming Headset">🎧 Gaming Headset - سماعة جيمنج</option>
-        <option value="Controller">🎮 Controller - يد تحكم</option>
-        <option value="Mouse Pad">🖱️ Mouse Pad - ماوس باد</option>
-        <option value="Gaming Chair">🪑 Gaming Chair - كرسي جيمنج</option>
-        <option value="Microphone">🎤 Microphone - مايكروفون</option>
-        <option value="Webcam">📷 Webcam - كاميرا</option>
-    </optgroup>
-
-    <!-- ====== 5️⃣ أنظمة التشغيل (ضروري) ====== -->
-    <optgroup label="🪟 أنظمة التشغيل">
-        <option value="Windows 11">🪟 Windows 11</option>
-        <option value="Windows 10">🪟 Windows 10</option>
-        <option value="Windows Server">🖥️ Windows Server</option>
-        <option value="macOS">🍎 macOS</option>
-        <option value="Linux">🐧 Linux</option>
-    </optgroup>
-
-    <!-- ====== 6️⃣ برامج المكتب (الأكثر استخداماً) ====== -->
-    <optgroup label="📊 برامج المكتب والإنتاجية">
-        <option value="Microsoft Office">📊 Microsoft Office</option>
-        <option value="Office 365">☁️ Office 365 - اشتراك</option>
-        <option value="Microsoft Word">📝 Microsoft Word</option>
-        <option value="Microsoft Excel">📊 Microsoft Excel</option>
-        <option value="Microsoft PowerPoint">📽️ Microsoft PowerPoint</option>
-        <option value="Microsoft Teams">👥 Microsoft Teams</option>
-        <option value="Google Workspace">☁️ Google Workspace - اشتراك</option>
-    </optgroup>
-
-    <!-- ====== 7️⃣ برامج الحماية (ضروري) ====== -->
-    <optgroup label="🛡️ برامج الحماية والأمان">
-        <option value="Kaspersky">🛡️ Kaspersky Antivirus</option>
-        <option value="Norton 360">🔒 Norton 360 - اشتراك</option>
-        <option value="Bitdefender">🛡️ Bitdefender</option>
-        <option value="McAfee">🔐 McAfee - اشتراك</option>
-        <option value="ESET NOD32">🦠 ESET NOD32</option>
-        <option value="Malwarebytes">🐛 Malwarebytes</option>
-    </optgroup>
-
-    <!-- ====== 8️⃣ برامج VPN (شائع جداً) ====== -->
-    <optgroup label="🔒 برامج VPN والخصوصية">
-        <option value="NordVPN">🌍 NordVPN - اشتراك</option>
-        <option value="ExpressVPN">⚡ ExpressVPN - اشتراك</option>
-        <option value="CyberGhost">👻 CyberGhost - اشتراك</option>
-        <option value="Surfshark">🦈 Surfshark - اشتراك</option>
-        <option value="ProtonVPN">🔐 ProtonVPN</option>
-    </optgroup>
-
-    <!-- ====== 9️⃣ اشتراكات البث والترفيه ====== -->
-    <optgroup label="🎬 اشتراكات البث والترفيه">
-        <option value="Netflix">🎬 Netflix - اشتراك</option>
-        <option value="Spotify">🎵 Spotify Premium - اشتراك</option>
-        <option value="YouTube Premium">▶️ YouTube Premium - اشتراك</option>
-        <option value="Disney+">🏰 Disney+ - اشتراك</option>
-        <option value="Amazon Prime">📦 Amazon Prime - اشتراك</option>
-    </optgroup>
-
-    <!-- ====== 🔟 برامج التصميم (للمحترفين) ====== -->
-    <optgroup label="🎨 برامج التصميم الجرافيكي">
-        <option value="Adobe Creative Cloud">☁️ Adobe Creative Cloud - اشتراك</option>
-        <option value="Adobe Photoshop">🖼️ Adobe Photoshop</option>
-        <option value="Adobe Illustrator">✏️ Adobe Illustrator</option>
-        <option value="Canva Pro">☁️ Canva Pro - اشتراك</option>
-        <option value="Figma">🎨 Figma - تصميم تعاوني</option>
-        <option value="CorelDRAW">🎨 CorelDRAW</option>
-    </optgroup>
-
-    <!-- ====== 1️⃣1️⃣ برامج المونتاج ====== -->
-    <optgroup label="🎬 برامج المونتاج والفيديو">
-        <option value="Adobe Premiere Pro">🎬 Adobe Premiere Pro</option>
-        <option value="Adobe After Effects">✨ Adobe After Effects</option>
-        <option value="DaVinci Resolve">🎞️ DaVinci Resolve</option>
-        <option value="Final Cut Pro">🍎 Final Cut Pro - Mac</option>
-        <option value="Camtasia">📹 Camtasia - تسجيل شاشة</option>
-    </optgroup>
-
-    <!-- ====== 1️⃣2️⃣ أدوات النظام والصيانة ====== -->
-    <optgroup label="⚙️ أدوات النظام والصيانة">
-        <option value="CCleaner">🧹 CCleaner - تنظيف النظام</option>
-        <option value="Driver Booster">💿 Driver Booster - تحديث التعريفات</option>
-        <option value="WinRAR">📦 WinRAR</option>
-        <option value="7-Zip">📦 7-Zip</option>
-    </optgroup>
-
-    <!-- ====== 1️⃣3️⃣ اشتراكات التخزين السحابي ====== -->
-    <optgroup label="☁️ اشتراكات التخزين السحابي">
-        <option value="Google Drive">☁️ Google Drive - اشتراك</option>
-        <option value="OneDrive">☁️ OneDrive - اشتراك</option>
-        <option value="Dropbox">📦 Dropbox - اشتراك</option>
-        <option value="iCloud">🍎 iCloud - اشتراك</option>
-    </optgroup>
-
-    <!-- ====== 1️⃣4️⃣ مكونات هاردوير ثانوية ====== -->
-    <optgroup label="💡 مكونات هاردوير ثانوية">
-        <option value="PC Case">🖥️ PC Case - كيسة</option>
-        <option value="CPU Cooler">❄️ CPU Cooler - مبرد معالج</option>
-        <option value="Liquid Cooling">💧 Liquid Cooling - تبريد مائي</option>
-        <option value="RGB Lighting">💡 RGB Lighting - إضاءة</option>
-        <option value="Monitor">🖥️ Monitor - شاشة عادية</option>
-        <option value="Keyboard">⌨️ Keyboard - كيبورد عادي</option>
-        <option value="Headset">🎧 Headset - سماعة عادية</option>
-    </optgroup>
-
-    <!-- ====== 1️⃣5️⃣ باقي ألعاب الأكشن ====== -->
-    <optgroup label="💥 ألعاب الأكشن (تكملة)">
-        <option value="TPS">🔫 TPS - إطلاق نار منظور ثالث</option>
-        <option value="Action RPG">⚔️ Action RPG - لعب أدوار أكشن</option>
-        <option value="Stealth">🥷 Stealth - تسلل</option>
-        <option value="Hack and Slash">🗡️ Hack and Slash - قتال بالسيوف</option>
-        <option value="Fighting Game">🥊 Fighting Game - ألعاب قتال</option>
-        <option value="Tactical Shooter">🎖️ Tactical Shooter - إطلاق نار تكتيكي</option>
-    </optgroup>
-
-    <!-- ====== 1️⃣6️⃣ ألعاب الرعب (تكملة) ====== -->
-    <optgroup label="😱 ألعاب الرعب (تكملة)">
-        <option value="Psychological Horror">🧠 Psychological Horror - رعب نفسي</option>
-        <option value="Zombie Horror">🧟 Zombie Horror - رعب الزومبي</option>
-        <option value="Action Horror">⚔️ Action Horror - أكشن رعب</option>
-        <option value="Indie Horror">🎨 Indie Horror - رعب مستقل</option>
-        <option value="Ghost Horror">👻 Ghost Horror - رعب الأشباح</option>
-    </optgroup>
-
-    <!-- ====== 1️⃣7️⃣ ألعاب الاستراتيجية ====== -->
-    <optgroup label="♟️ ألعاب الاستراتيجية">
-        <option value="RTS">⏱️ RTS - استراتيجية وقت فعلي</option>
-        <option value="MOBA">🎮 MOBA - مولتي أونلاين أرينا</option>
-        <option value="City Builder">🏙️ City Builder - بناء مدن</option>
-        <option value="Turn-Based Strategy">🔄 Turn-Based - استراتيجية بالأدوار</option>
-        <option value="Tower Defense">🗼 Tower Defense - دفاع عن البرج</option>
-    </optgroup>
-
-    <!-- ====== 1️⃣8️⃣ ألعاب الرياضة والسباقات ====== -->
-    <optgroup label="🏎️ ألعاب الرياضة والسباقات">
-        <option value="Racing Arcade">🏎️ Racing Arcade - سباقات أركيد</option>
-        <option value="Basketball">🏀 Basketball - كرة سلة</option>
-        <option value="Street Racing">🌃 Street Racing - سباقات شوارع</option>
-        <option value="American Football">🏈 American Football</option>
-        <option value="Extreme Sports">🤸 Extreme Sports</option>
-    </optgroup>
-
-    <!-- ====== 1️⃣9️⃣ برامج متخصصة (هندسة، 3D، صوت) ====== -->
-    <optgroup label="📐 برامج متخصصة">
-        <option value="AutoCAD">📐 AutoCAD</option>
-        <option value="Blender">🌀 Blender - مجاني</option>
-        <option value="Unity">🎮 Unity - تطوير ألعاب</option>
-        <option value="Unreal Engine">🎮 Unreal Engine</option>
-        <option value="FL Studio">🎹 FL Studio</option>
-        <option value="Adobe Audition">🎧 Adobe Audition</option>
-    </optgroup>
-
-    <!-- ====== 2️⃣0️⃣ ألعاب أخرى ====== -->
-    <optgroup label="🎯 ألعاب أخرى">
-        <option value="Sandbox">🏖️ Sandbox - صندوق رمل إبداعي</option>
-        <option value="Puzzle">🧩 Puzzle - ألغاز</option>
-        <option value="Indie">🎨 Indie - ألعاب مستقلة</option>
-        <option value="Party Games">🎉 Party Games - ألعاب جماعية</option>
-        <option value="VR Game">🥽 VR Game - واقع افتراضي</option>
-        <option value="Platformer">🦘 Platformer - ألعاب المنصات</option>
-    </optgroup>
-
-</select>
-
-                <label>حالة التوفر*</label>
-                <div class="availability-toggle">
-                    <div class="toggle-switch active" id="availabilityToggle">
-                        <div class="slider"></div>
-                    </div>
-                    <span class="availability-label" id="availabilityText">متوفر</span>
-                </div>
+                    <option value="Software">💻 Software</option>
+                    <option value="Game">🎮 Game</option>
+                    <option value="Hardware">⚙️ Hardware</option>
+                    <option value="Windows">🪟 Windows</option>
+                    <option value="Office Suite">📊 Office Suite</option>
+                    <option value="Creative Suite">🎨 Creative Suite</option>
+                    <option value="Security">🛡️ Security</option>
+                    <option value="Adventure">🗺️ Adventure</option>
+                    <option value="Action">💥 Action</option>
+                    <option value="Sports">⚽ Sports</option>
+                    <option value="Strategy">♟️ Strategy</option>
+                    <option value="GPU">🖥️ GPU</option>
+                    <option value="CPU">⚡ CPU</option>
+                    <option value="RAM">💾 RAM</option>
+                    <option value="Storage">💿 Storage</option>
+                </select>
 
                 <label>المميزات (اختر واحد أو أكثر)*</label>
-                <div class="tags-select" id="tagsContainer"></div>
+                <div class="tags-select" id="tagsContainer">
+                    <!-- سيتم ملؤه بـ JavaScript -->
+                </div>
 
                 <label>الصفحة*</label>
                 <select id="page" required>
-                    <option value="">اختر الصفحة المطلوبة...</option>
-                    <option value="index.html">🏠 index.html</option>
+                    <option value="">اختر...</option>
                     <option value="software.html">📱 software.html</option>
                     <option value="games.html">🎯 games.html</option>
                     <option value="hardware.html">🛠️ hardware.html</option>
+                    <option value="index.html">🏠 index.html</option>
                 </select>
 
                 <div class="actions">
@@ -851,17 +409,25 @@
         </div>
 
         <!-- Products List -->
-        <div class="panel">
+        <div class="panel products-list">
             <h2>قائمة المنتجات</h2>
             <div id="products" class="grid"></div>
         </div>
     </div>
 
     <script>
-        if (localStorage.getItem('angry_admin_logged_in') !== 'true') {
-            window.location.href = 'login.html';
-        }
+        // التحقق من الدخول
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = localStorage.getItem('angry_admin_logged_in');
+            const adminToken = localStorage.getItem('admin_token');
+            
+            if (isLoggedIn !== 'true' || !adminToken) {
+                window.location.href = 'login.html';
+                return;
+            }
+        });
 
+        // قائمة التاجات المتاحة الكاملة
 const AVAILABLE_TAGS = [
     // === 1.1: المكونات الأساسية (Core Components) ===
     { name: 'CPU General', icon: 'fa-solid fa-microchip' },
@@ -1045,7 +611,7 @@ const AVAILABLE_TAGS = [
     { name: 'Cloud Upload', icon: 'fa-solid fa-cloud-arrow-up' },
     { name: 'Sharing', icon: 'fa-solid fa-share-nodes' },
 
-    // === خصائص الترخيص والتفعيل ===
+    // === خصائص الترخيص والتفعيل (من القسم الأخير) ===
     { name: 'Lifetime license', icon: 'fa-solid fa-key' },
     { name: '1-year subscription', icon: 'fa-solid fa-calendar-check' },
     { name: 'Single-user activation', icon: 'fa-solid fa-user-lock' },
@@ -1126,12 +692,6 @@ const AVAILABLE_TAGS = [
     { name: 'Accreditation ready', icon: 'fa-solid fa-circle-check' }
 ];
 
-
-        const STORAGE_KEY = 'angryStoreProducts_v2';
-        let products = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-        let editIndex = null;
-        let isAvailable = true;
-
         const form = document.getElementById('productForm');
         const nameInp = document.getElementById('name');
         const priceInp = document.getElementById('price');
@@ -1142,13 +702,13 @@ const AVAILABLE_TAGS = [
         const clearBtn = document.getElementById('clearBtn');
         const logoutBtn = document.getElementById('logoutBtn');
         const productsDiv = document.getElementById('products');
-        const availabilityToggle = document.getElementById('availabilityToggle');
-        const availabilityText = document.getElementById('availabilityText');
+        const STORAGE_KEY = 'angryStoreProducts_v1';
+        
+        let products = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        let editIndex = null;
 
         function escape(str) {
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
+            return String(str || '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
         }
 
         function populateTags() {
@@ -1157,7 +717,7 @@ const AVAILABLE_TAGS = [
                 const label = document.createElement('label');
                 label.className = 'tag-checkbox';
                 label.innerHTML = `
-                    <input type="checkbox" class="tag-option" value="${escape(tag.name)}">
+                    <input type="checkbox" class="tag-option" value="${escape(tag.name)}" data-icon="${tag.icon}">
                     <span><i class="${tag.icon}"></i> ${escape(tag.name)}</span>
                 `;
                 tagsContainer.appendChild(label);
@@ -1166,52 +726,29 @@ const AVAILABLE_TAGS = [
 
         function save() {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
-            updateStats();
-        }
-
-        function updateStats() {
-            const total = products.length;
-            const available = products.filter(p => p.available !== false).length;
-            const indexCount = products.filter(p => p.page === 'index.html').length;
-            const softwareCount = products.filter(p => p.page === 'software.html').length;
-            const gamesCount = products.filter(p => p.page === 'games.html').length;
-            const hardwareCount = products.filter(p => p.page === 'hardware.html').length;
-
-            document.getElementById('totalNumber').textContent = total;
-            document.getElementById('availableNumber').textContent = available;
-            document.getElementById('indexNumber').textContent = indexCount;
-            document.getElementById('softwareNumber').textContent = softwareCount;
-            document.getElementById('gamesNumber').textContent = gamesCount;
-            document.getElementById('hardwareNumber').textContent = hardwareCount;
         }
 
         function getSelectedTags() {
-            return Array.from(tagsContainer.querySelectorAll('.tag-option:checked')).map(cb => cb.value);
+            const selected = [];
+            tagsContainer.querySelectorAll('.tag-option:checked').forEach(checkbox => {
+                selected.push(checkbox.value);
+            });
+            return selected;
         }
 
         function render() {
             productsDiv.innerHTML = '';
             if (!products.length) {
-                productsDiv.innerHTML = '<div class="empty">لا يوجد منتجات بعد</div>';
+                productsDiv.innerHTML = '<div class="empty">لا يوجد منتجات بعد. أضف منتج جديد من فضلك!</div>';
                 return;
             }
-
             products.forEach((p, i) => {
                 const card = document.createElement('div');
-                
-                // ✅ إضافة كلاس out-of-stock للمنتجات الغير متوفرة
-                const isAvailable = p.available !== false;
-                card.className = isAvailable ? 'card' : 'card out-of-stock';
-                
+                card.className = 'card';
                 const tagsDisplay = (p.tags || []).map(t => `<span class="tag-badge">${escape(t)}</span>`).join('');
-                const availBadge = isAvailable
-                    ? '<div class="availability-badge available">✅ متوفر</div>'
-                    : '<div class="availability-badge unavailable">❌ غير متوفر</div>';
-                
                 card.innerHTML = `
                     <img src="${escape(p.image)}" alt="${escape(p.name)}" onerror="this.style.display='none'">
                     <h3>${escape(p.name)}</h3>
-                    ${availBadge}
                     <div class="meta"><strong>السعر:</strong> ${escape(p.price)} EGP</div>
                     <div class="meta"><strong>التصنيف:</strong> ${escape(p.category)}</div>
                     <div class="meta"><strong>الصفحة:</strong> ${escape(p.page)}</div>
@@ -1220,21 +757,21 @@ const AVAILABLE_TAGS = [
                         <button class="edit" data-i="${i}">✏️ تعديل</button>
                         <button class="del" data-i="${i}">🗑️ حذف</button>
                     </div>
-                    ${!isAvailable ? '<div class="unavailable-overlay"><div class="badge"><i class="fas fa-times-circle"></i> نفذت الكمية</div></div>' : ''}
                 `;
                 productsDiv.appendChild(card);
             });
 
-            document.querySelectorAll('.edit').forEach(btn => {
+            productsDiv.querySelectorAll('.edit').forEach(btn => {
                 btn.addEventListener('click', () => startEdit(Number(btn.dataset.i)));
             });
 
-            document.querySelectorAll('.del').forEach(btn => {
+            productsDiv.querySelectorAll('.del').forEach(btn => {
                 btn.addEventListener('click', () => {
                     if (confirm('هل تريد حذف هذا المنتج؟')) {
                         products.splice(Number(btn.dataset.i), 1);
                         save();
                         render();
+                        if (editIndex === Number(btn.dataset.i)) cancelEdit();
                     }
                 });
             });
@@ -1248,33 +785,20 @@ const AVAILABLE_TAGS = [
             imageInp.value = p.image || '';
             categorySel.value = p.category || '';
             pageSel.value = p.page || '';
-            isAvailable = p.available !== false;
-            availabilityToggle.classList.toggle('active', isAvailable);
-            availabilityText.textContent = isAvailable ? 'متوفر' : 'غير متوفر';
-            
             tagsContainer.querySelectorAll('.tag-option').forEach(checkbox => {
                 checkbox.checked = (p.tags || []).includes(checkbox.value);
             });
-            
+            nameInp.focus();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function cancelEdit() {
             editIndex = null;
             form.reset();
-            isAvailable = true;
-            availabilityToggle.classList.add('active');
-            availabilityText.textContent = 'متوفر';
             tagsContainer.querySelectorAll('.tag-option').forEach(cb => cb.checked = false);
         }
 
-        availabilityToggle.addEventListener('click', () => {
-            isAvailable = !isAvailable;
-            availabilityToggle.classList.toggle('active', isAvailable);
-            availabilityText.textContent = isAvailable ? 'متوفر' : 'غير متوفر';
-        });
-
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
             const name = nameInp.value.trim();
             const price = priceInp.value.trim();
@@ -1284,28 +808,22 @@ const AVAILABLE_TAGS = [
             const page = pageSel.value;
 
             if (!name || !price || !image || !category || !tags.length || !page) {
-                alert('الرجاء تعبئة جميع الحقول');
+                alert('الرجاء تعبئة جميع الحقول المطلوبة واختيار على الأقل ميزة واحدة');
                 return;
             }
 
-            const product = { name, price, image, category, tags, page, available: isAvailable };
-            
+            const product = { name, price, image, category, tags, page };
             if (editIndex !== null) {
                 products[editIndex] = product;
                 editIndex = null;
             } else {
                 products.push(product);
             }
-            
             save();
             render();
-            cancelEdit();
-            
-            const msg = document.createElement('div');
-            msg.className = 'success-message';
-            msg.textContent = '✅ تم الحفظ بنجاح!';
-            document.body.appendChild(msg);
-            setTimeout(() => msg.remove(), 3000);
+            form.reset();
+            tagsContainer.querySelectorAll('.tag-option').forEach(cb => cb.checked = false);
+            alert('تم الحفظ بنجاح! ✅');
         });
 
         clearBtn.addEventListener('click', cancelEdit);
@@ -1314,12 +832,13 @@ const AVAILABLE_TAGS = [
             if (confirm('هل تريد تسجيل الخروج؟')) {
                 localStorage.removeItem('angry_admin_logged_in');
                 localStorage.removeItem('admin_token');
+                localStorage.removeItem('admin_login_time');
+                localStorage.removeItem('admin_username');
                 window.location.href = 'login.html';
             }
         });
 
         populateTags();
-        updateStats();
         render();
     </script>
 </body>
