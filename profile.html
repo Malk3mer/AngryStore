@@ -625,22 +625,269 @@
             window.location.href = 'login.html';
         }
 
-        const AVAILABLE_TAGS = [
-            { name: 'CPU General', icon: 'fa-solid fa-microchip' },
-            { name: 'GPU - Modern Look', icon: 'fa-solid fa-gamepad-modern' },
-            { name: 'RAM Module', icon: 'fa-solid fa-memory' },
-            { name: 'SSD', icon: 'fa-solid fa-compact-disc' },
-            { name: 'Windows OS', icon: 'fa-brands fa-windows' },
-            { name: 'Office Suite', icon: 'fa-solid fa-file-word' },
-            { name: 'Photoshop', icon: 'fa-solid fa-camera-retro' },
-            { name: 'Antivirus', icon: 'fa-solid fa-shield-virus' },
-            { name: 'Action', icon: 'fa-solid fa-explosion' },
-            { name: 'Adventure', icon: 'fa-solid fa-person-running' },
-            { name: 'Strategy', icon: 'fa-solid fa-chess-board' },
-            { name: 'RPG / Quest', icon: 'fa-solid fa-scroll' },
-            { name: 'Multiplayer', icon: 'fa-solid fa-users' },
-            { name: 'Steam', icon: 'fa-brands fa-steam' }
-        ];
+ const AVAILABLE_TAGS = [
+    // === 1.1: المكونات الأساسية (Core Components) ===
+    { name: 'CPU General', icon: 'fa-solid fa-microchip' },
+    { name: 'Cores/Threads', icon: 'fa-solid fa-gears' },
+    { name: 'Clock Speed', icon: 'fa-solid fa-gauge-high' },
+    { name: 'Socket Type', icon: 'fa-solid fa-puzzle-piece' },
+    { name: 'Processing Power', icon: 'fa-solid fa-brain' },
+
+    { name: 'GPU - Modern Look', icon: 'fa-solid fa-gamepad-modern' },
+    { name: 'Graphics', icon: 'fa-solid fa-image' },
+    { name: 'Multi-Display', icon: 'fa-solid fa-images' },
+    { name: '3D Rendering', icon: 'fa-solid fa-cubes' },
+    { name: 'Video Processing', icon: 'fa-solid fa-film' },
+
+    { name: 'RAM Module', icon: 'fa-solid fa-memory' },
+    { name: 'Capacity/Modules', icon: 'fa-solid fa-layer-group' },
+    { name: 'Latency/Timings', icon: 'fa-solid fa-stopwatch-20' },
+    { name: 'Frequency/Speed', icon: 'fa-solid fa-bolt-lightning' },
+    { name: 'Bandwidth', icon: 'fa-solid fa-arrows-left-right-to-line' },
+
+    { name: 'Motherboard', icon: 'fa-solid fa-server' },
+    { name: 'Circuitry/Chipset', icon: 'fa-solid fa-sitemap' },
+    { name: 'Ports/Connectivity', icon: 'fa-solid fa-plug' },
+
+    { name: 'HDD', icon: 'fa-solid fa-hard-drive' },
+    { name: 'SSD', icon: 'fa-solid fa-compact-disc' },
+    { name: 'SD Card/Flash', icon: 'fa-solid fa-sd-card' },
+    { name: 'Data Storage', icon: 'fa-solid fa-database' },
+    { name: 'Read Speed', icon: 'fa-solid fa-download' },
+    { name: 'Write Speed', icon: 'fa-solid fa-upload' },
+
+    // === 1.2: الأجهزة الطرفية (Peripherals) ===
+    { name: 'Keyboard General', icon: 'fa-solid fa-keyboard' },
+    { name: 'Mechanical Switch', icon: 'fa-solid fa-toggle-on' },
+    { name: 'Biometric/Touch', icon: 'fa-solid fa-fingerprint' },
+    { name: 'RGB Lighting', icon: 'fa-solid fa-palette' },
+    { name: 'Size: Full, TKL', icon: 'fa-solid fa-ruler-horizontal' },
+    { name: 'Keycap', icon: 'fa-solid fa-dice-one' },
+    { name: 'Sound/Clicky', icon: 'fa-solid fa-wave-square' },
+
+    { name: 'Mouse General', icon: 'fa-solid fa-computer-mouse' },
+    { name: 'DPI/Precision', icon: 'fa-solid fa-crosshairs' },
+    { name: 'Buttons', icon: 'fa-solid fa-hand-pointer' },
+    { name: 'Weight', icon: 'fa-solid fa-weight-hanging' },
+    { name: 'Wireless/Receiver', icon: 'fa-solid fa-satellite-dish' },
+    { name: 'Cursor', icon: 'fa-solid fa-location-arrow' },
+
+    { name: 'Monitor General', icon: 'fa-solid fa-desktop' },
+    { name: 'Size', icon: 'fa-solid fa-ruler-combined' },
+    { name: 'Resolution', icon: 'fa-solid fa-expand' },
+    { name: 'Refresh Rate Hz', icon: 'fa-solid fa-arrows-rotate' },
+    { name: 'Eye-care Tech', icon: 'fa-solid fa-eye' },
+    { name: 'Contrast', icon: 'fa-solid fa-circle-half-stroke' },
+    { name: 'Ultrawide', icon: 'fa-solid fa-panorama' },
+
+    { name: 'Headset', icon: 'fa-solid fa-headset' },
+    { name: 'Microphone', icon: 'fa-solid fa-microphone' },
+    { name: 'Studio Mic', icon: 'fa-solid fa-microphone-lines' },
+    { name: 'Speakers', icon: 'fa-solid fa-volume-high' },
+    { name: 'Audio Quality', icon: 'fa-solid fa-music' },
+    { name: 'Sound Quality', icon: 'fa-solid fa-ear-listen' },
+
+    { name: 'Webcam', icon: 'fa-solid fa-camera' },
+    { name: 'Video Capture', icon: 'fa-solid fa-video' },
+    { name: 'Printer', icon: 'fa-solid fa-print' },
+    { name: 'Scanner/Fax', icon: 'fa-solid fa-fax' },
+
+    // === 1.3: مكونات ثانوية (System & Chassis) ===
+    { name: 'Modern Case', icon: 'fa-solid fa-computer' },
+    { name: 'Case Shape', icon: 'fa-solid fa-cube' },
+    { name: 'Tempered Glass Panel', icon: 'fa-solid fa-window-maximize' },
+
+    { name: 'PSU', icon: 'fa-solid fa-plug-circle-bolt' },
+    { name: '80+ Certification', icon: 'fa-solid fa-certificate' },
+    { name: 'Air Cooling Fan', icon: 'fa-solid fa-fan' },
+    { name: 'Airflow', icon: 'fa-solid fa-wind' },
+    { name: 'Liquid Cooling', icon: 'fa-solid fa-droplet' },
+    { name: 'Cooling', icon: 'fa-solid fa-temperature-arrow-down' },
+
+    { name: 'LAN/Ethernet', icon: 'fa-solid fa-network-wired' },
+    { name: 'Wi-Fi', icon: 'fa-solid fa-wifi' },
+    { name: 'Bluetooth', icon: 'fa-brands fa-bluetooth-b' },
+    { name: 'USB Port', icon: 'fa-brands fa-usb' },
+    { name: 'Thunderbolt Port', icon: 'fa-solid fa-bolt' },
+
+    // === 2.1: تصنيفات الأكشن (Action Genres) ===
+    { name: 'Shooter', icon: 'fa-solid fa-gun' },
+    { name: 'First-Person Shooter', icon: 'fa-solid fa-crosshairs' },
+    { name: 'Action', icon: 'fa-solid fa-explosion' },
+    { name: 'Fighting', icon: 'fa-solid fa-hand-fist' },
+    { name: 'Adventure', icon: 'fa-solid fa-person-running' },
+    { name: 'Stealth', icon: 'fa-solid fa-user-ninja' },
+    { name: 'War/Combat', icon: 'fa-solid fa-jet-fighter-up' },
+    { name: 'Hack and Slash', icon: 'fa-solid fa-shield-halved' },
+    { name: 'Battle Royale', icon: 'fa-solid fa-person-falling-burst' },
+
+    // === 2.2: تصنيفات الاستراتيجية والفكر ===
+    { name: 'Strategy', icon: 'fa-solid fa-chess-board' },
+    { name: 'Puzzle', icon: 'fa-solid fa-brain' },
+    { name: 'City Building / 4X', icon: 'fa-solid fa-map-location-dot' },
+    { name: 'Tower Defense', icon: 'fa-solid fa-tower-control' },
+    { name: 'Management', icon: 'fa-solid fa-chart-gantt' },
+    { name: 'Real-Time Strategy', icon: 'fa-solid fa-landmark-flag' },
+
+    // === 2.3: تصنيفات الأدوار والخيال ===
+    { name: 'RPG / Quest', icon: 'fa-solid fa-scroll' },
+    { name: 'Fantasy / Magic', icon: 'fa-solid fa-hat-wizard' },
+    { name: 'Dark Fantasy / Horror', icon: 'fa-solid fa-book-skull' },
+    { name: 'Dungeon Crawler', icon: 'fa-solid fa-dungeon' },
+    { name: 'Open World', icon: 'fa-solid fa-tree' },
+    { name: 'Mythical Creatures', icon: 'fa-solid fa-dragon' },
+    { name: 'Adventure/Fantasy', icon: 'fa-solid fa-ring' },
+    { name: 'Sci-Fi', icon: 'fa-solid fa-atom' },
+
+    // === 2.4: تصنيفات أخرى ===
+    { name: 'Racing', icon: 'fa-solid fa-flag-checkered' },
+    { name: 'Driving Simulation', icon: 'fa-solid fa-car-side' },
+    { name: 'Sports - Soccer', icon: 'fa-solid fa-futbol' },
+    { name: 'Sports - Basketball', icon: 'fa-solid fa-basketball' },
+    { name: 'Championship/Sport', icon: 'fa-solid fa-trophy' },
+    { name: 'Comedy', icon: 'fa-solid fa-face-grin-squint-tears' },
+    { name: 'Casual / Romance', icon: 'fa-solid fa-heart' },
+    { name: 'Farming / Simulation', icon: 'fa-solid fa-seedling' },
+
+    // === 2.5: مفاهيم وميزات الألعاب ===
+    { name: 'Multiplayer', icon: 'fa-solid fa-users' },
+    { name: 'Co-op', icon: 'fa-solid fa-user-group' },
+    { name: 'Virtual Reality - VR', icon: 'fa-solid fa-vr-cardboard' },
+    { name: 'Controller Support', icon: 'fa-solid fa-gamepad' },
+    { name: 'Cloud Gaming', icon: 'fa-solid fa-cloud' },
+    { name: 'New Release', icon: 'fa-solid fa-star' },
+    { name: 'Trending / Popular', icon: 'fa-solid fa-fire' },
+    { name: 'On Sale', icon: 'fa-solid fa-percent' },
+
+    // === 3.1: أنظمة التشغيل والماركات ===
+    { name: 'Windows OS', icon: 'fa-brands fa-windows' },
+    { name: 'Microsoft Corp.', icon: 'fa-brands fa-microsoft' },
+    { name: 'Xbox', icon: 'fa-brands fa-xbox' },
+    { name: 'Apple / macOS', icon: 'fa-brands fa-apple' },
+    { name: 'Linux General', icon: 'fa-brands fa-linux' },
+    { name: 'Ubuntu', icon: 'fa-brands fa-ubuntu' },
+    { name: 'Red Hat', icon: 'fa-brands fa-redhat' },
+    { name: 'Fedora', icon: 'fa-brands fa-fedora' },
+    { name: 'Google', icon: 'fa-brands fa-google' },
+    { name: 'Android OS', icon: 'fa-brands fa-android' },
+    { name: 'Chrome Browser/OS', icon: 'fa-brands fa-chrome' },
+    { name: 'Steam', icon: 'fa-brands fa-steam' },
+    { name: 'PlayStation', icon: 'fa-brands fa-playstation' },
+    { name: 'Discord', icon: 'fa-brands fa-discord' },
+    { name: 'Twitch', icon: 'fa-brands fa-twitch' },
+    { name: 'Intel Alternative', icon: 'fa-solid fa-microchip' },
+    { name: 'AMD Alternative', icon: 'fa-solid fa-microchip' },
+    { name: 'Nvidia Alternative', icon: 'fa-solid fa-gamepad' },
+
+    // === 3.2: برامج الإنتاجية والإبداع ===
+    { name: 'Word', icon: 'fa-solid fa-file-word' },
+    { name: 'Excel', icon: 'fa-solid fa-file-excel' },
+    { name: 'PowerPoint', icon: 'fa-solid fa-file-powerpoint' },
+    { name: 'Outlook', icon: 'fa-solid fa-envelope-open-text' },
+    { name: 'Teams', icon: 'fa-solid fa-users-viewfinder' },
+    { name: 'Photoshop', icon: 'fa-solid fa-camera-retro' },
+    { name: 'Illustrator', icon: 'fa-solid fa-pen-nib' },
+    { name: 'Premiere Pro', icon: 'fa-solid fa-clapperboard' },
+    { name: 'Acrobat PDF', icon: 'fa-solid fa-file-pdf' },
+    { name: 'Firefox', icon: 'fa-brands fa-firefox-browser' },
+    { name: 'Safari', icon: 'fa-brands fa-safari' },
+    { name: 'Microsoft Edge', icon: 'fa-brands fa-edge' },
+
+    // === 3.3: مفاهيم برمجية عامة ===
+    { name: 'Code', icon: 'fa-solid fa-code' },
+    { name: 'Terminal / CMD', icon: 'fa-solid fa-terminal' },
+    { name: 'Bug / Debugging', icon: 'fa-solid fa-bug' },
+    { name: 'Antivirus', icon: 'fa-solid fa-shield-virus' },
+    { name: 'Security / Encryption', icon: 'fa-solid fa-lock' },
+    { name: 'Activation Key', icon: 'fa-solid fa-key' },
+    { name: 'Compressed File', icon: 'fa-solid fa-box-archive' },
+    { name: 'Save', icon: 'fa-solid fa-floppy-disk' },
+    { name: 'Open File', icon: 'fa-solid fa-folder-open' },
+    { name: 'Utilities / Tools', icon: 'fa-solid fa-screwdriver-wrench' },
+    { name: 'Cloud Download', icon: 'fa-solid fa-cloud-arrow-down' },
+    { name: 'Cloud Upload', icon: 'fa-solid fa-cloud-arrow-up' },
+    { name: 'Sharing', icon: 'fa-solid fa-share-nodes' },
+
+    // === خصائص الترخيص والتفعيل ===
+    { name: 'Lifetime license', icon: 'fa-solid fa-key' },
+    { name: '1-year subscription', icon: 'fa-solid fa-calendar-check' },
+    { name: 'Single-user activation', icon: 'fa-solid fa-user-lock' },
+    { name: 'Multi-user support', icon: 'fa-solid fa-users' },
+    { name: 'Global region', icon: 'fa-solid fa-globe' },
+    { name: 'Digital delivery', icon: 'fa-solid fa-download' },
+
+    // === أنظمة التشغيل والدعم التقني ===
+    { name: 'Windows 11 compatible', icon: 'fa-brands fa-windows' },
+    { name: 'macOS Sonoma ready', icon: 'fa-brands fa-apple' },
+    { name: 'Linux support', icon: 'fa-brands fa-linux' },
+    { name: 'Secure boot ready', icon: 'fa-solid fa-shield-halved' },
+    { name: 'Auto updates', icon: 'fa-solid fa-rotate' },
+    { name: 'Virtualization support', icon: 'fa-solid fa-server' },
+
+    // === حزم أوفيس والإنتاجية ===
+    { name: 'Microsoft Word', icon: 'fa-solid fa-file-word' },
+    { name: 'Microsoft Excel', icon: 'fa-solid fa-file-excel' },
+    { name: 'PowerPoint templates', icon: 'fa-solid fa-file-powerpoint' },
+    { name: 'Outlook mailbox', icon: 'fa-solid fa-envelope-open-text' },
+    { name: 'Microsoft Teams access', icon: 'fa-solid fa-users-viewfinder' },
+    { name: '1TB OneDrive storage', icon: 'fa-solid fa-cloud' },
+
+    // === التصميم والإبداع ===
+    { name: 'Premium templates', icon: 'fa-solid fa-palette' },
+    { name: 'Vector editing', icon: 'fa-solid fa-pen-nib' },
+    { name: 'AI design tools', icon: 'fa-solid fa-wand-magic-sparkles' },
+    { name: 'Photo editing suite', icon: 'fa-solid fa-camera-retro' },
+    { name: '4K video exports', icon: 'fa-solid fa-video' },
+    { name: 'Team collaboration', icon: 'fa-solid fa-users-gear' },
+
+    // === الأمن والحماية ===
+    { name: 'Real-time protection', icon: 'fa-solid fa-shield-virus' },
+    { name: 'Malware removal', icon: 'fa-solid fa-bug-slash' },
+    { name: 'Identity guard', icon: 'fa-solid fa-user-shield' },
+    { name: 'Encryption tools', icon: 'fa-solid fa-lock' },
+    { name: 'Password manager', icon: 'fa-solid fa-vault' },
+    { name: 'Firewall control', icon: 'fa-solid fa-network-wired' },
+
+    // === برامج الهندسة والرسومات الفنية ===
+    { name: 'CAD drafting tools', icon: 'fa-solid fa-drafting-compass' },
+    { name: '3D modeling', icon: 'fa-solid fa-cube' },
+    { name: 'Precision measurements', icon: 'fa-solid fa-ruler-combined' },
+    { name: 'Layer management', icon: 'fa-solid fa-layer-group' },
+    { name: 'Vector workspace', icon: 'fa-solid fa-vector-square' },
+    { name: 'Free product updates', icon: 'fa-solid fa-rotate' },
+
+    // === برامج إدارة الأعمال والمحاسبة ===
+    { name: 'Business analytics', icon: 'fa-solid fa-chart-line' },
+    { name: 'Billing & invoicing', icon: 'fa-solid fa-wallet' },
+    { name: 'Payroll management', icon: 'fa-solid fa-hand-holding-dollar' },
+    { name: 'Tax reports', icon: 'fa-solid fa-file-invoice-dollar' },
+    { name: 'Compliance tools', icon: 'fa-solid fa-scale-balanced' },
+    { name: 'Secure backups', icon: 'fa-solid fa-database' },
+
+    // === أدوات المطورين والبرمجة ===
+    { name: 'IDE access', icon: 'fa-solid fa-code' },
+    { name: 'Command line tools', icon: 'fa-solid fa-terminal' },
+    { name: 'API integrations', icon: 'fa-solid fa-plug-circle-check' },
+    { name: 'DevOps toolkit', icon: 'fa-solid fa-screwdriver-wrench' },
+    { name: 'Container support', icon: 'fa-solid fa-cubes' },
+    { name: 'CI/CD pipelines', icon: 'fa-solid fa-cloud-arrow-up' },
+
+    // === خدمات سحابية وتخزين ===
+    { name: 'Cloud storage', icon: 'fa-solid fa-cloud' },
+    { name: 'Fast syncing', icon: 'fa-solid fa-cloud-bolt' },
+    { name: 'Zero-trust security', icon: 'fa-solid fa-shield-keyhole' },
+    { name: 'Project sharing', icon: 'fa-solid fa-diagram-project' },
+    { name: 'Team drives', icon: 'fa-solid fa-square-share-nodes' },
+    { name: 'Usage analytics', icon: 'fa-solid fa-chart-pie' },
+
+    // === برامج تعليمية واحترافية ===
+    { name: 'Student license', icon: 'fa-solid fa-graduation-cap' },
+    { name: 'Learning resources', icon: 'fa-solid fa-book' },
+    { name: 'E-learning platform access', icon: 'fa-solid fa-laptop-file' },
+    { name: 'Instructor support', icon: 'fa-solid fa-person-chalkboard' },
+    { name: 'Classroom management', icon: 'fa-solid fa-users-rectangle' },
+    { name: 'Accreditation ready', icon: 'fa-solid fa-circle-check' }
+];
 
         const STORAGE_KEY = 'angryStoreProducts_v2';
         let products = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
