@@ -453,44 +453,51 @@
             }
 
             container.innerHTML = '';
-            products.forEach(p => {
-                // ✅ دعم حالة التوفر
-                const isAvailable = p.available !== false;
-                const availabilityClass = isAvailable ? '' : 'out-of-stock';
-                const availabilityBadge = isAvailable ? '' : '<div class="unavailable-badge">❌ Out of Stock</div>';
+           products.forEach(p => {
+    // ✅ تحديد حالة التوفر
+    const isAvailable = p.available !== false;
+    const availabilityClass = isAvailable ? '' : 'out-of-stock';
+    const availabilityBadge = isAvailable ? '' : '<div class="unavailable-badge">❌ Out of Stock</div>';
 
-                let category = p.category || 'Software';
-                let featuresHtml = (p.tags || []).slice(0, 3).map(t => {
-                    const icon = tagIcons[t] || 'fa-solid fa-laptop-code';
-                    return `<div class="hardware-feature"><i class="${icon}"></i> ${escapeHtml(t)}</div>`;
-                }).join('');
+    let category = p.category || 'Game';
+    let featuresHtml = (p.tags || []).slice(0, 3).map(t => {
+        const icon = tagIcons[t] || 'fa-solid fa-gamepad';
+        return `<div class="hardware-feature"><i class="${icon}"></i> ${escapeHtml(t)}</div>`;
+    }).join('');
 
-                const msg = `Hello! I want to buy: ${p.name} - Price: ${p.price} EGP - Category: ${category}`;
-                const buyButton = isAvailable
-                    ? `<a href="https://wa.me/+201507875527?text=${encodeURIComponent(msg)}" target="_blank" class="btn buy-btn"><i class="fa-brands fa-whatsapp"></i> Buy Now</a>`
-                    : `<button class="btn buy-btn" disabled>🚫 Unavailable</button>`;
+    const whatsappMessage = encodeURIComponent(`Hello 👋
+I want to buy:
+🎮 ${p.name}
+💰 Price: ${p.price} EGP
+🏷️ Category: ${category}`);
+    
+    // ✅ تغيير الزر حسب حالة التوفر
+    const buyButton = isAvailable
+        ? `<a href="https://wa.me/+201507875527?text=${whatsappMessage}" target="_blank" class="btn buy-btn"><i class="fa-brands fa-whatsapp"></i> Buy Now</a>`
+        : `<button class="btn buy-btn" disabled>🚫 Unavailable</button>`;
 
-                const card = document.createElement('div');
-                card.className = `game-card ${availabilityClass}`;
-                card.innerHTML = `
-                    ${availabilityBadge}
-                    <div class="game-image">
-                        <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" onerror="this.style.display='none'"/>
-                        <div class="game-category">${escapeHtml(category)}</div>
-                    </div>
-                    <div class="game-details">
-                        <h3 class="game-title">${escapeHtml(p.name)}</h3>
-                        <div class="hardware-features">
-                            ${featuresHtml || '<div class="hardware-feature" style="color:#666;"><i class="fa-solid fa-info-circle"></i> No features</div>'}
-                        </div>
-                        <div class="game-info">
-                            <div class="game-price">${escapeHtml(p.price)} EGP</div>
-                            ${buyButton}
-                        </div>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
+    const card = document.createElement('div');
+    card.className = `game-card ${availabilityClass}`;
+    
+    card.innerHTML = `
+        ${availabilityBadge}
+        <div class="game-image">
+            <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" onerror="this.src='img/placeholder.jpg'; this.onerror=null;"/>
+            <div class="game-category">${escapeHtml(category)}</div>
+        </div>
+        <div class="game-details">
+            <h3 class="game-title">${escapeHtml(p.name)}</h3>
+            <div class="hardware-features">
+                ${featuresHtml || '<div class="hardware-feature" style="color: #666;"><i class="fa-solid fa-info-circle"></i> No features listed</div>'}
+            </div>
+            <div class="game-info">
+                <div class="game-price">${escapeHtml(p.price)} EGP</div>
+                ${buyButton}
+            </div>
+        </div>
+    `;
+    container.appendChild(card);
+});
 
             // بحث ديناميكي
             const searchInput = document.getElementById('softwareSearchInput');
