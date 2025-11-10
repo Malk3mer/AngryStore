@@ -253,295 +253,385 @@
     <i class="fab fa-whatsapp"></i>
   </a>
 
-  <script>
-    document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-      document.body.classList.toggle('mobile-menu-open');
+ <script>
+    // Mobile menu toggle
+    document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
+        document.body.classList.toggle('mobile-menu-open');
     });
 
-    // عرض منتجات الصفحة الرئيسية (index.html)
+    // عرض المنتجات
     document.addEventListener('DOMContentLoaded', () => {
-      const STORAGE_KEY = 'angryStoreProducts_v2'; // تحديث اسم المفتاح
-      const container = document.getElementById('trendingGamesContainer');
-      const all = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-      
-      // فلترة المنتجات الخاصة بـ index.html فقط
-      const products = all.filter(p => (p.page || '').trim() === 'index.html').slice(0, 6);
+        const STORAGE_KEY = 'angryStoreProducts_v2';
+        const container = document.getElementById('softwareCardsContainer');
+        const all = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        const products = all.filter(p => (p.page || '').trim() === 'software.html');
 
-      function escapeHtml(str) {
-        if (str === null || str === undefined) return '';
-        return String(str)
-          .replaceAll('&', '&amp;')
-          .replaceAll('<', '&lt;')
-          .replaceAll('>', '&gt;')
-          .replaceAll('"', '&quot;')
-          .replaceAll("'", '&#039;');
-      }
+        function escapeHtml(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replaceAll('&', '&amp;')
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;')
+                .replaceAll('"', '&quot;')
+                .replaceAll("'", '&#039;');
+        }
 
-      const tagIcons = {
-        'CPU General': 'fa-solid fa-microchip',
-        'Cores/Threads': 'fa-solid fa-gears',
-        'Clock Speed': 'fa-solid fa-gauge-high',
-        'Socket Type': 'fa-solid fa-puzzle-piece',
-        'Processing Power': 'fa-solid fa-brain',
-        'GPU - Modern Look': 'fa-solid fa-gamepad-modern',
-        'Graphics': 'fa-solid fa-image',
-        'Multi-Display': 'fa-solid fa-images',
-        '3D Rendering': 'fa-solid fa-cubes',
-        'Video Processing': 'fa-solid fa-film',
-        'RAM Module': 'fa-solid fa-memory',
-        'Capacity/Modules': 'fa-solid fa-layer-group',
-        'Latency/Timings': 'fa-solid fa-stopwatch-20',
-        'Frequency/Speed': 'fa-solid fa-bolt-lightning',
-        'Bandwidth': 'fa-solid fa-arrows-left-right-to-line',
-        'Motherboard': 'fa-solid fa-server',
-        'Circuitry/Chipset': 'fa-solid fa-sitemap',
-        'Ports/Connectivity': 'fa-solid fa-plug',
-        'HDD': 'fa-solid fa-hard-drive',
-        'SSD': 'fa-solid fa-compact-disc',
-        'SD Card/Flash': 'fa-solid fa-sd-card',
-        'Data Storage': 'fa-solid fa-database',
-        'Read Speed': 'fa-solid fa-download',
-        'Write Speed': 'fa-solid fa-upload',
-        'Keyboard General': 'fa-solid fa-keyboard',
-        'Mechanical Switch': 'fa-solid fa-toggle-on',
-        'Biometric/Touch': 'fa-solid fa-fingerprint',
-        'RGB Lighting': 'fa-solid fa-palette',
-        'Size: Full, TKL': 'fa-solid fa-ruler-horizontal',
-        'Keycap': 'fa-solid fa-dice-one',
-        'Sound/Clicky': 'fa-solid fa-wave-square',
-        'Mouse General': 'fa-solid fa-computer-mouse',
-        'DPI/Precision': 'fa-solid fa-crosshairs',
-        'Buttons': 'fa-solid fa-hand-pointer',
-        'Weight': 'fa-solid fa-weight-hanging',
-        'Wireless/Receiver': 'fa-solid fa-satellite-dish',
-        'Cursor': 'fa-solid fa-location-arrow',
-        'Monitor General': 'fa-solid fa-desktop',
-        'Size': 'fa-solid fa-ruler-combined',
-        'Resolution': 'fa-solid fa-expand',
-        'Refresh Rate Hz': 'fa-solid fa-arrows-rotate',
-        'Eye-care Tech': 'fa-solid fa-eye',
-        'Contrast': 'fa-solid fa-circle-half-stroke',
-        'Ultrawide': 'fa-solid fa-panorama',
-        'Headset': 'fa-solid fa-headset',
-        'Microphone': 'fa-solid fa-microphone',
-        'Studio Mic': 'fa-solid fa-microphone-lines',
-        'Speakers': 'fa-solid fa-volume-high',
-        'Audio Quality': 'fa-solid fa-music',
-        'Sound Quality': 'fa-solid fa-ear-listen',
-        'Webcam': 'fa-solid fa-camera',
-        'Video Capture': 'fa-solid fa-video',
-        'Printer': 'fa-solid fa-print',
-        'Scanner/Fax': 'fa-solid fa-fax',
-        'Modern Case': 'fa-solid fa-computer',
-        'Case Shape': 'fa-solid fa-cube',
-        'Tempered Glass Panel': 'fa-solid fa-window-maximize',
-        'PSU': 'fa-solid fa-plug-circle-bolt',
-        '80+ Certification': 'fa-solid fa-certificate',
-        'Air Cooling Fan': 'fa-solid fa-fan',
-        'Airflow': 'fa-solid fa-wind',
-        'Liquid Cooling': 'fa-solid fa-droplet',
-        'Cooling': 'fa-solid fa-temperature-arrow-down',
-        'LAN/Ethernet': 'fa-solid fa-network-wired',
-        'Wi-Fi': 'fa-solid fa-wifi',
-        'Bluetooth': 'fa-brands fa-bluetooth-b',
-        'USB Port': 'fa-brands fa-usb',
-        'Thunderbolt Port': 'fa-solid fa-bolt',
-        'Shooter': 'fa-solid fa-gun',
-        'First-Person Shooter': 'fa-solid fa-crosshairs',
-        'Action': 'fa-solid fa-explosion',
-        'Fighting': 'fa-solid fa-hand-fist',
-        'Adventure': 'fa-solid fa-person-running',
-        'Stealth': 'fa-solid fa-user-ninja',
-        'War/Combat': 'fa-solid fa-jet-fighter-up',
-        'Hack and Slash': 'fa-solid fa-shield-halved',
-        'Battle Royale': 'fa-solid fa-person-falling-burst',
-        'Strategy': 'fa-solid fa-chess-board',
-        'Puzzle': 'fa-solid fa-brain',
-        'City Building / 4X': 'fa-solid fa-map-location-dot',
-        'Tower Defense': 'fa-solid fa-tower-control',
-        'Management': 'fa-solid fa-chart-gantt',
-        'Real-Time Strategy': 'fa-solid fa-landmark-flag',
-        'RPG / Quest': 'fa-solid fa-scroll',
-        'Fantasy / Magic': 'fa-solid fa-hat-wizard',
-        'Dark Fantasy / Horror': 'fa-solid fa-book-skull',
-        'Dungeon Crawler': 'fa-solid fa-dungeon',
-        'Open World': 'fa-solid fa-tree',
-        'Mythical Creatures': 'fa-solid fa-dragon',
-        'Adventure/Fantasy': 'fa-solid fa-ring',
-        'Sci-Fi': 'fa-solid fa-atom',
-        'Racing': 'fa-solid fa-flag-checkered',
-        'Driving Simulation': 'fa-solid fa-car-side',
-        'Sports - Soccer': 'fa-solid fa-futbol',
-        'Sports - Basketball': 'fa-solid fa-basketball',
-        'Championship/Sport': 'fa-solid fa-trophy',
-        'Comedy': 'fa-solid fa-face-grin-squint-tears',
-        'Casual / Romance': 'fa-solid fa-heart',
-        'Farming / Simulation': 'fa-solid fa-seedling',
-        'Multiplayer': 'fa-solid fa-users',
-        'Co-op': 'fa-solid fa-user-group',
-        'Virtual Reality - VR': 'fa-solid fa-vr-cardboard',
-        'Controller Support': 'fa-solid fa-gamepad',
-        'Cloud Gaming': 'fa-solid fa-cloud',
-        'New Release': 'fa-solid fa-star',
-        'Trending / Popular': 'fa-solid fa-fire',
-        'On Sale': 'fa-solid fa-percent',
-        'Windows OS': 'fa-brands fa-windows',
-        'Microsoft Corp.': 'fa-brands fa-microsoft',
-        'Xbox': 'fa-brands fa-xbox',
-        'Apple / macOS': 'fa-brands fa-apple',
-        'Linux General': 'fa-brands fa-linux',
-        'Ubuntu': 'fa-brands fa-ubuntu',
-        'Red Hat': 'fa-brands fa-redhat',
-        'Fedora': 'fa-brands fa-fedora',
-        'Google': 'fa-brands fa-google',
-        'Android OS': 'fa-brands fa-android',
-        'Chrome Browser/OS': 'fa-brands fa-chrome',
-        'Steam': 'fa-brands fa-steam',
-        'PlayStation': 'fa-brands fa-playstation',
-        'Discord': 'fa-brands fa-discord',
-        'Twitch': 'fa-brands fa-twitch',
-        'Intel Alternative': 'fa-solid fa-microchip',
-        'AMD Alternative': 'fa-solid fa-microchip',
-        'Nvidia Alternative': 'fa-solid fa-gamepad',
-        'Word': 'fa-solid fa-file-word',
-        'Excel': 'fa-solid fa-file-excel',
-        'PowerPoint': 'fa-solid fa-file-powerpoint',
-        'Outlook': 'fa-solid fa-envelope-open-text',
-        'Teams': 'fa-solid fa-users-viewfinder',
-        'Photoshop': 'fa-solid fa-camera-retro',
-        'Illustrator': 'fa-solid fa-pen-nib',
-        'Premiere Pro': 'fa-solid fa-clapperboard',
-        'Acrobat PDF': 'fa-solid fa-file-pdf',
-        'Firefox': 'fa-brands fa-firefox-browser',
-        'Safari': 'fa-brands fa-safari',
-        'Microsoft Edge': 'fa-brands fa-edge',
-        'Code': 'fa-solid fa-code',
-        'Terminal / CMD': 'fa-solid fa-terminal',
-        'Bug / Debugging': 'fa-solid fa-bug',
-        'Antivirus': 'fa-solid fa-shield-virus',
-        'Security / Encryption': 'fa-solid fa-lock',
-        'Activation Key': 'fa-solid fa-key',
-        'Compressed File': 'fa-solid fa-box-archive',
-        'Save': 'fa-solid fa-floppy-disk',
-        'Open File': 'fa-solid fa-folder-open',
-        'Utilities / Tools': 'fa-solid fa-screwdriver-wrench',
-        'Cloud Download': 'fa-solid fa-cloud-arrow-down',
-        'Cloud Upload': 'fa-solid fa-cloud-arrow-up',
-        'Sharing': 'fa-solid fa-share-nodes',
-        'Lifetime license': 'fa-solid fa-key',
-        '1-year subscription': 'fa-solid fa-calendar-check',
-        'Single-user activation': 'fa-solid fa-user-lock',
-        'Multi-user support': 'fa-solid fa-users',
-        'Global region': 'fa-solid fa-globe',
-        'Digital delivery': 'fa-solid fa-download',
-        'Windows 11 compatible': 'fa-brands fa-windows',
-        'macOS Sonoma ready': 'fa-brands fa-apple',
-        'Linux support': 'fa-brands fa-linux',
-        'Secure boot ready': 'fa-solid fa-shield-halved',
-        'Auto updates': 'fa-solid fa-rotate',
-        'Virtualization support': 'fa-solid fa-server',
-        'Microsoft Word': 'fa-solid fa-file-word',
-        'Microsoft Excel': 'fa-solid fa-file-excel',
-        'PowerPoint templates': 'fa-solid fa-file-powerpoint',
-        'Outlook mailbox': 'fa-solid fa-envelope-open-text',
-        'Microsoft Teams access': 'fa-solid fa-users-viewfinder',
-        '1TB OneDrive storage': 'fa-solid fa-cloud',
-        'Premium templates': 'fa-solid fa-palette',
-        'Vector editing': 'fa-solid fa-pen-nib',
-        'AI design tools': 'fa-solid fa-wand-magic-sparkles',
-        'Photo editing suite': 'fa-solid fa-camera-retro',
-        '4K video exports': 'fa-solid fa-video',
-        'Team collaboration': 'fa-solid fa-users-gear',
-        'Real-time protection': 'fa-solid fa-shield-virus',
-        'Malware removal': 'fa-solid fa-bug-slash',
-        'Identity guard': 'fa-solid fa-user-shield',
-        'Encryption tools': 'fa-solid fa-lock',
-        'Password manager': 'fa-solid fa-vault',
-        'Firewall control': 'fa-solid fa-network-wired',
-        'CAD drafting tools': 'fa-solid fa-drafting-compass',
-        '3D modeling': 'fa-solid fa-cube',
-        'Precision measurements': 'fa-solid fa-ruler-combined',
-        'Layer management': 'fa-solid fa-layer-group',
-        'Vector workspace': 'fa-solid fa-vector-square',
-        'Free product updates': 'fa-solid fa-rotate',
-        'Business analytics': 'fa-solid fa-chart-line',
-        'Billing & invoicing': 'fa-solid fa-wallet',
-        'Payroll management': 'fa-solid fa-hand-holding-dollar',
-        'Tax reports': 'fa-solid fa-file-invoice-dollar',
-        'Compliance tools': 'fa-solid fa-scale-balanced',
-        'Secure backups': 'fa-solid fa-database',
-        'IDE access': 'fa-solid fa-code',
-        'Command line tools': 'fa-solid fa-terminal',
-        'API integrations': 'fa-solid fa-plug-circle-check',
-        'DevOps toolkit': 'fa-solid fa-screwdriver-wrench',
-        'Container support': 'fa-solid fa-cubes',
-        'CI/CD pipelines': 'fa-solid fa-cloud-arrow-up',
-        'Cloud storage': 'fa-solid fa-cloud',
-        'Fast syncing': 'fa-solid fa-cloud-bolt',
-        'Zero-trust security': 'fa-solid fa-shield-keyhole',
-        'Project sharing': 'fa-solid fa-diagram-project',
-        'Team drives': 'fa-solid fa-square-share-nodes',
-        'Usage analytics': 'fa-solid fa-chart-pie',
-        'Student license': 'fa-solid fa-graduation-cap',
-        'Learning resources': 'fa-solid fa-book',
-        'E-learning platform access': 'fa-solid fa-laptop-file',
-        'Instructor support': 'fa-solid fa-person-chalkboard',
-        'Classroom management': 'fa-solid fa-users-rectangle',
-        'Accreditation ready': 'fa-solid fa-circle-check'
-      };
+        const tagIcons = {
+            // === 1.1: المكونات الأساسية (Core Components) ===
+            'CPU General': 'fa-solid fa-microchip',
+            'Cores/Threads': 'fa-solid fa-gears',
+            'Clock Speed': 'fa-solid fa-gauge-high',
+            'Socket Type': 'fa-solid fa-puzzle-piece',
+            'Processing Power': 'fa-solid fa-brain',
 
-      if (!products.length) {
-        container.innerHTML = '<div style="color: #888; padding: 40px; text-align: center; grid-column: 1/-1;">No products available yet. Check back soon!</div>';
-        return;
-      }
+            'GPU - Modern Look': 'fa-solid fa-gamepad-modern',
+            'Graphics': 'fa-solid fa-image',
+            'Multi-Display': 'fa-solid fa-images',
+            '3D Rendering': 'fa-solid fa-cubes',
+            'Video Processing': 'fa-solid fa-film',
 
-      container.innerHTML = '';
-     products.forEach(p => {
-    // ✅ تحديد حالة التوفر
-    const isAvailable = p.available !== false;
-    const availabilityClass = isAvailable ? '' : 'out-of-stock';
-    const availabilityBadge = isAvailable ? '' : '<div class="unavailable-badge">❌ Out of Stock</div>';
+            'RAM Module': 'fa-solid fa-memory',
+            'Capacity/Modules': 'fa-solid fa-layer-group',
+            'Latency/Timings': 'fa-solid fa-stopwatch-20',
+            'Frequency/Speed': 'fa-solid fa-bolt-lightning',
+            'Bandwidth': 'fa-solid fa-arrows-left-right-to-line',
 
-    let category = p.category || 'Game';
-    let featuresHtml = (p.tags || []).slice(0, 3).map(t => {
-        const icon = tagIcons[t] || 'fa-solid fa-gamepad';
-        return `<div class="hardware-feature"><i class="${icon}"></i> ${escapeHtml(t)}</div>`;
-    }).join('');
+            'Motherboard': 'fa-solid fa-server',
+            'Circuitry/Chipset': 'fa-solid fa-sitemap',
+            'Ports/Connectivity': 'fa-solid fa-plug',
 
-    const whatsappMessage = encodeURIComponent(`Hello 👋
+            'HDD': 'fa-solid fa-hard-drive',
+            'SSD': 'fa-solid fa-compact-disc',
+            'SD Card/Flash': 'fa-solid fa-sd-card',
+            'Data Storage': 'fa-solid fa-database',
+            'Read Speed': 'fa-solid fa-download',
+            'Write Speed': 'fa-solid fa-upload',
+
+            // === 1.2: الأجهزة الطرفية (Peripherals) ===
+            'Keyboard General': 'fa-solid fa-keyboard',
+            'Mechanical Switch': 'fa-solid fa-toggle-on',
+            'Biometric/Touch': 'fa-solid fa-fingerprint',
+            'RGB Lighting': 'fa-solid fa-palette',
+            'Size: Full, TKL': 'fa-solid fa-ruler-horizontal',
+            'Keycap': 'fa-solid fa-dice-one',
+            'Sound/Clicky': 'fa-solid fa-wave-square',
+
+            'Mouse General': 'fa-solid fa-computer-mouse',
+            'DPI/Precision': 'fa-solid fa-crosshairs',
+            'Buttons': 'fa-solid fa-hand-pointer',
+            'Weight': 'fa-solid fa-weight-hanging',
+            'Wireless/Receiver': 'fa-solid fa-satellite-dish',
+            'Cursor': 'fa-solid fa-location-arrow',
+
+            'Monitor General': 'fa-solid fa-desktop',
+            'Size': 'fa-solid fa-ruler-combined',
+            'Resolution': 'fa-solid fa-expand',
+            'Refresh Rate Hz': 'fa-solid fa-arrows-rotate',
+            'Eye-care Tech': 'fa-solid fa-eye',
+            'Contrast': 'fa-solid fa-circle-half-stroke',
+            'Ultrawide': 'fa-solid fa-panorama',
+
+            'Headset': 'fa-solid fa-headset',
+            'Microphone': 'fa-solid fa-microphone',
+            'Studio Mic': 'fa-solid fa-microphone-lines',
+            'Speakers': 'fa-solid fa-volume-high',
+            'Audio Quality': 'fa-solid fa-music',
+            'Sound Quality': 'fa-solid fa-ear-listen',
+
+            'Webcam': 'fa-solid fa-camera',
+            'Video Capture': 'fa-solid fa-video',
+            'Printer': 'fa-solid fa-print',
+            'Scanner/Fax': 'fa-solid fa-fax',
+
+            // === 1.3: مكونات ثانوية (System & Chassis) ===
+            'Modern Case': 'fa-solid fa-computer',
+            'Case Shape': 'fa-solid fa-cube',
+            'Tempered Glass Panel': 'fa-solid fa-window-maximize',
+
+            'PSU': 'fa-solid fa-plug-circle-bolt',
+            '80+ Certification': 'fa-solid fa-certificate',
+            'Air Cooling Fan': 'fa-solid fa-fan',
+            'Airflow': 'fa-solid fa-wind',
+            'Liquid Cooling': 'fa-solid fa-droplet',
+            'Cooling': 'fa-solid fa-temperature-arrow-down',
+
+            'LAN/Ethernet': 'fa-solid fa-network-wired',
+            'Wi-Fi': 'fa-solid fa-wifi',
+            'Bluetooth': 'fa-brands fa-bluetooth-b',
+            'USB Port': 'fa-brands fa-usb',
+            'Thunderbolt Port': 'fa-solid fa-bolt',
+
+            // === 2.1: تصنيفات الأكشن (Action Genres) ===
+            'Shooter': 'fa-solid fa-gun',
+            'First-Person Shooter': 'fa-solid fa-crosshairs',
+            'Action': 'fa-solid fa-explosion',
+            'Fighting': 'fa-solid fa-hand-fist',
+            'Adventure': 'fa-solid fa-person-running',
+            'Stealth': 'fa-solid fa-user-ninja',
+            'War/Combat': 'fa-solid fa-jet-fighter-up',
+            'Hack and Slash': 'fa-solid fa-shield-halved',
+            'Battle Royale': 'fa-solid fa-person-falling-burst',
+
+            // === 2.2: تصنيفات الاستراتيجية والفكر ===
+            'Strategy': 'fa-solid fa-chess-board',
+            'Puzzle': 'fa-solid fa-brain',
+            'City Building / 4X': 'fa-solid fa-map-location-dot',
+            'Tower Defense': 'fa-solid fa-tower-control',
+            'Management': 'fa-solid fa-chart-gantt',
+            'Real-Time Strategy': 'fa-solid fa-landmark-flag',
+
+            // === 2.3: تصنيفات الأدوار والخيال ===
+            'RPG / Quest': 'fa-solid fa-scroll',
+            'Fantasy / Magic': 'fa-solid fa-hat-wizard',
+            'Dark Fantasy / Horror': 'fa-solid fa-book-skull',
+            'Dungeon Crawler': 'fa-solid fa-dungeon',
+            'Open World': 'fa-solid fa-tree',
+            'Mythical Creatures': 'fa-solid fa-dragon',
+            'Adventure/Fantasy': 'fa-solid fa-ring',
+            'Sci-Fi': 'fa-solid fa-atom',
+
+            // === 2.4: تصنيفات أخرى ===
+            'Racing': 'fa-solid fa-flag-checkered',
+            'Driving Simulation': 'fa-solid fa-car-side',
+            'Sports - Soccer': 'fa-solid fa-futbol',
+            'Sports - Basketball': 'fa-solid fa-basketball',
+            'Championship/Sport': 'fa-solid fa-trophy',
+            'Comedy': 'fa-solid fa-face-grin-squint-tears',
+            'Casual / Romance': 'fa-solid fa-heart',
+            'Farming / Simulation': 'fa-solid fa-seedling',
+
+            // === 2.5: مفاهيم وميزات الألعاب ===
+            'Multiplayer': 'fa-solid fa-users',
+            'Co-op': 'fa-solid fa-user-group',
+            'Virtual Reality - VR': 'fa-solid fa-vr-cardboard',
+            'Controller Support': 'fa-solid fa-gamepad',
+            'Cloud Gaming': 'fa-solid fa-cloud',
+            'New Release': 'fa-solid fa-star',
+            'Trending / Popular': 'fa-solid fa-fire',
+            'On Sale': 'fa-solid fa-percent',
+
+            // === 3.1: أنظمة التشغيل والماركات ===
+            'Windows OS': 'fa-brands fa-windows',
+            'Microsoft Corp.': 'fa-brands fa-microsoft',
+            'Xbox': 'fa-brands fa-xbox',
+            'Apple / macOS': 'fa-brands fa-apple',
+            'Linux General': 'fa-brands fa-linux',
+            'Ubuntu': 'fa-brands fa-ubuntu',
+            'Red Hat': 'fa-brands fa-redhat',
+            'Fedora': 'fa-brands fa-fedora',
+            'Google': 'fa-brands fa-google',
+            'Android OS': 'fa-brands fa-android',
+            'Chrome Browser/OS': 'fa-brands fa-chrome',
+            'Steam': 'fa-brands fa-steam',
+            'PlayStation': 'fa-brands fa-playstation',
+            'Discord': 'fa-brands fa-discord',
+            'Twitch': 'fa-brands fa-twitch',
+            'Intel Alternative': 'fa-solid fa-microchip',
+            'AMD Alternative': 'fa-solid fa-microchip',
+            'Nvidia Alternative': 'fa-solid fa-gamepad',
+
+            // === 3.2: برامج الإنتاجية والإبداع ===
+            'Word': 'fa-solid fa-file-word',
+            'Excel': 'fa-solid fa-file-excel',
+            'PowerPoint': 'fa-solid fa-file-powerpoint',
+            'Outlook': 'fa-solid fa-envelope-open-text',
+            'Teams': 'fa-solid fa-users-viewfinder',
+            'Photoshop': 'fa-solid fa-camera-retro',
+            'Illustrator': 'fa-solid fa-pen-nib',
+            'Premiere Pro': 'fa-solid fa-clapperboard',
+            'Acrobat PDF': 'fa-solid fa-file-pdf',
+            'Firefox': 'fa-brands fa-firefox-browser',
+            'Safari': 'fa-brands fa-safari',
+            'Microsoft Edge': 'fa-brands fa-edge',
+
+            // === 3.3: مفاهيم برمجية عامة ===
+            'Code': 'fa-solid fa-code',
+            'Terminal / CMD': 'fa-solid fa-terminal',
+            'Bug / Debugging': 'fa-solid fa-bug',
+            'Antivirus': 'fa-solid fa-shield-virus',
+            'Security / Encryption': 'fa-solid fa-lock',
+            'Activation Key': 'fa-solid fa-key',
+            'Compressed File': 'fa-solid fa-box-archive',
+            'Save': 'fa-solid fa-floppy-disk',
+            'Open File': 'fa-solid fa-folder-open',
+            'Utilities / Tools': 'fa-solid fa-screwdriver-wrench',
+            'Cloud Download': 'fa-solid fa-cloud-arrow-down',
+            'Cloud Upload': 'fa-solid fa-cloud-arrow-up',
+            'Sharing': 'fa-solid fa-share-nodes',
+
+            // === خصائص الترخيص والتفعيل ===
+            'Lifetime license': 'fa-solid fa-key',
+            '1-year subscription': 'fa-solid fa-calendar-check',
+            'Single-user activation': 'fa-solid fa-user-lock',
+            'Multi-user support': 'fa-solid fa-users',
+            'Global region': 'fa-solid fa-globe',
+            'Digital delivery': 'fa-solid fa-download',
+
+            // === أنظمة التشغيل والدعم التقني ===
+            'Windows 11 compatible': 'fa-brands fa-windows',
+            'macOS Sonoma ready': 'fa-brands fa-apple',
+            'Linux support': 'fa-brands fa-linux',
+            'Secure boot ready': 'fa-solid fa-shield-halved',
+            'Auto updates': 'fa-solid fa-rotate',
+            'Virtualization support': 'fa-solid fa-server',
+
+            // === حزم أوفيس والإنتاجية ===
+            'Microsoft Word': 'fa-solid fa-file-word',
+            'Microsoft Excel': 'fa-solid fa-file-excel',
+            'PowerPoint templates': 'fa-solid fa-file-powerpoint',
+            'Outlook mailbox': 'fa-solid fa-envelope-open-text',
+            'Microsoft Teams access': 'fa-solid fa-users-viewfinder',
+            '1TB OneDrive storage': 'fa-solid fa-cloud',
+
+            // === التصميم والإبداع ===
+            'Premium templates': 'fa-solid fa-palette',
+            'Vector editing': 'fa-solid fa-pen-nib',
+            'AI design tools': 'fa-solid fa-wand-magic-sparkles',
+            'Photo editing suite': 'fa-solid fa-camera-retro',
+            '4K video exports': 'fa-solid fa-video',
+            'Team collaboration': 'fa-solid fa-users-gear',
+
+            // === الأمن والحماية ===
+            'Real-time protection': 'fa-solid fa-shield-virus',
+            'Malware removal': 'fa-solid fa-bug-slash',
+            'Identity guard': 'fa-solid fa-user-shield',
+            'Encryption tools': 'fa-solid fa-lock',
+            'Password manager': 'fa-solid fa-vault',
+            'Firewall control': 'fa-solid fa-network-wired',
+
+            // === برامج الهندسة والرسومات الفنية ===
+            'CAD drafting tools': 'fa-solid fa-drafting-compass',
+            '3D modeling': 'fa-solid fa-cube',
+            'Precision measurements': 'fa-solid fa-ruler-combined',
+            'Layer management': 'fa-solid fa-layer-group',
+            'Vector workspace': 'fa-solid fa-vector-square',
+            'Free product updates': 'fa-solid fa-rotate',
+
+            // === برامج إدارة الأعمال والمحاسبة ===
+            'Business analytics': 'fa-solid fa-chart-line',
+            'Billing & invoicing': 'fa-solid fa-wallet',
+            'Payroll management': 'fa-solid fa-hand-holding-dollar',
+            'Tax reports': 'fa-solid fa-file-invoice-dollar',
+            'Compliance tools': 'fa-solid fa-scale-balanced',
+            'Secure backups': 'fa-solid fa-database',
+
+            // === أدوات المطورين والبرمجة ===
+            'IDE access': 'fa-solid fa-code',
+            'Command line tools': 'fa-solid fa-terminal',
+            'API integrations': 'fa-solid fa-plug-circle-check',
+            'DevOps toolkit': 'fa-solid fa-screwdriver-wrench',
+            'Container support': 'fa-solid fa-cubes',
+            'CI/CD pipelines': 'fa-solid fa-cloud-arrow-up',
+
+            // === خدمات سحابية وتخزين ===
+            'Cloud storage': 'fa-solid fa-cloud',
+            'Fast syncing': 'fa-solid fa-cloud-bolt',
+            'Zero-trust security': 'fa-solid fa-shield-keyhole',
+            'Project sharing': 'fa-solid fa-diagram-project',
+            'Team drives': 'fa-solid fa-square-share-nodes',
+            'Usage analytics': 'fa-solid fa-chart-pie',
+
+            // === برامج تعليمية واحترافية ===
+            'Student license': 'fa-solid fa-graduation-cap',
+            'Learning resources': 'fa-solid fa-book',
+            'E-learning platform access': 'fa-solid fa-laptop-file',
+            'Instructor support': 'fa-solid fa-person-chalkboard',
+            'Classroom management': 'fa-solid fa-users-rectangle',
+            'Accreditation ready': 'fa-solid fa-circle-check'
+        };
+
+        if (!products.length) {
+            container.innerHTML = '<div style="color: #888; padding: 40px; text-align: center; grid-column: 1/-1;">💻 No products available yet</div>';
+            return;
+        }
+
+        container.innerHTML = '';
+        
+        products.forEach(p => {
+            // ✅ تحديد حالة التوفر
+            const isAvailable = p.available !== false;
+            const availabilityClass = isAvailable ? '' : 'out-of-stock';
+
+            let category = p.category || 'Software';
+            let featuresHtml = (p.tags || []).slice(0, 3).map(t => {
+                const icon = tagIcons[t] || 'fa-solid fa-laptop-code';
+                return `<div class="hardware-feature"><i class="${icon}"></i> ${escapeHtml(t)}</div>`;
+            }).join('');
+
+            const whatsappMessage = encodeURIComponent(`Hello 👋
 I want to buy:
-🎮 ${p.name}
+💻 ${p.name}
 💰 Price: ${p.price} EGP
 🏷️ Category: ${category}`);
-    
-    // ✅ تغيير الزر حسب حالة التوفر
-    const buyButton = isAvailable
-        ? `<a href="https://wa.me/+201507875527?text=${whatsappMessage}" target="_blank" class="btn buy-btn"><i class="fa-brands fa-whatsapp"></i> Buy Now</a>`
-        : `<button class="btn buy-btn" disabled>🚫 Unavailable</button>`;
+            
+            // ✅ تغيير الزر حسب حالة التوفر
+            const buyButton = isAvailable
+                ? `<a href="https://wa.me/+201507875527?text=${whatsappMessage}" target="_blank" class="btn buy-btn"><i class="fa-brands fa-whatsapp"></i> Buy Now</a>`
+                : `<button class="btn buy-btn" disabled style="opacity: 0.4; cursor: not-allowed;"><i class="fa-solid fa-ban"></i> Unavailable</button>`;
 
-    const card = document.createElement('div');
-    card.className = `game-card ${availabilityClass}`;
-    
-    card.innerHTML = `
-        ${availabilityBadge}
-        <div class="game-image">
-            <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" onerror="this.src='img/placeholder.jpg'; this.onerror=null;"/>
-            <div class="game-category">${escapeHtml(category)}</div>
-        </div>
-        <div class="game-details">
-            <h3 class="game-title">${escapeHtml(p.name)}</h3>
-            <div class="hardware-features">
-                ${featuresHtml || '<div class="hardware-feature" style="color: #666;"><i class="fa-solid fa-info-circle"></i> No features listed</div>'}
-            </div>
-            <div class="game-info">
-                <div class="game-price">${escapeHtml(p.price)} EGP</div>
-                ${buyButton}
-            </div>
-        </div>
-    `;
-    container.appendChild(card);
-});
+            const card = document.createElement('div');
+            card.className = `game-card ${availabilityClass}`;
+            
+            card.innerHTML = `
+                <div class="game-image">
+                    <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" onerror="this.src='img/placeholder.jpg'; this.onerror=null;"/>
+                    <div class="game-category">${escapeHtml(category)}</div>
+                </div>
+                <div class="game-details">
+                    <h3 class="game-title">${escapeHtml(p.name)}</h3>
+                    <div class="hardware-features">
+                        ${featuresHtml || '<div class="hardware-feature" style="color: #666;"><i class="fa-solid fa-info-circle"></i> No features listed</div>'}
+                    </div>
+                    <div class="game-info">
+                        <div class="game-price">${escapeHtml(p.price)} EGP</div>
+                        ${buyButton}
+                    </div>
+                </div>
+                ${!isAvailable ? '<div class="unavailable-overlay"><div class="badge"><i class="fas fa-times-circle"></i> Out of Stock</div></div>' : ''}
+            `;
+            container.appendChild(card);
+        });
+
+        // بحث ديناميكي
+        const searchInput = document.getElementById('softwareSearchInput');
+        const searchForm = document.getElementById('softwareSearchForm');
+
+        function performSearch() {
+            const term = searchInput.value.toLowerCase().trim();
+            const cards = container.getElementsByClassName('game-card');
+            let visibleCount = 0;
+
+            Array.from(cards).forEach(card => {
+                const title = (card.querySelector('.game-title')?.textContent || '').toLowerCase();
+                const category = (card.querySelector('.game-category')?.textContent || '').toLowerCase();
+                const tagsText = Array.from(card.querySelectorAll('.hardware-feature')).map(n => n.textContent.toLowerCase()).join(' ');
+                
+                const shouldShow = term === '' || title.includes(term) || category.includes(term) || tagsText.includes(term);
+                card.style.display = shouldShow ? '' : 'none';
+                if (shouldShow) visibleCount++;
+            });
+
+            let noMsg = container.querySelector('.no-results-message');
+            if (noMsg) noMsg.remove();
+
+            if (!visibleCount && term) {
+                noMsg = document.createElement('div');
+                noMsg.className = 'no-results-message';
+                noMsg.style.cssText = 'color:#888;padding:40px;text-align:center;grid-column:1/-1;';
+                noMsg.innerHTML = `<i class="fa-solid fa-search" style="font-size:3rem;opacity:0.5;"></i><p>No results for "<strong>${escapeHtml(term)}</strong>"</p>`;
+                container.appendChild(noMsg);
+            }
+        }
+
+        searchInput.addEventListener('keyup', performSearch);
+        searchInput.addEventListener('search', performSearch);
+        searchForm.addEventListener('submit', ev => {
+            ev.preventDefault();
+            performSearch();
+        });
+
+        console.log(`✅ Software Products Loaded: ${products.length}`);
     });
-  </script>
+</script>
 </body>
 </html>
