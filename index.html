@@ -262,7 +262,7 @@
     // عرض المنتجات
     document.addEventListener('DOMContentLoaded', () => {
         const STORAGE_KEY = 'angryStoreProducts_v2';
-        const container = document.getElementById('softwareCardsContainer'); // ✅ تأكد إن الـ ID ده موجود في HTML
+        const container = document.getElementById('trendingGamesContainer'); // ✅ صح!
         const all = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
         
         // ✅ التعديل المهم: فلترة على index.html بدل software.html
