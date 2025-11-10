@@ -566,24 +566,210 @@
                 <input id="image" required placeholder="img/xxxx.jpg أو https://...">
 
                 <label>التصنيف (Category)*</label>
-                <select id="category" required>
-                    <option value="">اختر التصنيف...</option>
-                    <option value="Software">💻 Software</option>
-                    <option value="Game">🎮 Game</option>
-                    <option value="Hardware">⚙️ Hardware</option>
-                    <option value="Windows">🪟 Windows</option>
-                    <option value="Office Suite">📊 Office Suite</option>
-                    <option value="Creative Suite">🎨 Creative Suite</option>
-                    <option value="Security">🛡️ Security</option>
-                    <option value="Adventure">🗺️ Adventure</option>
-                    <option value="Action">💥 Action</option>
-                    <option value="Sports">⚽ Sports</option>
-                    <option value="Strategy">♟️ Strategy</option>
-                    <option value="GPU">🖥️ GPU</option>
-                    <option value="CPU">⚡ CPU</option>
-                    <option value="RAM">💾 RAM</option>
-                    <option value="Storage">💿 Storage</option>
-                </select>
+<select id="category" required>
+    <option value="">اختر التصنيف...</option>
+    
+    <!-- ====== 1️⃣ الأكثر طلباً: الألعاب الشائعة ====== -->
+    <optgroup label="🔥 الألعاب الأكثر طلباً">
+        <option value="FPS">🎯 FPS - إطلاق نار منظور أول</option>
+        <option value="Battle Royale">🏆 Battle Royale - باتل رويال</option>
+        <option value="Open World">🌍 Open World - عالم مفتوح</option>
+        <option value="RPG">⚡ RPG - لعب أدوار</option>
+        <option value="Action Adventure">⚔️ Action Adventure - أكشن ومغامرة</option>
+        <option value="Football">⚽ Football - كرة قدم</option>
+        <option value="Racing Simulation">🏁 Racing Simulation - سباقات واقعية</option>
+        <option value="Survival Horror">😱 Survival Horror - رعب البقاء</option>
+        <option value="Survival">⛺ Survival - البقاء على قيد الحياة</option>
+        <option value="MMORPG">🌐 MMORPG - لعب أدوار أونلاين</option>
+    </optgroup>
+
+    <!-- ====== 2️⃣ اشتراكات الألعاب (الأكثر مبيعاً) ====== -->
+    <optgroup label="🎮 اشتراكات الألعاب">
+        <option value="Xbox Game Pass">🎮 Xbox Game Pass - اشتراك</option>
+        <option value="PlayStation Plus">🎮 PlayStation Plus - اشتراك</option>
+        <option value="EA Play">🎮 EA Play - اشتراك</option>
+        <option value="Ubisoft+">🎮 Ubisoft+ - اشتراك</option>
+        <option value="GeForce NOW">☁️ GeForce NOW - اشتراك</option>
+        <option value="Nintendo Switch Online">🎮 Nintendo Switch Online</option>
+    </optgroup>
+
+    <!-- ====== 3️⃣ الهاردوير الأساسي (ضروري لكل جهاز) ====== -->
+    <optgroup label="⚙️ الهاردوير الأساسي">
+        <option value="GPU">🖥️ GPU - كرت شاشة</option>
+        <option value="CPU">⚡ CPU - معالج</option>
+        <option value="RAM">💾 RAM - رامات</option>
+        <option value="M.2 NVMe">🚀 M.2 NVMe - هارد سريع</option>
+        <option value="SSD">💿 SSD - هارد SSD</option>
+        <option value="Motherboard">🔌 Motherboard - مازربورد</option>
+        <option value="Power Supply">🔋 Power Supply - باور سبلاي</option>
+        <option value="HDD">💽 HDD - هارد HDD</option>
+    </optgroup>
+
+    <!-- ====== 4️⃣ ملحقات الجيمنج (Peripherals) ====== -->
+    <optgroup label="🎮 ملحقات الجيمنج">
+        <option value="Gaming Monitor">🎮 Gaming Monitor - شاشة جيمنج</option>
+        <option value="Gaming Mouse">🖱️ Gaming Mouse - ماوس جيمنج</option>
+        <option value="Mechanical Keyboard">⌨️ Mechanical Keyboard - كيبورد ميكانيكال</option>
+        <option value="Gaming Headset">🎧 Gaming Headset - سماعة جيمنج</option>
+        <option value="Controller">🎮 Controller - يد تحكم</option>
+        <option value="Mouse Pad">🖱️ Mouse Pad - ماوس باد</option>
+        <option value="Gaming Chair">🪑 Gaming Chair - كرسي جيمنج</option>
+        <option value="Microphone">🎤 Microphone - مايكروفون</option>
+        <option value="Webcam">📷 Webcam - كاميرا</option>
+    </optgroup>
+
+    <!-- ====== 5️⃣ أنظمة التشغيل (ضروري) ====== -->
+    <optgroup label="🪟 أنظمة التشغيل">
+        <option value="Windows 11">🪟 Windows 11</option>
+        <option value="Windows 10">🪟 Windows 10</option>
+        <option value="Windows Server">🖥️ Windows Server</option>
+        <option value="macOS">🍎 macOS</option>
+        <option value="Linux">🐧 Linux</option>
+    </optgroup>
+
+    <!-- ====== 6️⃣ برامج المكتب (الأكثر استخداماً) ====== -->
+    <optgroup label="📊 برامج المكتب والإنتاجية">
+        <option value="Microsoft Office">📊 Microsoft Office</option>
+        <option value="Office 365">☁️ Office 365 - اشتراك</option>
+        <option value="Microsoft Word">📝 Microsoft Word</option>
+        <option value="Microsoft Excel">📊 Microsoft Excel</option>
+        <option value="Microsoft PowerPoint">📽️ Microsoft PowerPoint</option>
+        <option value="Microsoft Teams">👥 Microsoft Teams</option>
+        <option value="Google Workspace">☁️ Google Workspace - اشتراك</option>
+    </optgroup>
+
+    <!-- ====== 7️⃣ برامج الحماية (ضروري) ====== -->
+    <optgroup label="🛡️ برامج الحماية والأمان">
+        <option value="Kaspersky">🛡️ Kaspersky Antivirus</option>
+        <option value="Norton 360">🔒 Norton 360 - اشتراك</option>
+        <option value="Bitdefender">🛡️ Bitdefender</option>
+        <option value="McAfee">🔐 McAfee - اشتراك</option>
+        <option value="ESET NOD32">🦠 ESET NOD32</option>
+        <option value="Malwarebytes">🐛 Malwarebytes</option>
+    </optgroup>
+
+    <!-- ====== 8️⃣ برامج VPN (شائع جداً) ====== -->
+    <optgroup label="🔒 برامج VPN والخصوصية">
+        <option value="NordVPN">🌍 NordVPN - اشتراك</option>
+        <option value="ExpressVPN">⚡ ExpressVPN - اشتراك</option>
+        <option value="CyberGhost">👻 CyberGhost - اشتراك</option>
+        <option value="Surfshark">🦈 Surfshark - اشتراك</option>
+        <option value="ProtonVPN">🔐 ProtonVPN</option>
+    </optgroup>
+
+    <!-- ====== 9️⃣ اشتراكات البث والترفيه ====== -->
+    <optgroup label="🎬 اشتراكات البث والترفيه">
+        <option value="Netflix">🎬 Netflix - اشتراك</option>
+        <option value="Spotify">🎵 Spotify Premium - اشتراك</option>
+        <option value="YouTube Premium">▶️ YouTube Premium - اشتراك</option>
+        <option value="Disney+">🏰 Disney+ - اشتراك</option>
+        <option value="Amazon Prime">📦 Amazon Prime - اشتراك</option>
+    </optgroup>
+
+    <!-- ====== 🔟 برامج التصميم (للمحترفين) ====== -->
+    <optgroup label="🎨 برامج التصميم الجرافيكي">
+        <option value="Adobe Creative Cloud">☁️ Adobe Creative Cloud - اشتراك</option>
+        <option value="Adobe Photoshop">🖼️ Adobe Photoshop</option>
+        <option value="Adobe Illustrator">✏️ Adobe Illustrator</option>
+        <option value="Canva Pro">☁️ Canva Pro - اشتراك</option>
+        <option value="Figma">🎨 Figma - تصميم تعاوني</option>
+        <option value="CorelDRAW">🎨 CorelDRAW</option>
+    </optgroup>
+
+    <!-- ====== 1️⃣1️⃣ برامج المونتاج ====== -->
+    <optgroup label="🎬 برامج المونتاج والفيديو">
+        <option value="Adobe Premiere Pro">🎬 Adobe Premiere Pro</option>
+        <option value="Adobe After Effects">✨ Adobe After Effects</option>
+        <option value="DaVinci Resolve">🎞️ DaVinci Resolve</option>
+        <option value="Final Cut Pro">🍎 Final Cut Pro - Mac</option>
+        <option value="Camtasia">📹 Camtasia - تسجيل شاشة</option>
+    </optgroup>
+
+    <!-- ====== 1️⃣2️⃣ أدوات النظام والصيانة ====== -->
+    <optgroup label="⚙️ أدوات النظام والصيانة">
+        <option value="CCleaner">🧹 CCleaner - تنظيف النظام</option>
+        <option value="Driver Booster">💿 Driver Booster - تحديث التعريفات</option>
+        <option value="WinRAR">📦 WinRAR</option>
+        <option value="7-Zip">📦 7-Zip</option>
+    </optgroup>
+
+    <!-- ====== 1️⃣3️⃣ اشتراكات التخزين السحابي ====== -->
+    <optgroup label="☁️ اشتراكات التخزين السحابي">
+        <option value="Google Drive">☁️ Google Drive - اشتراك</option>
+        <option value="OneDrive">☁️ OneDrive - اشتراك</option>
+        <option value="Dropbox">📦 Dropbox - اشتراك</option>
+        <option value="iCloud">🍎 iCloud - اشتراك</option>
+    </optgroup>
+
+    <!-- ====== 1️⃣4️⃣ مكونات هاردوير ثانوية ====== -->
+    <optgroup label="💡 مكونات هاردوير ثانوية">
+        <option value="PC Case">🖥️ PC Case - كيسة</option>
+        <option value="CPU Cooler">❄️ CPU Cooler - مبرد معالج</option>
+        <option value="Liquid Cooling">💧 Liquid Cooling - تبريد مائي</option>
+        <option value="RGB Lighting">💡 RGB Lighting - إضاءة</option>
+        <option value="Monitor">🖥️ Monitor - شاشة عادية</option>
+        <option value="Keyboard">⌨️ Keyboard - كيبورد عادي</option>
+        <option value="Headset">🎧 Headset - سماعة عادية</option>
+    </optgroup>
+
+    <!-- ====== 1️⃣5️⃣ باقي ألعاب الأكشن ====== -->
+    <optgroup label="💥 ألعاب الأكشن (تكملة)">
+        <option value="TPS">🔫 TPS - إطلاق نار منظور ثالث</option>
+        <option value="Action RPG">⚔️ Action RPG - لعب أدوار أكشن</option>
+        <option value="Stealth">🥷 Stealth - تسلل</option>
+        <option value="Hack and Slash">🗡️ Hack and Slash - قتال بالسيوف</option>
+        <option value="Fighting Game">🥊 Fighting Game - ألعاب قتال</option>
+        <option value="Tactical Shooter">🎖️ Tactical Shooter - إطلاق نار تكتيكي</option>
+    </optgroup>
+
+    <!-- ====== 1️⃣6️⃣ ألعاب الرعب (تكملة) ====== -->
+    <optgroup label="😱 ألعاب الرعب (تكملة)">
+        <option value="Psychological Horror">🧠 Psychological Horror - رعب نفسي</option>
+        <option value="Zombie Horror">🧟 Zombie Horror - رعب الزومبي</option>
+        <option value="Action Horror">⚔️ Action Horror - أكشن رعب</option>
+        <option value="Indie Horror">🎨 Indie Horror - رعب مستقل</option>
+        <option value="Ghost Horror">👻 Ghost Horror - رعب الأشباح</option>
+    </optgroup>
+
+    <!-- ====== 1️⃣7️⃣ ألعاب الاستراتيجية ====== -->
+    <optgroup label="♟️ ألعاب الاستراتيجية">
+        <option value="RTS">⏱️ RTS - استراتيجية وقت فعلي</option>
+        <option value="MOBA">🎮 MOBA - مولتي أونلاين أرينا</option>
+        <option value="City Builder">🏙️ City Builder - بناء مدن</option>
+        <option value="Turn-Based Strategy">🔄 Turn-Based - استراتيجية بالأدوار</option>
+        <option value="Tower Defense">🗼 Tower Defense - دفاع عن البرج</option>
+    </optgroup>
+
+    <!-- ====== 1️⃣8️⃣ ألعاب الرياضة والسباقات ====== -->
+    <optgroup label="🏎️ ألعاب الرياضة والسباقات">
+        <option value="Racing Arcade">🏎️ Racing Arcade - سباقات أركيد</option>
+        <option value="Basketball">🏀 Basketball - كرة سلة</option>
+        <option value="Street Racing">🌃 Street Racing - سباقات شوارع</option>
+        <option value="American Football">🏈 American Football</option>
+        <option value="Extreme Sports">🤸 Extreme Sports</option>
+    </optgroup>
+
+    <!-- ====== 1️⃣9️⃣ برامج متخصصة (هندسة، 3D، صوت) ====== -->
+    <optgroup label="📐 برامج متخصصة">
+        <option value="AutoCAD">📐 AutoCAD</option>
+        <option value="Blender">🌀 Blender - مجاني</option>
+        <option value="Unity">🎮 Unity - تطوير ألعاب</option>
+        <option value="Unreal Engine">🎮 Unreal Engine</option>
+        <option value="FL Studio">🎹 FL Studio</option>
+        <option value="Adobe Audition">🎧 Adobe Audition</option>
+    </optgroup>
+
+    <!-- ====== 2️⃣0️⃣ ألعاب أخرى ====== -->
+    <optgroup label="🎯 ألعاب أخرى">
+        <option value="Sandbox">🏖️ Sandbox - صندوق رمل إبداعي</option>
+        <option value="Puzzle">🧩 Puzzle - ألغاز</option>
+        <option value="Indie">🎨 Indie - ألعاب مستقلة</option>
+        <option value="Party Games">🎉 Party Games - ألعاب جماعية</option>
+        <option value="VR Game">🥽 VR Game - واقع افتراضي</option>
+        <option value="Platformer">🦘 Platformer - ألعاب المنصات</option>
+    </optgroup>
+
+</select>
 
                 <label>حالة التوفر*</label>
                 <div class="availability-toggle">
