@@ -1,0 +1,222 @@
+/* ===== Container المنتجات ===== */
+#products-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ===== كارت المنتج ===== */
+.product-card {
+    position: relative;
+    background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+    border-radius: 15px;
+    padding: 20px;
+    border: 2px solid #2d2d2d;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(255, 43, 43, 0.3);
+    border-color: #ff2b2b;
+}
+
+/* ===== المنتج الغير متوفر ===== */
+.product-card.out-of-stock {
+    opacity: 0.65;
+    filter: grayscale(60%);
+    border-color: #555;
+}
+
+.product-card.out-of-stock:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 43, 43, 0.15);
+}
+
+/* ===== طبقة "نفذت الكمية" ===== */
+.unavailable-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.80);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    z-index: 10;
+    backdrop-filter: blur(3px);
+}
+
+.unavailable-overlay span {
+    background: linear-gradient(135deg, #ff2b2b 0%, #d32f2f 100%);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    box-shadow: 0 6px 25px rgba(255, 43, 43, 0.6);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    animation: pulse 2.5s infinite;
+    letter-spacing: 1px;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+/* ===== صورة المنتج ===== */
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    background: #0f0f0f;
+    border: 2px solid #2d2d2d;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+.product-card.out-of-stock img {
+    filter: grayscale(100%) brightness(0.6);
+}
+
+/* ===== معلومات المنتج ===== */
+.product-info {
+    position: relative;
+    z-index: 1;
+}
+
+.product-info h3 {
+    color: #ff2b2b;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.product-info .category {
+    color: #aaa;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+
+.product-info .price {
+    color: #25d366;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 15px 0;
+    text-shadow: 0 0 10px rgba(37, 211, 102, 0.3);
+}
+
+.product-card.out-of-stock .price {
+    color: #888;
+    text-decoration: line-through;
+}
+
+/* ===== التاجز ===== */
+.tags-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 12px 0;
+}
+
+.tag {
+    background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: #ccc;
+    border: 1px solid #3d3d3d;
+}
+
+/* ===== الأزرار ===== */
+.buy-btn,
+.unavailable-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    font-family: 'Cairo', sans-serif;
+}
+
+.buy-btn {
+    background: linear-gradient(135deg, #25d366 0%, #1da857 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+}
+
+.buy-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+}
+
+.buy-btn:active {
+    transform: translateY(0);
+}
+
+.unavailable-btn {
+    background: linear-gradient(135deg, #555 0%, #333 100%);
+    color: #999;
+    cursor: not-allowed;
+    border: 2px solid #444;
+    opacity: 0.7;
+}
+
+/* ===== رسالة "لا توجد منتجات" ===== */
+.no-products {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 20px;
+    color: #888;
+    font-size: 1.4rem;
+    background: #1a1a1a;
+    border-radius: 15px;
+    border: 3px dashed #333;
+    font-weight: 600;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+    #products-container {
+        grid-template-columns: 1fr;
+        padding: 15px;
+        gap: 20px;
+    }
+
+    .product-card img {
+        height: 180px;
+    }
+
+    .unavailable-overlay span {
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+
+    .product-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .product-info .price {
+        font-size: 1.3rem;
+    }
+}
