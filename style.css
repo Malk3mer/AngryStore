@@ -525,12 +525,22 @@ body.mobile-menu-open {
   font-weight: 700;
   color: #2c3e50;
   line-height: 1.3;
-  min-height: 2.6em;
+  /* احسب ارتفاع سطر: 1.25rem * 1.3 = 1.625rem
+     لعرض سطرين نستعمل 1.625rem * 2 = 3.25rem */
+  min-height: 3.25rem;
+
+  /* لعمل تقليم متعدد الأسطر مع نقاط الحذف */
   display: -webkit-box;
-  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* تحسينات للتقسيم واللف في السطور عند الحاجة */
+  white-space: normal;
+  word-break: break-word;
 }
+
 
 /* السعر وزر الشراء */
 .game-info {
@@ -613,8 +623,8 @@ body.mobile-menu-open {
 .tags-display {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin: 12px 0;
+  gap: 10px;
+  margin: 15px 0;
 }
 
 .hardware-feature,
@@ -624,17 +634,16 @@ body.mobile-menu-open {
 .unified-tag {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-radius: 8px;
-  font-size: 0.85rem;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 0.88rem;
   font-weight: 600;
-  color: #fff !important;
-  background: linear-gradient(135deg, #c41f09 0%, #a01707 100%) !important;
-  border: none;
+  color: #c41f09 !important;
+  background: rgba(196, 31, 9, 0.08) !important;
+  border: 2px solid rgba(196, 31, 9, 0.2);
   transition: all 0.3s ease;
   white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(196, 31, 9, 0.2);
 }
 
 .hardware-feature i,
@@ -642,8 +651,8 @@ body.mobile-menu-open {
 .product-tag i,
 .game-tags .tag i,
 .unified-tag i {
-  color: #fff !important;
-  font-size: 0.9rem;
+  color: #c41f09 !important;
+  font-size: 0.95rem;
 }
 
 .hardware-feature:hover,
@@ -651,9 +660,18 @@ body.mobile-menu-open {
 .product-tag:hover,
 .game-tags .tag:hover,
 .unified-tag:hover {
-  background: linear-gradient(135deg, #a01707 0%, #c41f09 100%) !important;
+  background: #c41f09 !important;
+  color: #fff !important;
+  border-color: #c41f09;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(196, 31, 9, 0.35);
+  box-shadow: 0 4px 12px rgba(196, 31, 9, 0.25);
+}
+
+.hardware-feature:hover i,
+.tag-badge:hover i,
+.product-tag:hover i,
+.unified-tag:hover i {
+  color: #fff !important;
 }
 
 /* ========================================================================
