@@ -1,4 +1,6 @@
-/* —————————— RESET & BASE —————————— */
+/* ========================================================================
+   🔧 إعدادات أساسية (RESET & BASE)
+======================================================================== */
 *,
 *::before,
 *::after {
@@ -6,121 +8,157 @@
   margin: 0;
   padding: 0;
 }
+
 html {
   font-size: 16px;
   scroll-behavior: smooth;
 }
+
 body {
   font-family: 'Roboto', sans-serif;
-  line-height: 1.5;
+  line-height: 1.6;
   color: #333;
-  background-color: #f5f5f5;
+  background: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);
   position: relative;
   overflow-x: hidden;
 }
+
 body.mobile-menu-open {
   overflow: hidden;
 }
 
-/* —————————— UTILITIES —————————— */
+/* ========================================================================
+   🛠️ أدوات مساعدة (UTILITIES)
+======================================================================== */
 .container {
   width: min(100% - 2rem, 1200px);
   margin-inline: auto;
 }
+
 .btn {
-  display: inline-block;
-  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
   text-align: center;
   text-decoration: none;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  padding: 0.5rem 1.2rem;
+  transition: all 0.3s ease;
+  padding: 0.65rem 1.5rem;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
 .btn-primary {
-  background-color: #3CB5CD;
+  background: linear-gradient(135deg, #3CB5CD 0%, #2a9ab0 100%);
   color: #fff;
 }
+
 .btn-primary:hover {
-  background-color: #3ECCC2;
+  background: linear-gradient(135deg, #2a9ab0 0%, #3CB5CD 100%);
   transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(60, 181, 205, 0.4);
 }
+
 .btn-secondary {
   background-color: transparent;
   color: #fff;
   border: 2px solid #fff;
 }
+
 .btn-secondary:hover {
-  background-color: rgba(255,255,255,.1);
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
 }
 
-/* —————————— NAVBAR —————————— */
+/* ========================================================================
+   📌 شريط التنقل (NAVBAR)
+======================================================================== */
 .nav {
-  background-color: #c41f09;
-  box-shadow: 0 2px 10px rgba(0,0,0,.2);
+  background: linear-gradient(135deg, #c41f09 0%, #a01707 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   position: sticky;
   top: 0;
   z-index: 100;
+  backdrop-filter: blur(10px);
 }
+
 .nav-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.8rem 0;
+  padding: 1rem 0;
 }
+
 .logo {
-  height: 40px;
+  height: 45px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
 }
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
 .nav-links {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
+
 .nav-links a {
   color: #fff;
-  margin-inline: 0.75rem;
   text-decoration: none;
   font-weight: 500;
-  transition: all 0.2s;
-  padding: 0.5rem 0.8rem;
-  border-radius: 4px;
+  transition: all 0.3s ease;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.4rem;
+  font-size: 0.95rem;
 }
+
 .nav-links a.active {
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .nav-links a:hover {
-  background-color: rgba(255,255,255,0.15);
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
 }
+
 .nav-links a i {
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
+
 .nav-actions {
   display: flex;
   align-items: center;
 }
+
 .nav-actions .btn {
-  padding: 0.5rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
 }
 
-/* Mobile menu button & panel */
+/* قائمة الموبايل */
 .mobile-menu-btn {
   display: none;
   flex-direction: column;
   justify-content: space-between;
   width: 30px;
-  height: 21px;
+  height: 22px;
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
   margin-left: 1rem;
 }
+
 .mobile-menu-btn span {
   width: 100%;
   height: 3px;
@@ -128,9 +166,18 @@ body.mobile-menu-open {
   border-radius: 3px;
   transition: all 0.3s ease;
 }
-.mobile-menu-open .mobile-menu-btn span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-.mobile-menu-open .mobile-menu-btn span:nth-child(2) { opacity: 0; }
-.mobile-menu-open .mobile-menu-btn span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+.mobile-menu-open .mobile-menu-btn span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.mobile-menu-open .mobile-menu-btn span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-open .mobile-menu-btn span:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
 
 .mobile-menu {
   position: fixed;
@@ -138,147 +185,215 @@ body.mobile-menu-open {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #c41f09;
+  background: linear-gradient(135deg, #c41f09 0%, #a01707 100%);
   z-index: 99;
-  padding-top: 5rem;
+  padding-top: 6rem;
   transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
+
 .mobile-menu-open .mobile-menu {
   transform: translateX(0);
 }
+
 .mobile-nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
-}
-.mobile-nav a, .mobile-signin {
-  color: white;
-  font-size: 1.2rem;
-  text-decoration: none;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  gap: 2rem;
 }
 
-/* —————————— HERO SECTION —————————— */
-.hero {
-  background-color: #c41f09;
-  color: #fff;
-  padding-block: 3rem 5rem;
-  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-  margin-bottom: 3rem;
+.mobile-nav a,
+.mobile-signin {
+  color: white;
+  font-size: 1.3rem;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  transition: all 0.3s ease;
 }
+
+.mobile-nav a:hover {
+  transform: scale(1.1);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================================================
+   🎬 قسم البطل (HERO SECTION)
+======================================================================== */
+.hero {
+  background: linear-gradient(135deg, #c41f09 0%, #a01707 100%);
+  color: #fff;
+  padding-block: 4rem 6rem;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+  margin-bottom: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+}
+
 .hero-secondary {
-  background-color: #333;
+  background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
   clip-path: none;
 }
+
 .hero-inner {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 2rem;
+  gap: 3rem;
+  position: relative;
+  z-index: 1;
 }
+
 .hero-text {
-  flex: 1 1 380px;
+  flex: 1 1 400px;
 }
+
 .hero-subtitle {
   display: inline-block;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #ffe;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.9rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
   position: relative;
-  padding-left: 15px;
+  padding-left: 20px;
+  font-weight: 600;
 }
+
 .hero-subtitle::before {
   content: '';
   position: absolute;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   background-color: #fff;
   border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
+
 .hero-title {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
+  font-size: 2.8rem;
+  margin-bottom: 1.2rem;
+  font-weight: 800;
   line-height: 1.2;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   animation: fadeInUp 0.8s ease;
 }
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 .hero-desc {
-  margin-bottom: 1.5rem;
-  max-width: 500px;
-  opacity: 0.9;
-}
-.search-form {
-  display: flex;
-  gap: 0.5rem;
-  max-width: 500px;
-}
-.search-input {
-  flex: 1;
-  padding: 0.75rem 1rem;
-  border-radius: 4px;
-  border: none;
-  font-size: 1rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-.search-input:focus {
-  outline: 2px solid #3CB5CD;
-}
-.hero-image img {
-  border-radius: 8px;
-  max-width: 100%;
-  height: auto;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  transform: rotate(2deg);
-  transition: transform 0.3s ease;
-}
-.hero-image img:hover {
-  transform: rotate(0);
+  margin-bottom: 2rem;
+  max-width: 550px;
+  opacity: 0.95;
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
-/* —————————— SECTION TITLES —————————— */
+.search-form {
+  display: flex;
+  gap: 0.7rem;
+  max-width: 550px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.9rem 1.2rem;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #3CB5CD;
+  box-shadow: 0 0 0 4px rgba(60, 181, 205, 0.2);
+  transform: translateY(-2px);
+}
+
+.hero-image {
+  flex: 1 1 400px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image img {
+  border-radius: 15px;
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  transform: rotate(2deg);
+  transition: transform 0.4s ease;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-image img:hover {
+  transform: rotate(0) scale(1.05);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* ========================================================================
+   📋 عناوين الأقسام (SECTION TITLES)
+======================================================================== */
 .trending-header,
 .section-header {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
 }
+
 .trending-label {
   display: inline-block;
-  color: #ee626b;
+  color: #c41f09;
   text-transform: uppercase;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.25rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
 }
+
 .trending-title,
 .section-title {
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 2.2rem;
+  font-weight: 700;
   position: relative;
   display: inline-block;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
+  color: #2c3e50;
 }
+
 .trending-title::after,
 .section-title::after {
   content: '';
@@ -286,118 +401,181 @@ body.mobile-menu-open {
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background-color: #c41f09;
-}
-.section-desc {
-  margin-top: 0.5rem;
-  color: #666;
-  text-align: center;
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #c41f09, transparent);
+  border-radius: 2px;
 }
 
-/* ======================================
-   GAMES GRID (HOMEPAGE - VERTICAL CARDS)
-====================================== */
+.section-desc {
+  margin-top: 1rem;
+  color: #666;
+  text-align: center;
+  font-size: 1.05rem;
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+/* ========================================================================
+   🎮 شبكة الكروت (CARDS GRID)
+======================================================================== */
 .trending-games {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem;
+  gap: 2.5rem;
+  padding: 1rem 0;
 }
 
+/* ========================================================================
+   🃏 تصميم الكرت الواحد (SINGLE CARD)
+======================================================================== */
 .game-card {
-  width: min(100%, 280px);
-  min-height: 520px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  min-height: 540px;
   background: #fff;
-  border-radius: 26px;
-  box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  padding-bottom: 1.4rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding-bottom: 1.5rem;
   border: 2px solid transparent;
 }
 
+.game-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #c41f09, #ff0000, #c41f09);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.game-card:hover::before {
+  opacity: 1;
+}
+
 .game-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(196, 31, 9, 0.25);
+  transform: translateY(-12px);
+  box-shadow: 0 25px 50px rgba(196, 31, 9, 0.2);
   border-color: rgba(196, 31, 9, 0.3);
 }
 
+/* صورة المنتج */
 .game-image {
   width: 100%;
-  aspect-ratio: 3 / 4; 
-  background: #1f2329;
+  aspect-ratio: 3 / 4;
+  background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   position: relative;
 }
+
 .game-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  filter: saturate(1.08) brightness(0.95);
-  transition: transform 0.28s ease, filter 0.28s ease;
+  filter: saturate(1.1) brightness(0.98);
+  transition: all 0.4s ease;
 }
+
 .game-card:hover .game-image img {
-  transform: scale(1.08);
-  filter: saturate(1.15) brightness(1.02);
+  transform: scale(1.1);
+  filter: saturate(1.2) brightness(1.05);
 }
+
+/* شارة الفئة */
 .game-category {
   position: absolute;
   top: 15px;
   right: 15px;
-  background: #c41f09;
+  background: linear-gradient(135deg, #c41f09 0%, #ff0000 100%);
   color: white;
-  padding: 0.3rem 0.8rem;
-  border-radius: 8px;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(196, 31, 9, 0.4);
+  z-index: 2;
+  text-transform: uppercase;
 }
 
+/* تفاصيل المنتج */
 .game-details {
-  padding: 1.25rem 1.4rem 0;
+  padding: 1.5rem 1.5rem 0;
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 1rem;
   flex: 1;
 }
-.game-details .game-title {
-  font-size: 1.2rem;
+
+.game-title {
+  font-size: 1.25rem;
   font-weight: 700;
-  color: #1f1f1f;
+  color: #2c3e50;
+  line-height: 1.3;
+  min-height: 2.6em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
+
+/* السعر وزر الشراء */
 .game-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
+
 .game-price {
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-size: 1.4rem;
+  font-weight: 800;
   color: #c41f09;
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
 }
+
+.game-price::after {
+  content: 'EGP';
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #666;
+}
+
+/* زر الشراء */
 .buy-btn {
   background: linear-gradient(135deg, #c41f09 0%, #ff0000 100%);
   color: #fff !important;
-  padding: 0.6rem 1.5rem;
+  padding: 0.7rem 1.6rem;
   border-radius: 25px;
   font-size: 0.95rem;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(196, 31, 9, 0.3);
+  box-shadow: 0 6px 20px rgba(196, 31, 9, 0.3);
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
 }
 
 .buy-btn::before {
@@ -408,32 +586,35 @@ body.mobile-menu-open {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.3);
   transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+  transition: width 0.6s ease, height 0.6s ease;
 }
 
 .buy-btn:hover::before {
-  width: 300px;
-  height: 300px;
+  width: 350px;
+  height: 350px;
 }
 
 .buy-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(196, 31, 9, 0.5);
-  background: linear-gradient(135deg, #ff0000 0%, #c41f09 100%);
+  box-shadow: 0 10px 30px rgba(196, 31, 9, 0.5);
 }
 
-/* ======================================
-   🔥 UNIFIED TAGS - SIMPLE & PROFESSIONAL
-====================================== */
+.buy-btn i {
+  font-size: 1.1rem;
+}
+
+/* ========================================================================
+   🏷️ تصميم التاجات (TAGS STYLING)
+======================================================================== */
 .hardware-features,
 .game-tags,
 .tags-display {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 10px 0;
+  margin: 12px 0;
 }
 
 .hardware-feature,
@@ -444,15 +625,16 @@ body.mobile-menu-open {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 5px 12px;
-  border-radius: 6px;
+  padding: 6px 14px;
+  border-radius: 8px;
   font-size: 0.85rem;
   font-weight: 600;
   color: #fff !important;
-  background: #c41f09 !important;
+  background: linear-gradient(135deg, #c41f09 0%, #a01707 100%) !important;
   border: none;
-  transition: background 0.2s ease;
+  transition: all 0.3s ease;
   white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(196, 31, 9, 0.2);
 }
 
 .hardware-feature i,
@@ -469,82 +651,18 @@ body.mobile-menu-open {
 .product-tag:hover,
 .game-tags .tag:hover,
 .unified-tag:hover {
-  background: #a01707 !important;
+  background: linear-gradient(135deg, #a01707 0%, #c41f09 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(196, 31, 9, 0.35);
 }
 
-/* ======================================
-   FEATURES GRID (SERVICES PAGE)
-====================================== */
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-.feature-card {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 18px;
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  transition: transform 0.2s, box-shadow 0.2s;
-  border-top: 5px solid #3CB5CD;
-}
-.feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(60,181,205,0.15);
-}
-.feature-icon {
-  font-size: 2.5rem;
-  color: #c41f09;
-  margin-bottom: 0.8rem;
-}
-.feature-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-}
-.feature-card p {
-  color: #666;
-}
-
-/* —————————— FAQ SECTION —————————— */
-.faq-container {
-  max-width: 800px;
-  margin: 2rem auto;
-}
-.faq-item {
-  border-bottom: 1px solid #eee;
-  margin-bottom: 0.5rem;
-}
-.faq-question {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-  cursor: pointer;
-}
-.faq-question h3 {
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-.faq-toggle {
-  font-size: 1.2rem;
-  color: #777;
-}
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease-out;
-}
-.faq-item.active .faq-answer {
-  max-height: 300px;
-  padding-bottom: 1rem;
-}
-
-/* —————————— FEATURES SECTION —————————— */
+/* ========================================================================
+   ✨ قسم المميزات (FEATURES SECTION)
+======================================================================== */
 .features-section {
   background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-  padding: 5rem 0;
-  margin-top: 4rem;
+  padding: 6rem 0;
+  margin-top: 5rem;
   position: relative;
   overflow: hidden;
 }
@@ -555,25 +673,42 @@ body.mobile-menu-open {
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
+  height: 5px;
   background: linear-gradient(90deg, #c41f09, #ff0000, #c41f09);
 }
 
-.features-section .features-grid {
+.features-section .trending-label {
+  color: #ff6b6b;
+}
+
+.features-section .trending-title {
+  color: #fff;
+}
+
+.features-section .trending-title::after {
+  background: linear-gradient(90deg, transparent, #ff0000, transparent);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
   margin-top: 3rem;
 }
 
-.features-section .feature-card {
+.feature-card {
   background: rgba(255, 255, 255, 0.05);
-  padding: 2.5rem 2rem;
-  border-radius: 15px;
+  padding: 3rem 2.5rem;
+  border-radius: 20px;
+  text-align: center;
   border: 2px solid rgba(196, 31, 9, 0.2);
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
+  transition: all 0.4s ease;
 }
 
-.features-section .feature-card::before {
+.feature-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -581,54 +716,56 @@ body.mobile-menu-open {
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(196, 31, 9, 0.1), transparent);
-  transition: left 0.5s ease;
+  transition: left 0.6s ease;
 }
 
-.features-section .feature-card:hover::before {
+.feature-card:hover::before {
   left: 100%;
 }
 
-.features-section .feature-card:hover {
-  transform: translateY(-10px);
-  border-color: rgba(196, 31, 9, 0.5);
-  box-shadow: 0 15px 40px rgba(196, 31, 9, 0.3);
+.feature-card:hover {
+  transform: translateY(-12px);
+  border-color: rgba(196, 31, 9, 0.6);
+  box-shadow: 0 20px 50px rgba(196, 31, 9, 0.3);
   background: rgba(255, 255, 255, 0.08);
 }
 
-.features-section .feature-icon {
-  font-size: 3.5rem;
+.feature-icon {
+  font-size: 4rem;
   color: #c41f09;
   margin-bottom: 1.5rem;
   display: inline-block;
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 4px 8px rgba(196, 31, 9, 0.4));
+  transition: all 0.4s ease;
+  filter: drop-shadow(0 6px 12px rgba(196, 31, 9, 0.4));
 }
 
-.features-section .feature-card:hover .feature-icon {
-  transform: scale(1.15) rotate(5deg);
+.feature-card:hover .feature-icon {
+  transform: scale(1.2) rotate(5deg);
   color: #ff0000;
 }
 
-.features-section .feature-card h3 {
-  font-size: 1.4rem;
+.feature-card h3 {
+  font-size: 1.5rem;
   margin-bottom: 1rem;
   color: #fff;
   font-weight: 700;
 }
 
-.features-section .feature-card p {
-  color: #ccc;
+.feature-card p {
+  color: #ddd;
   line-height: 1.8;
   font-size: 1rem;
 }
 
-/* —————————— FOOTER —————————— */
+/* ========================================================================
+   📞 الفوتر (FOOTER)
+======================================================================== */
 .footer {
-  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
   color: #ccc;
-  padding: 4rem 0 2rem;
-  margin-top: 4rem;
-  border-top: 4px solid #c41f09;
+  padding: 5rem 0 2rem;
+  margin-top: 5rem;
+  border-top: 5px solid #c41f09;
   position: relative;
 }
 
@@ -638,31 +775,31 @@ body.mobile-menu-open {
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
+  height: 2px;
   background: linear-gradient(90deg, transparent, rgba(196, 31, 9, 0.5), transparent);
 }
 
 .footer-content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 3rem;
+  gap: 4rem;
   margin-bottom: 3rem;
 }
 
 .footer-col h3 {
   color: #c41f09;
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 800;
 }
 
 .footer-col h4 {
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin-bottom: 1.5rem;
-  font-weight: 600;
+  font-weight: 700;
   position: relative;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.7rem;
 }
 
 .footer-col h4::after {
@@ -670,30 +807,36 @@ body.mobile-menu-open {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 50px;
-  height: 2px;
-  background: #c41f09;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #c41f09, transparent);
+  border-radius: 2px;
 }
 
 .footer-col p {
   color: #aaa;
-  line-height: 1.8;
+  line-height: 1.9;
   margin-bottom: 1rem;
 }
 
 .footer-contact p {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
   color: #ccc;
   font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.footer-contact p:hover {
+  color: #fff;
 }
 
 .footer-contact i {
   color: #c41f09;
-  width: 20px;
-  font-size: 1rem;
+  width: 22px;
+  font-size: 1.1rem;
 }
 
 .footer-links {
@@ -702,7 +845,7 @@ body.mobile-menu-open {
 }
 
 .footer-links li {
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .footer-links a {
@@ -711,7 +854,8 @@ body.mobile-menu-open {
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
+  font-size: 0.95rem;
 }
 
 .footer-links a::before {
@@ -724,7 +868,7 @@ body.mobile-menu-open {
 
 .footer-links a:hover {
   color: #fff;
-  padding-left: 10px;
+  padding-left: 15px;
 }
 
 .footer-links a:hover::before {
@@ -735,120 +879,203 @@ body.mobile-menu-open {
 .social-icons {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   flex-wrap: wrap;
 }
 
 .social-icons a {
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(196, 31, 9, 0.2);
   color: #ccc;
   border-radius: 50%;
-  font-size: 1.2rem;
-  transition: all 0.3s ease;
+  font-size: 1.3rem;
+  transition: all 0.4s ease;
   border: 2px solid transparent;
 }
 
 .social-icons a:hover {
   background: #c41f09;
   color: #fff;
-  transform: translateY(-5px) scale(1.1);
+  transform: translateY(-8px) scale(1.15);
   border-color: #c41f09;
-  box-shadow: 0 5px 15px rgba(196, 31, 9, 0.5);
+  box-shadow: 0 8px 20px rgba(196, 31, 9, 0.5);
 }
 
 .footer-note {
   color: #888;
   font-size: 0.9rem;
   font-style: italic;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .footer-bottom {
   text-align: center;
-  padding-top: 2rem;
+  padding-top: 2.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   color: #888;
+  font-size: 0.95rem;
 }
 
-/* —————————— WHATSAPP FLOAT BUTTON —————————— */
+/* ========================================================================
+   💬 زر الواتساب العائم (WHATSAPP FLOAT)
+======================================================================== */
 .whatsapp-float {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  width: 60px;
-  height: 60px;
-  background: #25d366;
+  width: 65px;
+  height: 65px;
+  background: linear-gradient(135deg, #25d366 0%, #20ba5a 100%);
   color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+  font-size: 2.2rem;
+  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
   z-index: 999;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   text-decoration: none;
-  animation: pulse-whatsapp 2s ease-in-out infinite;
-  border: 3px solid #fff;
+  animation: pulse-whatsapp 2.5s ease-in-out infinite;
+  border: 4px solid #fff;
 }
 
 @keyframes pulse-whatsapp {
-  0%, 100% { 
+  0%, 100% {
     transform: scale(1);
-    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
   }
-  50% { 
+  50% {
     transform: scale(1.1);
-    box-shadow: 0 6px 30px rgba(37, 211, 102, 0.7);
+    box-shadow: 0 10px 35px rgba(37, 211, 102, 0.7);
   }
 }
 
 .whatsapp-float:hover {
-  transform: scale(1.15);
-  box-shadow: 0 8px 40px rgba(37, 211, 102, 0.8);
-  background: #20ba5a;
+  transform: scale(1.2);
+  box-shadow: 0 12px 45px rgba(37, 211, 102, 0.8);
+  background: linear-gradient(135deg, #20ba5a 0%, #1da851 100%);
 }
 
-/* —————————— RESPONSIVENESS —————————— */
+/* ========================================================================
+   📱 التصميم المتجاوب (RESPONSIVE DESIGN)
+======================================================================== */
 @media (max-width: 992px) {
-    .hero-title { font-size: 1.8rem; }
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .trending-title,
+  .section-title {
+    font-size: 1.8rem;
+  }
 }
-@media (max-width: 600px) {
-  .nav-links { display: none; }
-  .mobile-menu-btn { display: flex; }
-  .hero { padding-block: 2rem 4rem; }
-  .hero-title { font-size: 1.7rem; }
-  .hero-desc { max-width: 100%; }
-  .search-form { flex-direction: column; max-width: 100%; }
-  .search-form button { margin-left: 0; width: 100%; }
-  .hero-image { order: -1; margin-bottom: 1.5rem; }
-  .footer-content { 
-    grid-template-columns: 1fr;
+
+@media (max-width: 768px) {
+  .hero {
+    padding-block: 3rem 5rem;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .trending-games {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .mobile-menu-btn {
+    display: flex;
+  }
+  
+  .hero {
+    padding-block: 2.5rem 4rem;
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-desc {
+    max-width: 100%;
+    font-size: 1rem;
+  }
+  
+  .search-form {
+    flex-direction: column;
+    max-width: 100%;
+  }
+  
+  .search-form button {
+    width: 100%;
+  }
+  
+  .hero-image {
+    order: -1;
+    margin-bottom: 2rem;
+  }
+  
+  .trending-games {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .game-card {
+    max-width: 100%;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
     text-align: center;
   }
-  .footer-col { text-align: center; }
-  .footer-col h4::after { left: 50%; transform: translateX(-50%); }
-  .social-icons { justify-content: center; }
-  .whatsapp-float { 
-    width: 50px; 
-    height: 50px; 
-    font-size: 1.5rem; 
-    bottom: 20px; 
-    right: 20px; 
+  
+  .footer-col {
+    text-align: center;
   }
+  
+  .footer-col h4::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .social-icons {
+    justify-content: center;
+  }
+  
+  .whatsapp-float {
+    width: 55px;
+    height: 55px;
+    font-size: 1.8rem;
+    bottom: 20px;
+    right: 20px;
+  }
+  
   .features-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+  
   .hardware-feature,
   .unified-tag {
     font-size: 0.8rem;
-    padding: 4px 10px;
+    padding: 5px 12px;
+  }
+  
+  .trending-title,
+  .section-title {
+    font-size: 1.6rem;
   }
 }
